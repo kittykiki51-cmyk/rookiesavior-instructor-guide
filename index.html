@@ -1,539 +1,614 @@
 <!DOCTYPE html>
 <html lang="zh-TW" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>菜鳥救星｜講師合作與教學指南</title>
-    
-    <!-- Google Fonts: Noto Sans TC -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS & Lucide Icons -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Noto Sans TC"', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            // Hahow 風格：活潑亮橘紅 + 科技藍綠 + 亮黃
-                            orange: '#FF5A5F',     // 主色：活力橘紅
-                            orangeHover: '#E04A4F',
-                            teal: '#00A896',       // 輔色：科技藍綠
-                            tealLight: '#E5F6F4',
-                            yellow: '#FFC107',     // 點綴：亮黃色
-                            dark: '#2A2A2A',       // 沉穩深灰字體
-                            light: '#5C5C5C',      // 內文灰
-                            bg: '#F8F9FA',         // 極淺灰背景
-                            card: '#FFFFFF',
-                        }
-                    },
-                    boxShadow: {
-                        'float': '0 10px 30px -5px rgba(0, 0, 0, 0.08)',
-                        'float-hover': '0 20px 40px -5px rgba(255, 90, 95, 0.15)',
-                    },
-                    backgroundImage: {
-                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="菜鳥救星講師合作介紹：快速了解合作優勢、雙方分工、直播與錄播課程形式，以及大致合作流程。">
+  <title>菜鳥救星｜講師合作</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] },
+          colors: {
+            brand: {
+              cyan: '#28ABC2',
+              cyanDark: '#147F94',
+              blue: '#2889D4',
+              coral: '#F76F6F',
+              yellow: '#F0CD30',
+              ink: '#17313A',
+              body: '#52656B',
+              pale: '#F1F8FA',
+              mist: '#F7FAFB'
             }
+          },
+          boxShadow: {
+            soft: '0 20px 55px -38px rgba(23, 49, 58, .32)',
+            card: '0 18px 45px -34px rgba(23, 49, 58, .28)'
+          }
         }
-    </script>
-    <style>
-        body { font-family: 'Noto Sans TC', sans-serif; }
-        
-        /* 自訂滾動條 */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #F8F9FA; }
-        ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #00A896; }
-
-        /* 活潑的標題底線 */
-        .title-highlight {
-            position: relative;
-            display: inline-block;
-            z-index: 1;
-        }
-        .title-highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: -4px;
-            right: -4px;
-            height: 14px;
-            background-color: #FFC107;
-            opacity: 0.4;
-            z-index: -1;
-            border-radius: 4px;
-            transform: rotate(-1deg);
-        }
-
-        /* 卡片懸浮動畫 */
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --font-zh: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-latin: 'Montserrat', 'Noto Sans TC', sans-serif;
+    }
+    body {
+      font-family: var(--font-zh);
+      font-size: 16px;
+      line-height: 1.75;
+      letter-spacing: .01em;
+      font-weight: 400;
+      font-feature-settings: 'palt' 1;
+    }
+    h1, h2, h3, p, li, summary { overflow-wrap: break-word; }
+    h1, h2, h3 { word-break: keep-all; }
+    .display-title {
+      font-size: clamp(2.5rem, 4.7vw, 3.75rem) !important;
+      line-height: 1.24;
+      letter-spacing: -.018em;
+      text-wrap: balance;
+    }
+    .section-title {
+      font-size: clamp(2rem, 3.65vw, 3rem) !important;
+      line-height: 1.38;
+      letter-spacing: -.01em;
+      text-wrap: balance;
+    }
+    .hero-copy {
+      font-size: clamp(1rem, 1.35vw, 1.125rem) !important;
+      line-height: 2;
+      letter-spacing: .012em;
+    }
+    .section-copy, .card-copy {
+      font-size: 1rem;
+      line-height: 1.9;
+      letter-spacing: .008em;
+    }
+    .card-heading {
+      font-size: clamp(1.25rem, 1.8vw, 1.5rem) !important;
+      line-height: 1.48;
+      letter-spacing: -.006em;
+      font-weight: 800;
+    }
+    .feature-heading {
+      font-size: clamp(1.5rem, 2.4vw, 1.875rem) !important;
+      line-height: 1.45;
+      letter-spacing: -.008em;
+      font-weight: 800;
+    }
+    .flow-heading {
+      font-size: clamp(1.2rem, 1.8vw, 1.42rem) !important;
+      line-height: 1.5;
+      font-weight: 800;
+    }
+    .faq-question {
+      font-size: clamp(1.05rem, 1.65vw, 1.25rem) !important;
+      line-height: 1.6;
+      font-weight: 800;
+    }
+    .eyebrow {
+      font-family: var(--font-latin);
+      font-size: .72rem !important;
+      line-height: 1.4;
+      letter-spacing: .16em;
+      font-weight: 800;
+    }
+    .latin-number, .number-outline { font-family: var(--font-latin); }
+    .button-label { font-size: .96rem; font-weight: 700; letter-spacing: .01em; }
+    .grid-dots {
+      background-image: radial-gradient(rgba(40, 171, 194, .22) 1.2px, transparent 1.2px);
+      background-size: 18px 18px;
+    }
+    .number-outline {
+      -webkit-text-stroke: 1px rgba(40, 171, 194, .34);
+      color: transparent;
+    }
+    .flow-line::before {
+      content: '';
+      position: absolute;
+      left: 31px;
+      top: 64px;
+      bottom: -28px;
+      width: 1px;
+      background: #CFE5E9;
+    }
+    .flow-line:last-child::before { display: none; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform .2s ease; }
+    @media (max-width: 640px) {
+      body { font-size: 15.5px; line-height: 1.72; }
+      .display-title { font-size: 2.48rem !important; line-height: 1.3; letter-spacing: -.012em; }
+      .section-title { font-size: 2rem !important; line-height: 1.42; }
+      .hero-copy { font-size: 1rem !important; line-height: 1.92; }
+      .section-copy, .card-copy { font-size: .96rem; line-height: 1.86; }
+      .eyebrow { font-size: .68rem !important; letter-spacing: .14em; }
+      .flow-line::before { left: 25px; top: 54px; }
+    }
+  </style>
 </head>
-<body class="bg-brand-bg text-brand-dark antialiased text-base md:text-lg">
+<body class="bg-white text-brand-ink antialiased pb-20 md:pb-0">
 
-    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 bg-gradient-to-br from-brand-orange to-[#FF7A7E] rounded-2xl flex items-center justify-center shadow-lg shadow-brand-orange/20">
-                        <i data-lucide="sparkles" class="text-white w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <span class="block font-black text-2xl tracking-tight leading-none text-brand-dark">菜鳥救星</span>
-                        <span class="block text-sm font-bold text-brand-teal mt-1">講師合作指南</span>
-                    </div>
-                </div>
-                <div class="hidden md:flex gap-6 items-center">
-                    <a href="#about" class="font-bold text-brand-light hover:text-brand-orange transition">平台定位</a>
-                    <a href="#flow" class="font-bold text-brand-light hover:text-brand-orange transition">合作流程</a>
-                    <a href="#rules" class="font-bold text-brand-light hover:text-brand-orange transition">錄製規範</a>
-                    <a href="#revenue" class="font-bold text-brand-light hover:text-brand-orange transition">分潤授權</a>
-                    <a href="#contact" class="px-6 py-2.5 bg-brand-orange text-white font-bold rounded-full hover:bg-brand-orangeHover hover:shadow-lg transition-all transform hover:-translate-y-0.5">聯繫 PM</a>
-                </div>
-            </div>
+  <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+      <div class="h-[76px] flex items-center justify-between">
+        <a href="#top" class="flex items-center gap-3" aria-label="回到頁首">
+          <div class="w-10 h-10 rounded-full bg-brand-cyan flex items-center justify-center">
+            <i data-lucide="sparkles" class="w-5 h-5 text-white"></i>
+          </div>
+          <div>
+            <p class="text-lg md:text-xl font-extrabold leading-none">菜鳥救星</p>
+            <p class="text-xs font-bold text-brand-cyan mt-1.5 tracking-wider" style="font-family: var(--font-latin);">INSTRUCTOR PARTNERSHIP</p>
+          </div>
+        </a>
+        <div class="hidden lg:flex items-center gap-7 text-sm font-bold">
+          <a href="#about-platform" class="hover:text-brand-cyan transition">平台介紹</a>
+          <a href="#advantages" class="hover:text-brand-cyan transition">合作優勢</a>
+          <a href="#roles" class="hover:text-brand-cyan transition">合作分工</a>
+          <a href="#essentials" class="hover:text-brand-cyan transition">合作資訊</a>
+          <a href="#flow" class="hover:text-brand-cyan transition">合作流程</a>
+          <a href="#faq" class="hover:text-brand-cyan transition">常見問題</a>
+          <a href="#contact" class="px-6 py-3 bg-brand-ink text-white rounded-full hover:bg-brand-cyan transition">聯繫 PM</a>
         </div>
-    </nav>
+        <a href="#contact" class="lg:hidden px-4 py-2.5 bg-brand-ink text-white text-sm font-bold rounded-full">聯繫 PM</a>
+      </div>
+    </div>
+  </nav>
 
-    <header class="relative overflow-hidden bg-white pt-20 pb-28 border-b border-gray-100">
-        <!-- 活潑的漸層背景光暈 -->
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-yellow/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/3"></div>
-        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-teal/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4"></div>
+  <header id="top" class="relative overflow-hidden bg-brand-mist">
+    <div class="absolute inset-y-0 right-0 w-[42%] bg-brand-cyan hidden lg:block"></div>
+    <div class="absolute right-[34%] top-20 w-28 h-28 rounded-full bg-brand-yellow/90 hidden lg:block"></div>
+    <div class="absolute left-0 bottom-0 w-44 h-44 grid-dots opacity-60"></div>
 
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="inline-block px-4 py-1.5 bg-brand-tealLight text-brand-teal font-bold rounded-full mb-6 text-sm tracking-wide">
-                初學者友善 ╳ 實作導向 ╳ 學完能應用
-            </span>
-            <h1 class="text-4xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight tracking-tight">
-                將你的專業技能，<br class="hidden sm:block">
-                轉化為<span class="text-brand-orange">有價值的學習體驗</span>
-            </h1>
-            <p class="text-lg md:text-xl text-brand-light font-medium max-w-3xl mx-auto leading-relaxed mb-10">
-                我們致力於將複雜的 AI 工具與數位流程，轉化為初學者也能輕鬆上手的課程。
-                在不影響原有工作的前提下，邀請你一起打造「我真的做得出來」的優質課程！
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#flow" class="px-8 py-4 bg-brand-orange text-white text-lg font-bold rounded-full shadow-lg shadow-brand-orange/30 hover:shadow-float-hover hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
-                    查看合作流程 <i data-lucide="arrow-down-circle" class="w-5 h-5"></i>
-                </a>
-            </div>
+    <div class="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-20 md:py-28 lg:py-32">
+      <div class="grid lg:grid-cols-[1.08fr_.92fr] gap-14 lg:gap-20 items-center">
+        <div>
+          <p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-6">TEACH WITH ROOKIESAVIOR</p>
+          <h1 class="display-title font-black max-w-4xl">
+            把你的專業，<br>
+            做成<span class="text-brand-coral">真正學得會</span>的課程
+          </h1>
+          <p class="hero-copy mt-8 text-brand-body max-w-2xl">
+            你專心規劃課程與分享專業；菜鳥救星從消費者受眾角度提供建議，並協助錄製檢查、後製上架、客服與行銷，讓開課不必一個人完成。
+          </p>
+
+          <div class="mt-10 flex flex-col sm:flex-row gap-4">
+            <a href="#contact" class="button-label inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-ink text-white rounded-full hover:bg-brand-cyan transition">
+              有課程想法，先聊聊
+              <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+            </a>
+            <a href="#flow" class="button-label inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-slate-200 rounded-full hover:border-brand-cyan hover:text-brand-cyan transition">
+              查看合作流程
+              <i data-lucide="arrow-down" class="w-5 h-5"></i>
+            </a>
+          </div>
+
+          <div class="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm md:text-base font-bold text-brand-body">
+            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-coral"></span> 鐘點費＋分潤獎勵</span>
+            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-yellow"></span> 專屬 PM 協作</span>
+            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-cyan"></span> 平台後製與推廣</span>
+            <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-blue"></span> 可兼任合作</span>
+          </div>
         </div>
-    </header>
 
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 space-y-32">
+        <div class="relative lg:min-h-[520px]">
+          <div class="relative lg:absolute lg:inset-y-0 lg:left-0 lg:right-[-20px] bg-white rounded-[34px] p-7 md:p-10 shadow-soft overflow-hidden">
+            <div class="absolute top-0 right-0 text-[108px] md:text-[154px] font-extrabold number-outline leading-none select-none">01</div>
+            <p class="eyebrow text-xs font-black text-brand-cyan mb-6">PARTNERSHIP</p>
+            <h2 class="section-title font-black max-w-md">不只是收影片，<br>而是陪你把課程完成</h2>
 
-        <section id="about" class="scroll-mt-32">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-black mb-4"><span class="title-highlight">平台定位與合作保障</span></h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- 課程定位 -->
-                <div class="bg-white p-8 md:p-10 rounded-[32px] shadow-float border border-gray-100 card-hover">
-                    <div class="w-16 h-16 bg-brand-tealLight rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="target" class="w-8 h-8 text-brand-teal"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-6">兩大課程型態</h3>
-                    <div class="space-y-4">
-                        <div class="p-5 bg-gray-50 rounded-2xl border border-gray-100">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="px-3 py-1 bg-brand-orange text-white text-sm font-bold rounded-full">直播課程</span>
-                                <h4 class="text-lg font-bold">帶領初學者從不會到會</h4>
-                            </div>
-                            <p class="text-brand-light">重視「教得懂、跟得上」，帶領學員產出實際專案成果。</p>
-                        </div>
-                        <div class="p-5 bg-gray-50 rounded-2xl border border-gray-100">
-                            <div class="flex items-center gap-2 mb-2">
-                                <span class="px-3 py-1 bg-brand-teal text-white text-sm font-bold rounded-full">影音課程</span>
-                                <h4 class="text-lg font-bold">有基礎者的進階應用</h4>
-                            </div>
-                            <p class="text-brand-light">重視「學得深、做得出成果」，專注於實務操作與進階技巧。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 合作保障 -->
-                <div class="bg-white p-8 md:p-10 rounded-[32px] shadow-float border border-gray-100 card-hover">
-                    <div class="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="shield-check" class="w-8 h-8 text-brand-orange"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-6">專案兼任，保障原有工作</h3>
-                    <p class="text-brand-light mb-6">採「兼任講師／專案合作」形式，保有最大彈性，安心分享專業：</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-teal shrink-0"></i>
-                            <span class="font-medium">非要求轉全職，時間彈性自由。</span>
-                        </li>
-                        <li class="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-teal shrink-0"></i>
-                            <span class="font-medium">可<span class="text-brand-orange font-bold">維持原有正職工作</span>及投保身分。</span>
-                        </li>
-                        <li class="flex items-start gap-3 bg-gray-50 p-4 rounded-xl">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-brand-teal shrink-0"></i>
-                            <span class="font-medium">平台<span class="text-brand-orange font-bold">不要求退保</span>或轉出原有勞保。</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="flow" class="scroll-mt-32">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-black mb-4"><span class="title-highlight">合作申請與製作流程</span></h2>
-                <p class="text-xl text-brand-light">分為「面試前」與「面試後」兩大階段，步驟清晰透明</p>
+            <div class="mt-10 space-y-5 relative z-10">
+              <div class="flex gap-4 items-start">
+                <span class="w-11 h-11 shrink-0 rounded-full bg-brand-pale flex items-center justify-center latin-number font-extrabold text-brand-cyan">1</span>
+                <div><p class="card-heading">老師規劃完整課綱</p><p class="card-copy text-brand-body mt-1">錄播與直播課綱皆由老師依專業規劃。</p></div>
+              </div>
+              <div class="flex gap-4 items-start">
+                <span class="w-11 h-11 shrink-0 rounded-full bg-brand-pale flex items-center justify-center latin-number font-extrabold text-brand-cyan">2</span>
+                <div><p class="card-heading">PM 從受眾角度給建議</p><p class="card-copy text-brand-body mt-1">協助檢視定位、學習成果與內容呈現方式。</p></div>
+              </div>
+              <div class="flex gap-4 items-start">
+                <span class="w-11 h-11 shrink-0 rounded-full bg-brand-pale flex items-center justify-center latin-number font-extrabold text-brand-cyan">3</span>
+                <div><p class="card-heading">平台接手製作與上架</p><p class="card-copy text-brand-body mt-1">剪輯、頁面、客服與行銷由團隊協助。</p></div>
+              </div>
             </div>
 
-            <div class="relative">
-                <!-- 垂直時間軸主線 -->
-                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 bg-gray-200 -translate-x-1/2 z-0"></div>
-
-                <!-- 階段一：面試前 -->
-                <div class="relative z-10 mb-20">
-                    <div class="flex items-center justify-center mb-8">
-                        <div class="bg-brand-orange text-white px-8 py-3 rounded-full text-xl font-black shadow-lg shadow-brand-orange/20 z-10">
-                            階段一：面試前 (提案與評估)
-                        </div>
-                    </div>
-
-                    <div class="space-y-8 md:space-y-0">
-                        <!-- 步驟 1 (左側) -->
-                        <div class="md:flex justify-between items-center w-full relative">
-                            <div class="hidden md:block w-5 h-5 rounded-full bg-brand-orange border-4 border-white absolute left-1/2 -translate-x-1/2 shadow"></div>
-                            <div class="md:w-[45%] md:pr-8">
-                                <div class="bg-white p-6 md:p-8 rounded-[24px] shadow-float border-2 border-orange-100 card-hover">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-orange-100 text-brand-orange font-black text-2xl rounded-xl flex items-center justify-center">1</div>
-                                        <h3 class="text-2xl font-bold">LINE 初步提案</h3>
-                                    </div>
-                                    <p class="text-brand-light mb-4">請透過 LINE 聯繫窗口，並準備以下初步資料：</p>
-                                    <ul class="space-y-2 text-brand-light bg-gray-50 p-4 rounded-xl">
-                                        <li class="flex items-center gap-2"><i data-lucide="arrow-right" class="w-4 h-4 text-brand-orange"></i> 課程形式 (影音/直播) & 預計時數</li>
-                                        <li class="flex items-center gap-2"><i data-lucide="arrow-right" class="w-4 h-4 text-brand-orange"></i> 教授主題 & 適合對象</li>
-                                        <li class="flex items-center gap-2"><i data-lucide="arrow-right" class="w-4 h-4 text-brand-orange"></i> 預期學員產出成果</li>
-                                        <li class="flex items-center gap-2"><i data-lucide="arrow-right" class="w-4 h-4 text-brand-orange"></i> 課綱初版 (大標題即可)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="hidden md:block md:w-[45%]"></div>
-                        </div>
-
-                        <!-- 步驟 2 (右側) -->
-                        <div class="md:flex justify-between items-center w-full relative mt-8 md:-mt-12">
-                            <div class="hidden md:block w-5 h-5 rounded-full bg-brand-orange border-4 border-white absolute left-1/2 -translate-x-1/2 shadow"></div>
-                            <div class="hidden md:block md:w-[45%]"></div>
-                            <div class="md:w-[45%] md:pl-8">
-                                <div class="bg-white p-6 md:p-8 rounded-[24px] shadow-float border-2 border-orange-100 card-hover">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-orange-100 text-brand-orange font-black text-2xl rounded-xl flex items-center justify-center">2</div>
-                                        <h3 class="text-2xl font-bold">課程合作面談</h3>
-                                    </div>
-                                    <p class="text-brand-light mb-4 font-medium flex items-center gap-2">
-                                        <i data-lucide="video" class="w-5 h-5 text-brand-teal"></i> Google Meet (約 1 小時內)
-                                    </p>
-                                    <ul class="space-y-3 text-brand-light">
-                                        <li class="flex items-start gap-2">
-                                            <span class="font-bold text-brand-dark min-w-[80px]">自我介紹</span>
-                                            <span>(5-10分) 經歷與專案分享</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="font-bold text-brand-dark min-w-[80px]">試講試教</span>
-                                            <span>(15分) 準備小範例與簡報示範</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="font-bold text-brand-dark min-w-[80px]">合作說明</span>
-                                            <span>(10分) 平台介紹與後續規劃</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="font-bold text-brand-dark min-w-[80px]">自由 Q&A</span>
-                                            <span>費用、時程等細節提問</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 階段二：面試後 -->
-                <div class="relative z-10">
-                    <div class="flex items-center justify-center mb-8">
-                        <div class="bg-brand-teal text-white px-8 py-3 rounded-full text-xl font-black shadow-lg shadow-brand-teal/20 z-10">
-                            階段二：面試後 (簽約與製作)
-                        </div>
-                    </div>
-
-                    <div class="space-y-8 md:space-y-0">
-                        <!-- 步驟 3 (左側) -->
-                        <div class="md:flex justify-between items-center w-full relative">
-                            <div class="hidden md:block w-5 h-5 rounded-full bg-brand-teal border-4 border-white absolute left-1/2 -translate-x-1/2 shadow"></div>
-                            <div class="md:w-[45%] md:pr-8">
-                                <div class="bg-white p-6 md:p-8 rounded-[24px] shadow-float border-2 border-teal-100 card-hover">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-brand-tealLight text-brand-teal font-black text-2xl rounded-xl flex items-center justify-center">3</div>
-                                        <h3 class="text-2xl font-bold">通知結果與簽約</h3>
-                                    </div>
-                                    <p class="text-brand-light mb-4">面談當日或最晚 <strong class="text-brand-teal">3 個工作天內</strong>通知結果。</p>
-                                    <div class="bg-gray-50 p-4 rounded-xl space-y-2">
-                                        <p class="font-bold text-brand-dark mb-1">確認通過後將進行：</p>
-                                        <p class="text-brand-light text-sm flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-teal"></i> 課綱細節與時數確認 (約 7 天)</p>
-                                        <p class="text-brand-light text-sm flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-teal"></i> 合作契約簽署</p>
-                                        <p class="text-brand-light text-sm flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-teal"></i> 提供錄製規格與簡報範本</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="hidden md:block md:w-[45%]"></div>
-                        </div>
-
-                        <!-- 步驟 4 (右側) -->
-                        <div class="md:flex justify-between items-center w-full relative mt-8 md:-mt-12">
-                            <div class="hidden md:block w-5 h-5 rounded-full bg-brand-teal border-4 border-white absolute left-1/2 -translate-x-1/2 shadow"></div>
-                            <div class="hidden md:block md:w-[45%]"></div>
-                            <div class="md:w-[45%] md:pl-8">
-                                <div class="bg-white p-6 md:p-8 rounded-[24px] shadow-float border-2 border-teal-100 card-hover">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <div class="w-12 h-12 bg-brand-tealLight text-brand-teal font-black text-2xl rounded-xl flex items-center justify-center">4</div>
-                                        <h3 class="text-2xl font-bold">試錄與分批錄製</h3>
-                                    </div>
-                                    <p class="text-brand-light mb-4">正式錄製前，請先完成<strong class="text-brand-dark">第一堂課試錄</strong>，確保影音品質與教學節奏符合共識。</p>
-                                    <ul class="space-y-2 text-brand-light bg-gray-50 p-4 rounded-xl">
-                                        <li class="flex items-start gap-2"><i data-lucide="play-circle" class="w-5 h-5 text-brand-teal shrink-0 mt-0.5"></i> 試錄審片通過後，再接續錄製</li>
-                                        <li class="flex items-start gap-2"><i data-lucide="upload-cloud" class="w-5 h-5 text-brand-teal shrink-0 mt-0.5"></i> 建議每週分批上傳 1-2 堂</li>
-                                        <li class="flex items-start gap-2"><i data-lucide="calendar" class="w-5 h-5 text-brand-teal shrink-0 mt-0.5"></i> 錄製期程原則為 14 天 (可調整)</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 步驟 5 (左側) -->
-                        <div class="md:flex justify-between items-center w-full relative mt-8 md:-mt-12">
-                            <div class="hidden md:block w-5 h-5 rounded-full bg-brand-teal border-4 border-white absolute left-1/2 -translate-x-1/2 shadow"></div>
-                            <div class="md:w-[45%] md:pr-8">
-                                <div class="bg-brand-dark p-6 md:p-8 rounded-[24px] shadow-float text-white card-hover relative overflow-hidden">
-                                    <!-- 裝飾 -->
-                                    <div class="absolute -right-10 -top-10 text-white/10">
-                                        <i data-lucide="rocket" class="w-32 h-32"></i>
-                                    </div>
-                                    <div class="relative z-10">
-                                        <div class="flex items-center gap-4 mb-4">
-                                            <div class="w-12 h-12 bg-white/20 text-white font-black text-2xl rounded-xl flex items-center justify-center">5</div>
-                                            <h3 class="text-2xl font-bold">後製剪輯與上架</h3>
-                                        </div>
-                                        <p class="text-gray-300 mb-4">影片交付後 (約 7 天工作期)，繁雜事項交給我們！</p>
-                                        <ul class="space-y-2 text-gray-300">
-                                            <li class="flex items-center gap-2"><i data-lucide="scissors" class="w-4 h-4 text-brand-yellow"></i> 平台進行影片剪輯與包裝</li>
-                                            <li class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4 text-brand-yellow"></i> 製作課程封面與行銷網頁</li>
-                                            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-brand-yellow"></i> 頁面測試完成，正式開賣！</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="hidden md:block md:w-[45%]"></div>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="mt-10 p-5 rounded-2xl bg-brand-ink text-white flex items-center gap-4">
+              <i data-lucide="phone-call" class="w-6 h-6 text-brand-yellow shrink-0"></i>
+              <p class="text-sm md:text-base leading-7">本頁提供初步合作概覽；完整規格、合約與執行細節，將於確認合作後另行提供。</p>
             </div>
-        </section>
-
-        <section id="rules" class="scroll-mt-32">
-            <div class="bg-white rounded-[40px] p-8 md:p-12 lg:p-16 border border-gray-100 shadow-float">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-black mb-4"><span class="title-highlight">影音錄製規範 (重要設定)</span></h2>
-                    <p class="text-xl text-brand-light">統一高質感的學習體驗，從正確的設定開始</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-10">
-                    <div>
-                        <h3 class="text-2xl font-bold flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                            <i data-lucide="settings-2" class="w-6 h-6 text-brand-orange"></i> 基本畫質與軟體
-                        </h3>
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                                <span class="font-bold text-brand-light">推薦錄製軟體</span>
-                                <span class="font-bold text-brand-dark">oCam 或 OBS Studio</span>
-                            </div>
-                            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                                <span class="font-bold text-brand-light">畫面解析度</span>
-                                <span class="font-bold text-brand-teal text-xl">1920 × 1080 (16:9)</span>
-                            </div>
-                            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-xl">
-                                <span class="font-bold text-brand-light">幀率與格式</span>
-                                <span class="font-bold text-brand-teal text-xl">30 FPS / MP4</span>
-                            </div>
-                            <div class="flex justify-between items-center p-4 bg-brand-yellow/10 rounded-xl">
-                                <span class="font-bold text-brand-dark">簡報字體大小</span>
-                                <span class="font-bold text-brand-dark">標題 66pt / 內文 24pt+</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <h3 class="text-2xl font-bold flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                            <i data-lucide="clapperboard" class="w-6 h-6 text-brand-orange"></i> 錄製與口條原則
-                        </h3>
-                        <ul class="space-y-5">
-                            <li class="flex items-start gap-4">
-                                <div class="w-8 h-8 rounded-full bg-brand-tealLight text-brand-teal flex items-center justify-center font-bold shrink-0">1</div>
-                                <div>
-                                    <h4 class="font-bold text-brand-dark text-lg mb-1">一章節一部影片</h4>
-                                    <p class="text-brand-light">方便學員依章節複習。每部影片開頭請先呈現「簡報畫面」再進入操作。</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div class="w-8 h-8 rounded-full bg-brand-tealLight text-brand-teal flex items-center justify-center font-bold shrink-0">2</div>
-                                <div>
-                                    <h4 class="font-bold text-brand-dark text-lg mb-1">第一堂課需自我介紹</h4>
-                                    <p class="text-brand-light">分享實務經驗與專案，以親切自然的方式帶領學員認識你。</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-4">
-                                <div class="w-8 h-8 rounded-full bg-orange-100 text-brand-orange flex items-center justify-center font-bold shrink-0">3</div>
-                                <div>
-                                    <h4 class="font-bold text-brand-orange text-lg mb-1">錯誤不需重錄，口述標記</h4>
-                                    <p class="text-brand-light">若遇口誤或操作錯誤，直接口述<strong class="text-brand-dark">「這邊說錯幫我剪掉」</strong>，後製會協助處理。</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="mt-8 bg-brand-dark text-white p-6 rounded-2xl flex items-center justify-between flex-wrap gap-4">
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="monitor-check" class="w-8 h-8 text-brand-yellow"></i>
-                        <span class="text-lg font-bold">強烈建議：正式錄製前，先錄製 1-2 分鐘測試影片</span>
-                    </div>
-                    <span class="text-gray-300">確認文字清晰、無明顯雜音、滑鼠游標清楚可見。</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="revenue" class="scroll-mt-32">
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- 收益分潤 -->
-                <div class="bg-white rounded-[32px] p-8 md:p-10 border border-gray-100 shadow-float">
-                    <h3 class="text-3xl font-black mb-8 flex items-center gap-3">
-                        <i data-lucide="coins" class="w-8 h-8 text-brand-yellow"></i> 收益分潤與授權
-                    </h3>
-                    
-                    <div class="space-y-6 mb-8">
-                        <div class="bg-brand-tealLight/50 p-6 rounded-2xl border border-brand-teal/20">
-                            <p class="text-brand-light font-bold mb-2">老師專屬折扣碼推廣報名</p>
-                            <div class="flex items-baseline gap-2">
-                                <span class="text-5xl font-black text-brand-teal">70%</span>
-                                <span class="font-bold text-brand-dark">老師收益</span>
-                            </div>
-                        </div>
-                        <div class="bg-gray-50 p-6 rounded-2xl">
-                            <p class="text-brand-light font-bold mb-2">平台管道報名 (官網/廣告)</p>
-                            <div class="flex items-baseline gap-2">
-                                <span class="text-4xl font-black text-brand-light">30%</span>
-                                <span class="font-bold text-brand-dark">老師收益</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <ul class="text-brand-light space-y-2 text-sm">
-                        <li class="flex items-center gap-2"><i data-lucide="calendar-check" class="w-4 h-4 text-brand-orange"></i> 每月月底結算，次月 12 日匯款</li>
-                        <li class="flex items-center gap-2"><i data-lucide="file-check-2" class="w-4 h-4 text-brand-orange"></i> 影音課授權原則 5 年，直播課 1 年</li>
-                        <li class="flex items-center gap-2"><i data-lucide="alert-circle" class="w-4 h-4 text-brand-orange"></i> 可與他平台合作，但勿使用完全相同之內容</li>
-                    </ul>
-                </div>
-
-                <!-- 繁雜事務交給平台 -->
-                <div class="bg-brand-dark text-white rounded-[32px] p-8 md:p-10 shadow-float relative overflow-hidden">
-                    <!-- 裝飾 -->
-                    <div class="absolute right-0 bottom-0 w-48 h-48 bg-brand-orange/20 rounded-tl-full blur-2xl"></div>
-                    
-                    <div class="relative z-10">
-                        <h3 class="text-3xl font-black mb-4">專心教課，繁雜事務交給我們</h3>
-                        <p class="text-gray-300 text-lg mb-8">不需要當小編、不用會下廣告，更不用處理學員登入問題。</p>
-                        
-                        <div class="space-y-6">
-                            <div class="flex gap-4">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
-                                    <i data-lucide="headphones" class="w-6 h-6 text-brand-yellow"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-xl mb-2">客服雙層過濾</h4>
-                                    <p class="text-gray-400">第一線行政與基本操作由平台處理。只有學員<span class="text-white font-bold">確實依影片操作仍遇專業技術問題</span>時，才會透過官方 LINE 轉達請老師判斷。</p>
-                                </div>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center shrink-0">
-                                    <i data-lucide="megaphone" class="w-6 h-6 text-brand-orange"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-xl mb-2">行銷素材平台搞定</h4>
-                                    <p class="text-gray-400">老師只需提供<span class="text-white font-bold">半身照、簡歷與 4 張課程截圖</span>。網頁建置、文案撰寫、廣告皆由平台包辦。(不想露臉也可使用 AI 照片)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="scroll-mt-32">
-            <div class="bg-gradient-to-r from-brand-orange to-[#FF7A7E] rounded-[40px] p-10 md:p-16 text-center text-white shadow-float relative overflow-hidden">
-                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] opacity-50"></div>
-                
-                <div class="relative z-10 max-w-3xl mx-auto">
-                    <i data-lucide="mail-plus" class="w-16 h-16 mx-auto mb-6 opacity-90"></i>
-                    <h2 class="text-3xl md:text-5xl font-black mb-6">準備好提案了嗎？</h2>
-                    <p class="text-xl opacity-90 mb-10 leading-relaxed">
-                        無論是已有大綱想要優化，或是只有一個好點子，<br class="hidden md:block">
-                        都歡迎直接與我們聯繫，我們將協助您評估與規劃。
-                    </p>
-                    
-                    <div class="bg-white text-brand-dark p-6 md:p-8 rounded-3xl inline-flex flex-col md:flex-row items-center gap-6 md:gap-12 text-left shadow-2xl">
-                        <div>
-                            <p class="text-sm font-bold text-brand-light mb-1">聯絡窗口</p>
-                            <p class="text-xl font-black">數位事業群 - 線上產品處 <br class="md:hidden"><span class="text-brand-orange">李家儀 PM</span></p>
-                        </div>
-                        <div class="hidden md:block w-px h-16 bg-gray-200"></div>
-                        <div>
-                            <p class="text-sm font-bold text-brand-light mb-1">聯絡方式</p>
-                            <p class="text-lg font-bold flex items-center gap-2 mb-1"><i data-lucide="phone" class="w-4 h-4"></i> (02) 2772-3696 #316</p>
-                            <a href="mailto:kitty2348@lccnet.com.tw" class="text-lg font-bold text-brand-teal hover:text-brand-orange transition flex items-center gap-2">
-                                <i data-lucide="mail" class="w-4 h-4"></i> kitty2348@lccnet.com.tw
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-white border-t border-gray-100 py-10 mt-20">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <div class="flex items-center justify-center gap-2 mb-4">
-                <div class="w-8 h-8 rounded-lg bg-brand-orange flex items-center justify-center">
-                    <i data-lucide="sparkles" class="text-white w-4 h-4"></i>
-                </div>
-                <span class="text-xl font-black text-brand-dark">菜鳥救星</span>
-            </div>
-            <p class="text-brand-light font-medium">© 2024 Rookiesavior. Instructor Guide.</p>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </header>
 
-    <script>
-        lucide.createIcons();
-    </script>
+  <main>
+
+    <section id="about-platform" class="scroll-mt-24 py-20 md:py-28 bg-white border-b border-slate-100">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-20 items-start">
+          <div>
+            <p class="eyebrow text-brand-cyan mb-5">ABOUT ROOKIESAVIOR</p>
+            <h2 class="section-title font-extrabold">關於<br class="hidden lg:block">菜鳥救星平台</h2>
+            <a href="https://live.rookiesavior.net/" target="_blank" rel="noopener noreferrer" class="button-label mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-slate-200 bg-brand-mist hover:border-brand-cyan hover:text-brand-cyan transition">
+              前往菜鳥救星網站
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <div class="relative bg-brand-pale rounded-[32px] p-7 sm:p-9 md:p-12 overflow-hidden">
+            <div class="absolute -right-8 -top-10 w-36 h-36 rounded-full bg-brand-yellow/45"></div>
+            <div class="absolute right-24 bottom-[-50px] w-44 h-44 rounded-full bg-brand-cyan/10"></div>
+            <div class="relative z-10 max-w-3xl">
+              <p class="feature-heading text-brand-ink mb-7">初學者友善、實作導向、學完能應用</p>
+              <div class="space-y-5 text-brand-body section-copy">
+                <p>菜鳥救星是一個以「初學者友善、實作導向、學完能應用」為核心的線上學習平台。</p>
+                <p>我們希望把看似複雜的電腦技能、AI 工具與數位工作流程，轉化成一般人也能跟著操作的課程。課程不只介紹軟體功能，而是從真實的工作情境與需求出發，帶領學員一步一步完成作品、工具或可實際運用的成果。</p>
+                <p>無論是想提升職場效率、發展副業、轉換跑道，或是建立自己的 AI 自動化系統，菜鳥救星都希望成為學員從「不知道怎麼開始」，一路走到「我真的做得出來」的學習夥伴。</p>
+              </div>
+
+              <div class="mt-9 grid sm:grid-cols-3 gap-3">
+                <div class="rounded-2xl bg-white/85 border border-white px-5 py-4">
+                  <p class="text-sm font-extrabold text-brand-cyan">初學者友善</p>
+                  <p class="text-sm text-brand-body mt-1">從看得懂開始</p>
+                </div>
+                <div class="rounded-2xl bg-white/85 border border-white px-5 py-4">
+                  <p class="text-sm font-extrabold text-brand-coral">實作導向</p>
+                  <p class="text-sm text-brand-body mt-1">跟著步驟完成</p>
+                </div>
+                <div class="rounded-2xl bg-white/85 border border-white px-5 py-4">
+                  <p class="text-sm font-extrabold text-brand-blue">成果應用</p>
+                  <p class="text-sm text-brand-body mt-1">真正帶回工作</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="advantages" class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-20 items-start">
+          <div class="lg:sticky lg:top-28">
+            <p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-5">WHY ROOKIESAVIOR</p>
+            <h2 class="section-title font-extrabold">讓老師把時間，<br>留給真正重要的事</h2>
+            <p class="section-copy mt-6 text-brand-body">從第一次聊課程，到正式上架或開課，都有清楚窗口協助，不需要自己研究一整套課程製作流程。</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 border-t border-l border-slate-200">
+            <article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px]">
+              <p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-cyan/20 mb-7">01</p>
+              <h3 class="card-heading mb-4">專屬 PM 協作</h3>
+              <p class="card-copy text-brand-body">從消費者與目標受眾的視角，協助檢視課程定位、內容順序、成果感與銷售呈現。</p>
+            </article>
+            <article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px] bg-brand-pale/55">
+              <p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-blue/20 mb-7">02</p>
+              <h3 class="card-heading mb-4">後製上架由平台協助</h3>
+              <p class="card-copy text-brand-body">錄製完成後，由平台處理影片剪輯、課程封面、頁面建置與正式上架。</p>
+            </article>
+            <article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px] bg-brand-pale/55 md:bg-white">
+              <p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-coral/20 mb-7">03</p>
+              <h3 class="card-heading mb-4">客服與行銷支援</h3>
+              <p class="card-copy text-brand-body">行政、登入與基本操作問題由平台先處理，老師主要專注於真正需要專業判斷的內容。</p>
+            </article>
+            <article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px]">
+              <p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-yellow/45 mb-7">04</p>
+              <h3 class="card-heading mb-4">合作資訊透明</h3>
+              <p class="card-copy text-brand-body">錄播與直播皆採鐘點費＋分潤獎勵；老師可於專屬講師專區查看個別合作資料與結算資訊。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roles" class="py-20 md:py-28 bg-brand-ink text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative">
+        <div class="absolute -right-10 -top-20 text-[220px] font-black text-white/[.035] leading-none select-none">ROLE</div>
+        <div class="max-w-3xl relative z-10">
+          <p class="eyebrow text-xs md:text-sm font-black text-brand-yellow mb-5">CLEAR DIVISION</p>
+          <h2 class="section-title font-extrabold">你負責專業，<br>我們負責把合作往前推進</h2>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-2 gap-px bg-white/15 border border-white/15 relative z-10">
+          <article class="bg-brand-ink p-8 md:p-12">
+            <p class="text-brand-yellow font-black text-sm tracking-widest mb-5">講師負責</p>
+            <h3 class="feature-heading mb-8">完成課程規劃與教學內容</h3>
+            <ul class="space-y-5 text-gray-300 leading-8">
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5"></i><span>規劃錄播或直播的完整課綱與各堂進度</span></li>
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5"></i><span>準備教材、範例、素材與學員成果設計</span></li>
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5"></i><span>完成課程錄製或依排程進行直播授課</span></li>
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5"></i><span>必要時協助回覆專業技術問題</span></li>
+            </ul>
+          </article>
+
+          <article class="bg-[#20404A] p-8 md:p-12">
+            <p class="text-brand-cyan font-black text-sm tracking-widest mb-5">菜鳥救星負責</p>
+            <h3 class="feature-heading mb-8">從受眾視角協作與完成製作</h3>
+            <ul class="space-y-5 text-gray-200 leading-8">
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5"></i><span>針對定位、內容安排與成果呈現提供建議</span></li>
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5"></i><span>提供錄製規格、試錄檢查與執行協助</span></li>
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5"></i><span>處理影片後製、課程頁建置與上架</span></li>
+              <li class="flex gap-4"><i data-lucide="check" class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5"></i><span>協助基本客服、行銷推廣與結算資訊</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-brand-mist">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="text-center max-w-3xl mx-auto">
+          <p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-5">COURSE FORMAT</p>
+          <h2 class="section-title font-extrabold">兩種合作方式，<br>都重視實作與成果</h2>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-2 gap-7">
+          <article class="bg-white rounded-[30px] p-8 md:p-11 border border-slate-100 shadow-card relative overflow-hidden">
+            <span class="absolute right-6 top-4 text-[82px] font-extrabold latin-number text-brand-cyan/[.08]">01</span>
+            <div class="w-14 h-14 rounded-full bg-brand-cyan flex items-center justify-center mb-8"><i data-lucide="video" class="w-6 h-6 text-white"></i></div>
+            <p class="text-sm font-black text-brand-cyan tracking-widest mb-3">RECORDED COURSE</p>
+            <h3 class="feature-heading mb-6">影音錄播課程</h3>
+            <div class="space-y-5 text-brand-body">
+              <div>
+                <p class="text-sm font-black tracking-wider text-brand-cyan mb-2">核心定位</p>
+                <p class="card-copy">帶領已有基礎的學員，從「會操作」進一步走向「進階應用」。</p>
+              </div>
+              <div class="pt-5 border-t border-slate-100">
+                <p class="text-sm font-black tracking-wider text-brand-cyan mb-2">學習成果</p>
+                <p class="card-copy">重視「學得深、做得出成果」，幫助學員真正完成可應用的實作成果。</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-[30px] p-8 md:p-11 border border-slate-100 shadow-card relative overflow-hidden">
+            <span class="absolute right-6 top-4 text-[82px] font-extrabold latin-number text-brand-coral/[.08]">02</span>
+            <div class="w-14 h-14 rounded-full bg-brand-coral flex items-center justify-center mb-8"><i data-lucide="radio" class="w-6 h-6 text-white"></i></div>
+            <p class="text-sm font-black text-brand-coral tracking-widest mb-3">LIVE COURSE</p>
+            <h3 class="feature-heading mb-6">Live 直播課程</h3>
+            <div class="space-y-5 text-brand-body">
+              <div>
+                <p class="text-sm font-black tracking-wider text-brand-coral mb-2">核心定位</p>
+                <p class="card-copy">帶領初學者從「不會」到「會」，透過即時示範與互動逐步完成學習。</p>
+              </div>
+              <div class="pt-5 border-t border-slate-100">
+                <p class="text-sm font-black tracking-wider text-brand-coral mb-2">學習成果</p>
+                <p class="card-copy">重視「教得懂、跟得上」，並帶領學員產出一個實際專題。</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="essentials" class="scroll-mt-24 py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="max-w-3xl">
+          <p class="eyebrow text-xs md:text-sm font-black text-brand-coral mb-5">PARTNERSHIP ESSENTIALS</p>
+          <h2 class="section-title font-extrabold">合作前，先掌握三個重點</h2>
+          <p class="section-copy mt-6 text-brand-body">這裡先說明合作方向；實際報酬、錄製規格與執行細節，會在確認合作後依課程方案提供完整文件。</p>
+        </div>
+
+        <div class="mt-14 grid lg:grid-cols-2 gap-7">
+          <article class="rounded-[30px] p-8 md:p-10 bg-brand-mist border border-slate-200 relative overflow-hidden">
+            <span class="absolute right-6 top-3 text-[82px] latin-number font-extrabold text-brand-coral/[.08]">01</span>
+            <div class="w-14 h-14 rounded-full bg-brand-coral flex items-center justify-center mb-7">
+              <i data-lucide="badge-dollar-sign" class="w-6 h-6 text-white"></i>
+            </div>
+            <p class="text-sm font-black text-brand-coral tracking-widest mb-3">COMPENSATION</p>
+            <h3 class="feature-heading mb-7">錄播、直播皆為<br>鐘點費＋分潤獎勵</h3>
+
+            <div class="space-y-4">
+              <div class="bg-white rounded-2xl p-5 border border-slate-200">
+                <p class="font-extrabold text-brand-ink">影音錄播課程</p>
+                <p class="card-copy text-brand-body mt-2">依課程內容、時數與個別合作方案確認鐘點費，課程上架後另依銷售來源計算分潤獎勵。</p>
+              </div>
+              <div class="bg-white rounded-2xl p-5 border border-slate-200">
+                <p class="font-extrabold text-brand-ink">Live 直播課程</p>
+                <p class="card-copy text-brand-body mt-2">依直播主題、時數與個別合作方案確認鐘點費，並依推薦招生或合作方案計算分潤獎勵。</p>
+              </div>
+            </div>
+
+            <p class="text-sm text-brand-body mt-5 leading-7">實際比例與計算方式，會依個別合作方案及正式文件說明。</p>
+          </article>
+
+          <article class="rounded-[30px] p-8 md:p-10 bg-brand-ink text-white relative overflow-hidden">
+            <span class="absolute right-6 top-3 text-[82px] latin-number font-extrabold text-white/[.05]">02</span>
+            <div class="w-14 h-14 rounded-full bg-brand-cyan flex items-center justify-center mb-7">
+              <i data-lucide="monitor-play" class="w-6 h-6 text-white"></i>
+            </div>
+            <p class="text-sm font-black text-brand-cyan tracking-widest mb-3">RECORDING SUPPORT</p>
+            <h3 class="feature-heading mb-7">不熟悉錄製也不用擔心</h3>
+
+            <div class="space-y-5 text-gray-200">
+              <div class="flex gap-4">
+                <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center latin-number font-extrabold text-brand-yellow shrink-0">1</span>
+                <p class="card-copy">正式錄製前先完成短測試，確認畫面、聲音與操作介面清楚，再開始後續錄製。</p>
+              </div>
+              <div class="flex gap-4">
+                <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center latin-number font-extrabold text-brand-yellow shrink-0">2</span>
+                <p class="card-copy">說到哪裡，可用滑鼠指向或搭配 Epic Pen 圈選，幫助學員快速掌握目前講解的位置。</p>
+              </div>
+              <div class="flex gap-4">
+                <span class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center latin-number font-extrabold text-brand-yellow shrink-0">3</span>
+                <p class="card-copy">如使用 OBS 露臉，視訊畫面通常放在右下角，並避免遮住按鈕、文字或主要操作區。</p>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="https://epicpen.com/" target="_blank" rel="noopener noreferrer" class="button-label inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-brand-ink hover:bg-brand-yellow transition">
+                Epic Pen 安裝
+                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+              </a>
+              <a href="https://www.youtube.com/watch?v=-8f7dswrp7U" target="_blank" rel="noopener noreferrer" class="button-label inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/25 hover:border-brand-cyan hover:text-brand-cyan transition">
+                Epic Pen 教學
+                <i data-lucide="circle-play" class="w-4 h-4"></i>
+              </a>
+              <a href="https://www.youtube.com/watch?v=Q6etI74dlvs" target="_blank" rel="noopener noreferrer" class="button-label inline-flex items-center gap-2 px-5 py-3 rounded-full border border-white/25 hover:border-brand-cyan hover:text-brand-cyan transition">
+                OBS 使用教學
+                <i data-lucide="circle-play" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+
+        <article class="mt-7 rounded-[26px] border border-brand-cyan/30 bg-gradient-to-r from-brand-pale to-white p-7 md:p-9">
+          <div class="grid lg:grid-cols-[auto_1fr_auto] gap-5 lg:gap-7 items-center">
+            <div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-card">
+              <i data-lucide="calendar-check-2" class="w-6 h-6 text-brand-cyan"></i>
+            </div>
+            <div>
+              <p class="text-sm font-black text-brand-cyan tracking-widest mb-2">INSTRUCTOR PORTAL</p>
+              <h3 class="card-heading">報酬資訊可於講師專區查看</h3>
+              <ul class="mt-4 space-y-3 text-brand-body">
+                <li class="flex items-start gap-3">
+                  <span class="font-black text-brand-ink shrink-0">鐘點費</span>
+                  <span class="card-copy">查看個別議定的合作金額</span>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span class="font-black text-brand-ink shrink-0">分潤</span>
+                  <span class="card-copy">查看報名數量與結算資訊</span>
+                </li>
+              </ul>
+            </div>
+            <p class="text-xs md:text-sm text-brand-body leading-6 lg:max-w-[210px]">補充：基於個資保護，不提供學員個資。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="flow" class="py-20 md:py-28">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-24">
+          <div>
+            <p class="eyebrow text-xs md:text-sm font-black text-brand-coral mb-5">PARTNERSHIP FLOW</p>
+            <h2 class="section-title font-extrabold">從一個課程想法，<br>到正式上架或開課</h2>
+            <p class="section-copy mt-6 text-brand-body">流程先讓老師看懂即可；實際時程、文件與執行方式，會依課程型態另行確認。</p>
+          </div>
+
+          <div class="space-y-7">
+            <article class="flow-line relative flex gap-5 md:gap-7 pb-7">
+              <span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-cyan text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">01</span>
+              <div class="pt-1"><h3 class="flow-heading">初步聯絡</h3><p class="card-copy text-brand-body mt-2">簡單分享想教的主題、適合對象、預計形式與希望學員完成的成果。</p></div>
+            </article>
+            <article class="flow-line relative flex gap-5 md:gap-7 pb-7">
+              <span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-blue text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">02</span>
+              <div class="pt-1"><h3 class="flow-heading">線上面談</h3><p class="card-copy text-brand-body mt-2">了解老師經歷、課程方向與教學方式，並說明平台合作模式。</p></div>
+            </article>
+            <article class="flow-line relative flex gap-5 md:gap-7 pb-7">
+              <span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-yellow text-brand-ink flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">03</span>
+              <div class="pt-1"><h3 class="flow-heading">課綱與合作確認</h3><p class="card-copy text-brand-body mt-2">老師完成完整課綱，PM 從消費者受眾角度提供建議，確認方向後進入合作。</p></div>
+            </article>
+            <article class="flow-line relative flex gap-5 md:gap-7 pb-7">
+              <span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-coral text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">04</span>
+              <div class="pt-1"><h3 class="flow-heading">錄製或直播授課</h3><p class="card-copy text-brand-body mt-2">錄播課先完成測試與試錄；直播課依確認排程進行授課。</p></div>
+            </article>
+            <article class="flow-line relative flex gap-5 md:gap-7">
+              <span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-ink text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">05</span>
+              <div class="pt-1"><h3 class="flow-heading">後製上架或正式開課</h3><p class="card-copy text-brand-body mt-2">平台接手後製、課程頁與推廣安排，並於講師專區提供合作與結算資訊。</p></div>
+            </article>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-28 bg-brand-pale/60">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="text-center max-w-3xl mx-auto">
+          <p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-5">FAQ</p>
+          <h2 class="section-title font-extrabold">常見問題</h2>
+        </div>
+
+        <div class="mt-14 border-t border-slate-200">
+          <details class="group border-b border-slate-200">
+            <summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+              <span>還沒有完整課綱，可以先聯絡嗎？</span>
+              <i data-lucide="plus" class="faq-icon w-6 h-6 text-brand-cyan shrink-0"></i>
+            </summary>
+            <p class="card-copy pb-7 pr-10 text-brand-body">可以先提供課程主題、適合對象與預期成果進行初步討論；正式合作時，不論錄播或直播，完整課綱皆由老師負責規劃。</p>
+          </details>
+
+          <details class="group border-b border-slate-200">
+            <summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+              <span>我不會剪影片，也不熟悉課程上架怎麼辦？</span>
+              <i data-lucide="plus" class="faq-icon w-6 h-6 text-brand-cyan shrink-0"></i>
+            </summary>
+            <p class="card-copy pb-7 pr-10 text-brand-body">老師主要負責內容與錄製，平台會提供錄製規格與試錄協助，並處理後製、課程頁建置與上架。</p>
+          </details>
+
+          <details class="group border-b border-slate-200">
+            <summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+              <span>錄播與直播的合作報酬怎麼看？</span>
+              <i data-lucide="plus" class="faq-icon w-6 h-6 text-brand-cyan shrink-0"></i>
+            </summary>
+            <p class="card-copy pb-7 pr-10 text-brand-body">兩種形式皆為鐘點費＋分潤獎勵。個別鐘點費、分潤報名數量與結算資訊可於講師專區查看；平台不提供學員個資。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div class="relative rounded-[34px] overflow-hidden bg-brand-cyan text-white p-8 md:p-14 lg:p-16">
+          <div class="absolute right-[-40px] top-[-90px] w-72 h-72 rounded-full border-[42px] border-white/10"></div>
+          <div class="absolute right-28 bottom-[-90px] w-48 h-48 rounded-full bg-brand-yellow"></div>
+          <div class="relative z-10 grid lg:grid-cols-[1.2fr_.8fr] gap-12 items-end">
+            <div>
+              <p class="eyebrow text-xs md:text-sm font-black text-white/75 mb-5">LET'S TALK</p>
+              <h2 class="section-title font-extrabold">有一個課程想法，<br>就可以先聊聊</h2>
+              <p class="hero-copy mt-6 text-white/90 max-w-2xl">不需要先準備完整企劃書。電話中先分享想教的方向、受眾與成果，我們會一起判斷是否適合進一步合作。</p>
+            </div>
+
+            <div class="bg-white text-brand-ink rounded-[26px] p-7 md:p-8 shadow-soft">
+              <p class="text-xs font-black tracking-widest text-brand-cyan mb-4">CONTACT PERSON</p>
+              <p class="text-sm font-bold text-brand-body">數位事業群－線上產品處</p>
+              <p class="text-xl md:text-2xl font-extrabold mt-1">李家儀 PM</p>
+              <div class="mt-6 space-y-3">
+                <a href="tel:+886227723696" class="flex items-center gap-3 font-bold hover:text-brand-cyan transition"><i data-lucide="phone" class="w-5 h-5"></i> (02) 2772-3696 #316</a>
+                <a href="mailto:kitty2348@lccnet.com.tw?subject=%E8%8F%9C%E9%B3%A5%E6%95%91%E6%98%9F%E8%AC%9B%E5%B8%AB%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2" class="flex items-center gap-3 font-bold text-brand-cyanDark hover:text-brand-coral transition break-all"><i data-lucide="mail" class="w-5 h-5 shrink-0"></i> kitty2348@lccnet.com.tw</a>
+              </div>
+              <a href="mailto:kitty2348@lccnet.com.tw?subject=%E8%8F%9C%E9%B3%A5%E6%95%91%E6%98%9F%E8%AC%9B%E5%B8%AB%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2" class="button-label mt-7 w-full inline-flex items-center justify-center gap-2 py-3.5 bg-brand-ink text-white rounded-full hover:bg-brand-coral transition">
+                聯繫合作
+                <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t border-slate-100 py-12">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="flex flex-col sm:flex-row items-center gap-5">
+        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNy42LjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0i5ZyW5bGkXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgODAwIDE2MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgODAwIDE2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6I0YwQ0QzMDt9DQoJLnN0MXtmaWxsOiMyOEFCQzI7fQ0KCS5zdDJ7ZmlsbDojRkZGRkZGO30NCgkuc3Qze2ZpbGw6IzI4ODlENDt9DQoJLnN0NHtmaWxsOiNGNzZGNkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxnPg0KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTEzLjgsMjcuNEg4Ny4ydjU5LjhoMjYuNmg1OS44QzE3My42LDU0LjIsMTQ2LjksMjcuNCwxMTMuOCwyNy40eiIvPg0KCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTExLjcsNjUuOXY1Ny4ySDg2Ljh2MjEuNmgtOC40di0yMS42SDU5Ljd2MjEuNmgtOC40di0yMS42SDI2LjRWNjUuOWMwLTExLjgsNC44LTIyLjQsMTIuNS0zMC4yDQoJCQljNy43LTcuNywxOC40LTEyLjUsMzAuMi0xMi41QzkyLjYsMjMuMywxMTEuNyw0Mi40LDExMS43LDY1Ljl6Ii8+DQoJCTxjaXJjbGUgY2xhc3M9InN0MiIgY3g9IjY5IiBjeT0iNTkiIHI9IjI1LjEiLz4NCgkJPGNpcmNsZSBjbGFzcz0ic3QxIiBjeD0iNjkiIGN5PSI1OSIgcj0iOS44Ii8+DQoJCTxwYXRoIGNsYXNzPSJzdDMiIGQ9Ik01Mi4yLDkwLjZIMTBjMCwyMy4zLDE4LjksNDIuMiw0Mi4yLDQyLjJzNDIuMi0xOC45LDQyLjItNDIuMkg1Mi4yeiIvPg0KCTwvZz4NCgk8Zz4NCgkJPGc+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjkyLjIsMjEuMmMwLDEsMC44LDEuOCwxLjgsMS44aDI4LjRjMy41LDAsNi4zLDIuOSw2LjMsNi40YzAsMy40LTIuNyw2LjMtNi4zLDYuM0gyOTQNCgkJCQljLTEsMC0xLjgsMC44LTEuOCwxLjh2MC4yYzAsMy41LTIuOSw2LjQtNi40LDYuNGMtMy41LDAtNi40LTIuOS02LjQtNi40di0wLjJjMC0xLTAuOC0xLjgtMS44LTEuOGgtMzIuMWMtMSwwLTEuOCwwLjgtMS44LDEuOA0KCQkJCXYwLjJjMCwzLjUtMi45LDYuNC02LjQsNi40Yy0zLjUsMC02LjQtMi45LTYuNC02LjR2LTAuMmMwLTEtMC44LTEuOC0xLjgtMS44aC0yOC40Yy0zLjUsMC02LjQtMi45LTYuNC02LjMNCgkJCQljMC0zLjUsMi45LTYuNCw2LjQtNi40aDI4LjRjMSwwLDEuOC0wLjgsMS44LTEuOFYyMWMwLTMuNSwyLjktNi40LDYuNC02LjRjMy41LDAsNi40LDIuOSw2LjQsNi40djAuMmMwLDEsMC44LDEuOCwxLjgsMS44aDMyLjENCgkJCQljMSwwLDEuOC0wLjgsMS44LTEuOFYyMWMwLTMuNSwyLjktNi40LDYuNC02LjRjMy41LDAsNi40LDIuOSw2LjQsNi40VjIxLjJ6Ii8+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjYxLjksOTEuMmMzLjQsMCw2LjEsMi43LDYuMSw2LjNjMCwwLjgsMC44LDEuNiwxLjgsMS42aDQ4LjZjMy41LDAsNi42LDIuOSw2LjYsNi42YzAsMy41LTMsNi42LTYuNiw2LjYNCgkJCQloLTMyLjFjLTEuMSwwLTEuNiwxLjMtMC44LDIuMWwyMy43LDIyLjljMi42LDIuNCwwLjgsNi42LTIuNiw2LjZjLTYuMSwwLTEyLTIuNC0xNi41LTYuNkwyNzAuMiwxMThjLTAuOC0wLjgtMi4yLTAuMi0yLjIsMVYxNDcNCgkJCQljMCwzLjUtMi45LDYuNC02LjQsNi40Yy0zLjUsMC02LjQtMi45LTYuNC02LjR2LTI2LjZjMC0xLjEtMS40LTEuOC0yLjItMWwtMTguNiwxNy44Yy00LjMsNC4yLTEwLjMsNi42LTE2LjQsNi42DQoJCQkJYy0zLDAtNS00LjUtMi43LTYuNmwyNC0yMi45YzAuOC0wLjgsMC4yLTIuMS0xLTIuMWgtMzMuNWMtMy41LDAtNi42LTMtNi42LTYuNmMwLTMuNywzLTYuNiw2LjYtNi42aDQ4LjZjMSwwLDEuOC0wLjgsMS44LTEuNg0KCQkJCWMwLTMuNSwyLjctNi4zLDYuMS02LjNIMjYxLjl6Ii8+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjE3LjMsNjguOGMtMy41LDAuMi02LjYtMi43LTYuNi02LjNjMC0zLjcsMi45LTYuNyw2LjYtNy4xbDg1LjYtNC4zYzMuNS0wLjIsNi42LDIuNiw2LjYsNi4zDQoJCQkJcy0yLjksNi42LTYuNiw2LjlMMjE3LjMsNjguOHoiLz4NCgkJCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0yMjguMSw5MS4xYy00LjIsMC03LjktMi42LTkuMy02LjRsLTEtMi42Yy0xLjMtMy4yLDEuMS02LjYsNC41LTYuNmM0LjMsMCw4LDIuNyw5LjUsNi42bDEsMi40DQoJCQkJQzIzMy44LDg3LjgsMjMxLjQsOTEuMSwyMjguMSw5MS4xeiIvPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTI2Mi41LDg3LjNjLTQuMiwwLTcuOS0yLjYtOS4zLTYuNmwtMS4xLTNjLTEuMS0zLDEuMS02LjQsNC41LTYuNGM0LjIsMCw4LDIuNiw5LjUsNi42bDEsMi45DQoJCQkJQzI2OC4zLDgzLjksMjY1LjksODcuMywyNjIuNSw4Ny4zeiIvPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTI5My4zLDkxLjFjLTMuMiwwLTUuMy0zLjUtMy43LTYuNGw0LjgtOC43YzIuMi00LDYuNi02LjQsMTEuMS02LjRjMy40LDAsNS41LDMuNSwzLjgsNi40bC01LDguNw0KCQkJCUMzMDIuMSw4OC43LDI5OCw5MS4xLDI5My4zLDkxLjF6Ii8+DQoJCTwvZz4NCgkJPGc+DQoJCQk8Zz4NCgkJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNTQyLjEsMTQ3LjhjMCwzLjUtMi45LDYuNC02LjMsNi40Yy0zLjUsMC02LjQtMi45LTYuNC02LjR2LTI2LjZjMC0xLTEuMS0xLjMtMS44LTAuNmwtMS4xLDEuNA0KCQkJCQljLTMuMiw0LjItOC4yLDYuNy0xMy41LDYuN2MtMy40LDAtNS4zLTQtMy4yLTYuN2wxNy42LTIyLjljMS4zLTEuNiwxLjktMy43LDEuOS01LjZ2LTM5YzAtMS42LTEuNC0zLTMuMi0zaC0xNS43DQoJCQkJCWMtMy44LDAtNi43LTMtNi43LTYuN2MwLTMuNywyLjktNi43LDYuNy02LjdoMTUuN2MxLjgsMCwzLjItMS40LDMuMi0zdi05LjhjMC0zLjUsMi45LTYuNCw2LjQtNi40YzMuNCwwLDYuMywyLjksNi4zLDYuNHY5LjgNCgkJCQkJYzAsMS42LDEuNCwzLDMuMiwzaDE1LjljMy43LDAsNi43LDMsNi43LDYuN2MwLDMuNy0zLDYuNy02LjcsNi43aC0xNS45Yy0xLjgsMC0zLjIsMS40LTMuMiwzVjE0Ny44eiIvPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik01MTEuOCw2NC45YzQsMCw3LjcsMi42LDkuMSw2LjNsMi42LDYuNmMxLjMsMy0xLDYuNC00LjMsNi40Yy00LjIsMC03LjktMi42LTkuMy02LjZsLTIuNC02LjQNCgkJCQkJQzUwNi4zLDY4LjEsNTA4LjYsNjQuOSw1MTEuOCw2NC45eiIvPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik01NjcuNywxMjIuMWMxLjYsMi45LTAuNSw2LjYtMy44LDYuNmMtNC42LDAtOS0yLjYtMTEuMi02LjZsLTYuMy0xMS40Yy0xLjgtMywwLjUtNi43LDMuOC02LjcNCgkJCQkJYzQuOCwwLDkuMSwyLjYsMTEuNCw2LjdMNTY3LjcsMTIyLjF6Ii8+DQoJCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTU1Mi4zLDg0Yy0zLjUsMC01LjgtMy41LTQuMy02LjZsMy03LjRjMS44LTMuOCw1LjUtNi40LDkuOC02LjRjMy40LDAsNS42LDMuNCw0LjMsNi42bC0zLDcuMg0KCQkJCQlDNTYwLjUsODEuMyw1NTYuNSw4NCw1NTIuMyw4NHoiLz4NCgkJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNjM0LjgsNDAuNGgtMzYuMmMtMS42LDAtMi43LTEuNC0yLjQtM2wxLjgtNy45YzAuNi0zLjUtMS45LTYuNy01LjUtNi43Yy00LDAtNy40LDIuOS04LjIsNi43bC0xMC45LDQ4LjcNCgkJCQkJYy0wLjgsMy40LDEuOCw2LjYsNS4zLDYuNmMzLjgsMCw3LjQtMi43LDguMi02LjZsMS0zLjhjMC4yLTEsMS40LTEuMSwxLjktMC4ybDEyLjcsMjYuNmMwLjgsMS44LDAuOCwzLjgtMC4yLDUuNmwtMjEuOCwzOS4zDQoJCQkJCWMtMS44LDMsMC41LDYuNiwzLjgsNi42YzQuNSwwLDguOC0yLjYsMTEuMS02LjRsMTQuMS0yNC43YzAuNi0xLjEsMi40LTEsMi45LDAuMmwxMS41LDI0LjRjMS44LDQsNS45LDYuNiwxMC4zLDYuNg0KCQkJCQljMy40LDAsNS42LTMuNSw0LjItNi42TDYyMCwxMDYuMWMtMC44LTEuOC0xLTMuOC0wLjUtNS44bDEzLjktNDQuOWMwLjItMSwxLjEtMS42LDEuOS0xLjZjMy40LDAsNS45LTIuNiw1LjktNS45di0wLjgNCgkJCQkJQzY0MS4zLDQzLjQsNjM4LjQsNDAuNCw2MzQuOCw0MC40eiBNNjE5LDU2LjlMNjExLDgzYy0wLjMsMS4xLTEuOCwxLjEtMi4yLDAuMmwtMTIuNy0yNi41Yy0wLjYtMS4zLDAuMy0yLjksMS44LTIuOWgxOC45DQoJCQkJCUM2MTguNCw1My44LDYxOS41LDU1LjQsNjE5LDU2Ljl6Ii8+DQoJCQk8L2c+DQoJCQk8Y2lyY2xlIGNsYXNzPSJzdDQiIGN4PSI1NTUuNSIgY3k9IjIwLjYiIHI9IjYuOCIvPg0KCQk8L2c+DQoJCTxnPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTc0MCwxMzQuN2MwLDEuOCwxLjQsMy4yLDMuMiwzLjJoNDAuMmMzLjcsMCw2LjYsMi45LDYuNiw2LjZjMCwzLjUtMi45LDYuNC02LjYsNi40aC05OS43DQoJCQkJYy0zLjcsMC02LjYtMi45LTYuNi02LjRjMC0zLjcsMi45LTYuNiw2LjYtNi42aDQwLjFjMS44LDAsMy0xLjQsMy0zLjJ2LTUuNmMwLTEuOC0xLjMtMy0zLTNoLTIxLjNjLTMuNywwLTYuNi0yLjktNi42LTYuNg0KCQkJCWMwLTMuNSwyLjktNi40LDYuNi02LjRoMjEuM2MxLjgsMCwzLTEuNCwzLTN2LTQuMmMwLTEuOC0xLjMtMy0zLTNoLTI3LjRjLTEuOCwwLTMuNCwxLjEtMy44LDIuOWwtMS4zLDRjLTEuMyw0LTUsNi43LTksNi43DQoJCQkJYy0zLjUsMC01LjktMy40LTQuOC02LjdsNy4xLTIzLjFjMS4zLTMuOCw0LjgtNi42LDguOC02LjZjMy41LDAsNS44LDMuMiw0LjgsNi40bC0wLjMsMS4xYy0wLjMsMS4xLDAuNSwyLjEsMS40LDIuMWgyNS4zDQoJCQkJYzEuMywwLDIuMi0xLDIuMi0yLjJ2LTEuOWMwLTMuNSwzLTYuNiw2LjYtNi42YzMuNywwLDYuNiwzLDYuNiw2LjZ2MS45YzAsMS4zLDEsMi4yLDIuMiwyLjJoMzAuOWMzLjUsMCw2LjYsMi45LDYuNiw2LjYNCgkJCQljMCwzLjUtMyw2LjYtNi42LDYuNmgtMzBjLTEuOCwwLTMuMiwxLjMtMy4yLDN2NC4yYzAsMS42LDEuNCwzLDMuMiwzaDIxLjNjMy41LDAsNi40LDIuOSw2LjQsNi40YzAsMy43LTIuOSw2LjYtNi40LDYuNmgtMjEuMw0KCQkJCWMtMS44LDAtMy4yLDEuMy0zLjIsM1YxMzQuN3oiLz4NCgkJCTxnPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDQiIGQ9Ik03NDMsNDMuNmwtMTMuMy05LjFjLTAuOS0wLjYtMi4yLDAtMi4yLDEuMnYxOC4yYzAsMS4xLDEuMywxLjgsMi4yLDEuMkw3NDMsNDYNCgkJCQkJQzc0My45LDQ1LjQsNzQzLjksNDQuMiw3NDMsNDMuNnoiLz4NCgkJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNzY4LjQsMTcuMWgtNjkuOWMtNi40LDAtMTEuNSw1LjEtMTEuNSwxMS41djMyLjVjMCw2LjQsNS4xLDExLjUsMTEuNSwxMS41aDY5LjljNi40LDAsMTEuNy01LjEsMTEuNy0xMS41DQoJCQkJCVYyOC43Qzc4MC4xLDIyLjMsNzc0LjgsMTcuMSw3NjguNCwxNy4xeiBNNzY2LjgsMzUuMXYxOS42djEuNnYxLjJ2LTEuMmMwLDEuOC0xLjQsMy0zLjIsM2gtNjAuM2MtMS44LDAtMy0xLjMtMy0zdjAuNHYtMC40DQoJCQkJCXYtMS42VjM1LjF2LTEuNGMwLTEuOCwxLjMtMy4yLDMtMy4yaDYwLjNjMS44LDAsMy4yLDEuNCwzLjIsMy4yVjM1LjF6Ii8+DQoJCQk8L2c+DQoJCTwvZz4NCgkJPGc+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzc4LjEsOTguN2g4OS44YzMuMiwwLDUuOS0yLjcsNS45LTUuOWMwLTMuMi0yLjctNS45LTUuOS01LjloLTg5LjhjLTEuOCwwLTMuMi0xLjMtMy4yLTN2LTEuMw0KCQkJCWMwLTEuOCwxLjQtMywzLjItM2g2NS4xYzYuNCwwLDExLjUtNS4zLDExLjUtMTEuN3YtMjljMC02LjQtNS4xLTExLjUtMTEuNS0xMS41aC0zOGMtMS4zLDAtMi4xLTEuNC0xLjQtMi40bDEuNC0zDQoJCQkJYzEuNi0yLjctMC41LTYuMS0zLjctNi4xYy00LjIsMC04LjIsMi4yLTEwLjMsNi4xbC0xLjYsM2MtMSwxLjQtMi42LDIuNC00LjIsMi40aC0xMC43Yy02LjQsMC0xMS43LDUuMS0xMS43LDExLjV2NjcuNQ0KCQkJCWMwLDYuNCw1LjMsMTEuNywxMS43LDExLjdoODMuNmMxLjgsMCwzLDEuMywzLDNsLTEuNCwyNS41Yy0wLjIsMy40LDIuMiw1LjksNS42LDUuOWMzLjQsMCw2LjEtMi42LDYuMy01LjlsMS42LTI4LjcNCgkJCQljMC4zLTYuMy00LjYtMTEuNy0xMC45LTExLjdoLTg0LjRjLTEuOCwwLTMuMi0xLjMtMy4yLTN2LTEuM0MzNzQuOSwxMDAsMzc2LjQsOTguNywzNzguMSw5OC43eiBNMzc0LjksNDIuMWMwLTEuNiwxLjQtMywzLjItMw0KCQkJCWg2MS43YzEuOCwwLDMsMS40LDMsM3YyLjFjMCwxLjYtMS4zLDMtMywzaC02MS43Yy0xLjgsMC0zLjItMS40LTMuMi0zVjQyLjF6IE0zNzQuOSw2MmMwLTEuNiwxLjQtMywzLjItM2g2MS43YzEuOCwwLDMsMS40LDMsMw0KCQkJCXYyLjdjMCwxLjgtMS4zLDMuMi0zLDMuMmgtNjEuN2MtMS44LDAtMy4yLTEuNC0zLjItMy4yVjYyeiIvPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTQyNy40LDE0OC4xYy0xLjIsMC0yLjQtMC41LTMuNC0xLjRsLTE0LjMtMTAuMWwtMTcuOSw5LjljLTIuMywxLjMtNS4zLDAuOS03LjItMWwtOC4zLTguMmwtMTIuNyw4LjMNCgkJCQljLTIuNywxLjctNiwwLjktNy42LTEuOGMtMS43LTIuOC0xLjEtNi40LDEuNS04LjJsMTYuNC0xMS4yYzIuMy0xLjUsNS4xLTEuMyw3LDAuNWw4LjQsOC4xbDE3LjMtOC42YzIuMi0xLjIsNS0xLjEsNy4xLDAuMw0KCQkJCWwxNC4zLDkuN2wxNC40LTguM2MyLjgtMS42LDYuMi0wLjUsNy41LDIuNGMxLjMsMi44LDAuMiw2LjMtMi41LDcuOWwtMTcuMSwxMC44QzQyOS40LDE0Ny45LDQyOC40LDE0OC4xLDQyNy40LDE0OC4xeiIvPg0KCQk8L2c+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=" alt="菜鳥救星 Logo" class="h-12 md:h-14 w-auto">
+        <div class="sm:border-l sm:border-slate-200 sm:pl-5">
+          <p class="font-black">講師合作介紹</p>
+          <p class="text-sm text-brand-body mt-1">數位事業群－線上產品處</p>
+        </div>
+      </div>
+      <p class="text-sm text-brand-body">© 2026 Rookiesavior</p>
+    </div>
+  </footer>
+
+  <div class="md:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-slate-200 p-3 shadow-[0_-10px_30px_rgba(23,49,58,.08)]">
+    <a href="#contact" class="button-label w-full py-3.5 bg-brand-ink text-white rounded-full flex items-center justify-center gap-2">
+      有課程想法，聯繫 PM
+      <i data-lucide="message-circle" class="w-5 h-5"></i>
+    </a>
+  </div>
+
+  <script>lucide.createIcons();</script>
 </body>
 </html>
