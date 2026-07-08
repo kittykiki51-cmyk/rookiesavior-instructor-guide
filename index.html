@@ -1,173 +1,818 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="zh-TW">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>老師專案管理 Web 版</title>
-  <style>
-    :root{
-      --bg:#f4f7fb;--surface:#fff;--surface2:#f8fafc;--border:#d9e2ec;--text:#1e293b;--muted:#64748b;
-      --primary:#2563eb;--primary2:#1d4ed8;--soft:#eaf1ff;--green:#15803d;--greenSoft:#eaf7ee;
-      --red:#b91c1c;--redSoft:#fdecec;--amber:#b45309;--amberSoft:#fff4de;--gray:#eef2f6;
-      --font:16px;--radius:14px;--shadow:0 8px 30px rgba(15,23,42,.06);
-    }
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:var(--font)}
-    button,input,textarea,select{font:inherit}button{cursor:pointer}.app{display:grid;grid-template-columns:240px 1fr;min-height:100vh}.side{background:var(--surface);border-right:1px solid var(--border);padding:22px 16px;position:sticky;top:0;height:100vh;overflow:auto}.brand{font-weight:800;font-size:22px;margin-bottom:4px}.sub{color:var(--muted);font-size:13px;margin-bottom:24px}.nav button{width:100%;border:0;background:transparent;text-align:left;padding:12px 14px;border-radius:10px;margin:4px 0;color:var(--text)}.nav button.active{background:var(--soft);color:var(--primary);font-weight:700}.main{padding:22px;min-width:0}.top{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:18px}.title{font-size:28px;font-weight:800}.actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--border);background:var(--surface);padding:9px 13px;border-radius:10px;color:var(--text)}.btn:hover{background:var(--gray)}.btn.primary{background:var(--primary);border-color:var(--primary);color:white}.btn.primary:hover{background:var(--primary2)}.btn.danger{background:var(--redSoft);border-color:var(--redSoft);color:var(--red)}.btn.small{padding:6px 9px;font-size:13px;border-radius:8px}.grid{display:grid;gap:14px}.grid.cols3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.cols2{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}.cardTitle{font-weight:800;font-size:18px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted)}.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:4px 9px;font-size:12px;background:var(--gray);color:var(--muted);white-space:nowrap}.pill.green{background:var(--greenSoft);color:var(--green);font-weight:700}.pill.blue{background:var(--soft);color:var(--primary);font-weight:700}.pill.red{background:var(--redSoft);color:var(--red);font-weight:700}.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.between{display:flex;align-items:center;justify-content:space-between;gap:12px}.field{display:grid;gap:6px;margin:10px 0}.field label{font-size:13px;color:var(--muted)}input,select,textarea{width:100%;border:1px solid var(--border);border-radius:10px;background:white;padding:10px 12px;color:var(--text)}textarea{min-height:90px;resize:vertical}.searchbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.searchbar input{max-width:360px}.projectCard{display:grid;gap:10px}.projectCard.done .pname{color:#94a3b8}.pname{font-weight:800;font-size:18px;line-height:1.4}.meta{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}.split{display:grid;grid-template-columns:1fr 1fr;gap:14px}.list{display:grid;gap:8px}.item{border:1px solid var(--border);background:var(--surface2);border-radius:12px;padding:10px}.item.done{opacity:.65}.taskMain{font-weight:700;white-space:pre-wrap;word-break:break-word}.linkish{color:var(--primary);text-decoration:none;cursor:pointer}.linkish:hover{text-decoration:underline}.todoGroup{border:1px solid var(--border);border-radius:12px;padding:12px;background:var(--surface2);margin-bottom:10px}.todoItem{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed #e2e8f0}.todoItem:last-child{border-bottom:0}.todoItem input[type="checkbox"]{width:auto}.todoText{flex:1;word-break:break-word}.comment{border-left:4px solid var(--primary);background:var(--surface2);padding:10px 12px;border-radius:8px;margin:8px 0}.comment time{display:block;color:var(--muted);font-size:12px;margin-bottom:4px}.calendarWrap{display:grid;grid-template-columns:minmax(470px,1fr) minmax(360px,.85fr);gap:14px}.calendarWrap.full{display:block}.calendarWrap.full .monthPanel{display:none}.calHeader{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.calGrid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}.dow{text-align:center;color:var(--muted);font-weight:700;font-size:13px;padding:8px}.day{min-height:110px;border:1px solid var(--border);background:var(--surface2);border-radius:12px;padding:8px;display:flex;flex-direction:column;gap:4px}.day.blank{background:#f1f5f9;border-style:dashed}.day.today{outline:2px solid var(--primary)}.dayNum{font-weight:800}.miniTask{font-size:12px;color:var(--primary);background:white;border:1px solid #dbeafe;border-radius:8px;padding:3px 5px;line-height:1.3}.taskPanel .item{position:relative}.taskPanel.full .taskMain{font-size:15px}.taskPanel.full .projectName{white-space:pre-wrap;word-break:break-word}.batchBar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;padding:10px;border:1px solid var(--border);border-radius:12px;background:var(--surface2)}.hidden{display:none!important}.modalBack{position:fixed;inset:0;background:rgba(15,23,42,.35);display:flex;align-items:center;justify-content:center;z-index:50;padding:24px}.modal{width:min(760px,100%);max-height:90vh;overflow:auto;background:white;border-radius:18px;border:1px solid var(--border);box-shadow:0 20px 70px rgba(15,23,42,.2);padding:18px}.modal h3{margin:0 0 10px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;color:white;padding:12px 16px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:60}.empty{border:1px dashed var(--border);border-radius:14px;padding:24px;text-align:center;color:var(--muted);background:var(--surface)}.homeHero{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.stat{font-size:30px;font-weight:900}.collapseNote{font-size:13px;color:var(--muted)}
-    @media(max-width:980px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap}.grid.cols3,.grid.cols2,.split,.calendarWrap,.homeHero{grid-template-columns:1fr}.main{padding:14px}.top{align-items:flex-start;flex-direction:column}.day{min-height:88px}.calendarWrap.full{display:block}}
-  </style>
-</head>
-<body>
-<div class="app">
-  <aside class="side">
-    <div class="brand">老師專案管理</div>
-    <div class="sub">Web 本地資料版 v1</div>
-    <div class="nav" id="nav"></div>
-    <div class="sub" style="margin-top:24px">資料只會保存在你的瀏覽器內。記得定期匯出備份。</div>
-  </aside>
-  <main class="main">
-    <div class="top">
-      <div class="title" id="pageTitle">營運首頁</div>
-      <div class="actions" id="topActions"></div>
-    </div>
-    <div id="view"></div>
-  </main>
-</div>
-<div id="modalRoot"></div><div id="toast" class="toast hidden"></div>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="菜鳥救星講師合作介紹：快速了解合作優勢、雙方分工、直播與錄播課程形式，以及大致合作流程。" name="description"/>
+<title>菜鳥救星｜講師合作</title>
+<meta content="#28ABC2" name="theme-color"/>
+<meta content="zh_TW" property="og:locale"/>
+<meta content="website" property="og:type"/>
+<meta content="菜鳥救星｜講師合作" property="og:title"/>
+<meta content="把你的專業，做成真正學得會的課程。了解菜鳥救星講師合作優勢、課程形式、合作分工與流程。" property="og:description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Noto+Sans+TC:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
 <script>
-const DB_NAME='teacher_project_manager_web_v1', STORE='state';
-const PAGES=[['home','營運首頁'],['projects','課程專案'],['calendar','工作月曆'],['mywork','我的工作'],['settings','更多設定']];
-const STAGES=['講師資料','課綱與合約','課程錄製','影片後製','課程上架','已完成'];
-const ROLES=['未設定','正式','候補','下月準備','觀察'];
-const MODES=['錄播','直播'];
-const STATUSES=['未完成','等待中','已完成'];
-const today=()=>new Date().toISOString().slice(0,10);
-const uid=()=>Math.random().toString(36).slice(2,10)+Date.now().toString(36).slice(-4);
-const pad=n=>String(n).padStart(2,'0');
-const fmtNow=()=>{const d=new Date();return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`};
-const monthKey=(d=new Date())=>`${d.getFullYear()}-${pad(d.getMonth()+1)}`;
-const ymLabel=ym=>{const [y,m]=ym.split('-');return `${Number(m)} 月 ${y}`};
-const escapeHtml=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
-const short=(s,n=12)=>{s=String(s||''); return s.length>n?s.slice(0,n)+'…':s};
-const parseDate=s=>s?new Date(s+'T00:00:00'):null;
-const isDoneProject=p=>p.completed||p.stage==='已完成'||p.archived;
-let state={version:'web-v1',settings:{monthlyGoal:2,fontScale:100,calendarCollapsed:false,calendarFilter:'全部',projectFilter:'全部'},projects:[],tasks:[],templates:[]};
-let current='home', selectedProjectId=null, calDate=new Date(), selectedDate=today(), undoStack=[];
-
-function openDB(){return new Promise((res,rej)=>{const r=indexedDB.open(DB_NAME,1);r.onupgradeneeded=()=>r.result.createObjectStore(STORE);r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});}
-async function dbGet(){const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction(STORE,'readonly');const r=tx.objectStore(STORE).get('data');r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);});}
-async function dbSet(data){const db=await openDB();return new Promise((res,rej)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(data,'data');tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);});}
-async function save(){state.updatedAt=new Date().toISOString();await dbSet(state);}
-function toast(msg, undo){const el=document.getElementById('toast');el.innerHTML=escapeHtml(msg)+(undo?'　<button class="btn small" style="margin-left:8px" onclick="doUndo()">復原</button>':'');el.classList.remove('hidden');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.classList.add('hidden'),4500);if(undo) undoStack.push(undo)}
-async function doUndo(){const u=undoStack.pop();if(u){u();await save();render();toast('已復原')}}
-function setPage(p){current=p;selectedProjectId=null;render();}
-function setFontScale(v){state.settings.fontScale=Number(v);document.documentElement.style.setProperty('--font',`${16*state.settings.fontScale/100}px`);save();}
-function project(id){return state.projects.find(p=>p.id===id)}
-function tasksForProject(id){return state.tasks.filter(t=>t.projectId===id)}
-function activeTasksForProject(id){return tasksForProject(id).filter(t=>t.status!=='已完成').sort(taskSort)}
-function taskSort(a,b){return (a.date||'9999-99-99').localeCompare(b.date||'9999-99-99')||(a.time||'').localeCompare(b.time||'')}
-function nextTask(p){return activeTasksForProject(p.id)[0]}
-function importantTasks(){return state.tasks.filter(t=>t.status!=='已完成').sort(taskSort)}
-function projectsSorted(){return [...state.projects].sort((a,b)=>Number(isDoneProject(a))-Number(isDoneProject(b)) || (a.targetMonth||'9999-99').localeCompare(b.targetMonth||'9999-99') || (a.targetDate||'9999-99-99').localeCompare(b.targetDate||'9999-99-99') || (a.course||'').localeCompare(b.course||''));}
-
-function migrateImported(raw){
-  if(raw && raw.projects && raw.tasks) return {...state,...raw,settings:{...state.settings,...(raw.settings||{})}};
-  if(raw && raw.categories){
-    const ns={version:'web-v1',settings:{...state.settings},projects:[],tasks:[],templates:raw.todo_templates||raw.templates||[]};
-    for(const cat of raw.categories||[]) for(const op of cat.projects||[]){
-      const parts=String(op.name||'').split('-');
-      const teacher=(parts.length>1?parts[parts.length-1]:'').replace(/[（）()].*$/,'').trim() || '未填老師';
-      const course=parts.length>1?parts.slice(0,-1).join('-').replace(/^\d+\/\d+[^】]*】?/,'').trim():op.name||'未命名課程';
-      const p={id:op.id||uid(),teacher,course,mode:op.mode==='live'?'直播':'錄播',role:'未設定',stage:'講師資料',completed:false,targetMonth:'',targetDate:'',cloudLink:'',courseLink:'',cooperationStatus:'順利',todos:[],comments:[],history:op.history||[]};
-      const running=(op.stages||[]).find(s=>s.status==='進行中')||(op.stages||[]).slice(-1)[0]; if(running) p.stage=stageFromName(running.name);
-      const link=(op.stages||[]).find(s=>s.link)?.link||op.link||''; p.cloudLink=link;
-      for(const sec of op.todo_sections||[]) p.todos.push({id:sec.id||uid(),name:sec.name||'檢查清單',items:(sec.items||[]).map(it=>({id:it.id||uid(),title:it.title||'',done:!!it.done,taskId:null}))});
-      for(const st of op.stages||[]) for(const sub of st.subtasks||[]) ns.tasks.push({id:sub.id||uid(),projectId:p.id,title:sub.title||'未命名工作',date:sub.date_str||'',time:normalizeTime(sub.remind_time||''),status:sub.status==='已完成'?'已完成':(sub.status==='等待中'?'等待中':'未完成'),todoItemId:null,createdAt:new Date().toISOString()});
-      ns.projects.push(p);
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['"Noto Sans TC"', 'sans-serif'] },
+          colors: {
+            brand: {
+              cyan: '#28ABC2',
+              cyanDark: '#147F94',
+              blue: '#2889D4',
+              coral: '#F76F6F',
+              yellow: '#F0CD30',
+              ink: '#17313A',
+              body: '#52656B',
+              pale: '#F1F8FA',
+              mist: '#F7FAFB'
+            }
+          },
+          boxShadow: {
+            soft: '0 20px 55px -38px rgba(23, 49, 58, .32)',
+            card: '0 18px 45px -34px rgba(23, 49, 58, .28)'
+          }
+        }
+      }
     }
-    return ns;
-  }
-  throw new Error('無法辨識資料格式');
-}
-function stageFromName(n){n=String(n||'');if(n.includes('已完成')||n.includes('上架完成'))return '已完成';if(n.includes('上架'))return '課程上架';if(n.includes('剪')||n.includes('字幕')||n.includes('後製'))return '影片後製';if(n.includes('錄'))return '課程錄製';if(n.includes('課綱')||n.includes('合約')||n.includes('簽'))return '課綱與合約';return '講師資料'}
-function normalizeTime(t){t=String(t||'').replace(':','').trim();if(/^\d{3,4}$/.test(t)) return t.padStart(4,'0').slice(0,2)+':'+t.padStart(4,'0').slice(2);return t}
+  </script>
+<style>
+    :root {
+      --font-zh: 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-latin: 'Montserrat', 'Noto Sans TC', sans-serif;
+    }
+    body {
+      font-family: var(--font-zh);
+      font-size: 16px;
+      line-height: 1.75;
+      letter-spacing: .01em;
+      font-weight: 400;
+      font-feature-settings: 'palt' 1;
+    }
+    h1, h2, h3, p, li, summary { overflow-wrap: break-word; }
+    h1, h2, h3 { word-break: keep-all; }
+    .display-title {
+      font-size: clamp(2.5rem, 4.7vw, 3.75rem) !important;
+      line-height: 1.24;
+      letter-spacing: -.018em;
+      text-wrap: balance;
+    }
+    .section-title {
+      font-size: clamp(2rem, 3.65vw, 3rem) !important;
+      line-height: 1.38;
+      letter-spacing: -.01em;
+      text-wrap: balance;
+    }
+    .hero-copy {
+      font-size: clamp(1rem, 1.35vw, 1.125rem) !important;
+      line-height: 2;
+      letter-spacing: .012em;
+    }
+    .section-copy, .card-copy {
+      font-size: 1rem;
+      line-height: 1.9;
+      letter-spacing: .008em;
+    }
+    .card-heading {
+      font-size: clamp(1.25rem, 1.8vw, 1.5rem) !important;
+      line-height: 1.48;
+      letter-spacing: -.006em;
+      font-weight: 800;
+    }
+    .feature-heading {
+      font-size: clamp(1.5rem, 2.4vw, 1.875rem) !important;
+      line-height: 1.45;
+      letter-spacing: -.008em;
+      font-weight: 800;
+    }
+    .flow-heading {
+      font-size: clamp(1.2rem, 1.8vw, 1.42rem) !important;
+      line-height: 1.5;
+      font-weight: 800;
+    }
+    .faq-question {
+      font-size: clamp(1.05rem, 1.65vw, 1.25rem) !important;
+      line-height: 1.6;
+      font-weight: 800;
+    }
+    .eyebrow {
+      font-family: var(--font-latin);
+      font-size: .72rem !important;
+      line-height: 1.4;
+      letter-spacing: .16em;
+      font-weight: 800;
+    }
+    .latin-number, .number-outline { font-family: var(--font-latin); }
+    .button-label { font-size: .96rem; font-weight: 700; letter-spacing: .01em; }
+    .grid-dots {
+      background-image: radial-gradient(rgba(40, 171, 194, .22) 1.2px, transparent 1.2px);
+      background-size: 18px 18px;
+    }
+    .number-outline {
+      -webkit-text-stroke: 1px rgba(40, 171, 194, .34);
+      color: transparent;
+    }
+    .flow-line::before {
+      content: '';
+      position: absolute;
+      left: 31px;
+      top: 64px;
+      bottom: -28px;
+      width: 1px;
+      background: #CFE5E9;
+    }
+    .flow-line:last-child::before { display: none; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+    .faq-icon { transition: transform .2s ease; }
+    @media (max-width: 640px) {
+      body { font-size: 15.5px; line-height: 1.72; }
+      .display-title { font-size: 2.48rem !important; line-height: 1.3; letter-spacing: -.012em; }
+      .section-title { font-size: 2rem !important; line-height: 1.42; }
+      .hero-copy { font-size: 1rem !important; line-height: 1.92; }
+      .section-copy, .card-copy { font-size: .96rem; line-height: 1.86; }
+      .eyebrow { font-size: .68rem !important; letter-spacing: .14em; }
+      .flow-line::before { left: 25px; top: 54px; }
+    }
+  
+    .mobile-contact-bar {
+      padding: .65rem 1rem calc(.65rem + env(safe-area-inset-bottom));
+    }
+    .mobile-contact-bar a {
+      min-height: 50px;
+    }
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: calc(8rem + env(safe-area-inset-bottom));
+      }
+    }
 
-function render(){document.documentElement.style.setProperty('--font',`${16*(state.settings.fontScale||100)/100}px`);renderNav();document.getElementById('pageTitle').textContent=PAGES.find(x=>x[0]===current)?.[1]||'專案';const view=document.getElementById('view'), actions=document.getElementById('topActions');actions.innerHTML='';
-  if(current==='home') renderHome(view,actions); if(current==='projects') renderProjects(view,actions); if(current==='calendar') renderCalendar(view,actions); if(current==='mywork') renderMyWork(view,actions); if(current==='settings') renderSettings(view,actions);
-}
-function renderNav(){document.getElementById('nav').innerHTML=PAGES.map(([id,name])=>`<button class="${current===id?'active':''}" onclick="setPage('${id}')">${name}</button>`).join('')}
+    a, button, summary {
+      -webkit-tap-highlight-color: transparent;
+    }
+    a:focus-visible, button:focus-visible, summary:focus-visible {
+      outline: 3px solid rgba(40, 171, 194, .38);
+      outline-offset: 4px;
+      border-radius: 14px;
+    }
+    .eyebrow {
+      font-family: var(--font-zh);
+      letter-spacing: .12em;
+    }
+    .eyebrow:first-letter {
+      letter-spacing: .12em;
+    }
+    .polish-card {
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .polish-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 22px 50px -36px rgba(23, 49, 58, .34);
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+    @media (max-width: 767px) {
+      section {
+        scroll-margin-top: 84px;
+      }
+      .mobile-contact-bar {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+      }
+    }
 
-function renderHome(view,actions){actions.innerHTML='<button class="btn primary" onclick="openProjectModal()">新增專案</button><button class="btn" onclick="setPage(\'calendar\')">打開工作月曆</button>';const ym=monthKey();const formal=state.projects.filter(p=>!isDoneProject(p)&&p.role==='正式'&&(p.targetMonth===ym||!p.targetMonth));const backup=state.projects.filter(p=>!isDoneProject(p)&&p.role==='候補');const doneThisMonth=state.projects.filter(p=>isDoneProject(p)&&String(p.completedAt||'').startsWith(ym)).length;view.innerHTML=`
-  <div class="homeHero"><div class="card"><div class="muted">本月目標</div><div class="stat">${state.settings.monthlyGoal||2}</div></div><div class="card"><div class="muted">本月已完成</div><div class="stat">${doneThisMonth}</div></div><div class="card"><div class="muted">本月正式</div><div class="stat">${formal.length}</div></div><div class="card"><div class="muted">候補課程</div><div class="stat">${backup.length}</div></div></div>
-  <div class="grid cols2" style="margin-top:14px"><div class="card"><div class="cardTitle">本月正式課程</div>${projectListBrief(formal)}</div><div class="card"><div class="cardTitle">候補課程</div>${projectListBrief(backup)}</div></div>
-  <div class="card" style="margin-top:14px"><div class="cardTitle">未來月份規劃</div>${pipelineBrief()}</div>`}
-function projectListBrief(list){if(!list.length)return '<div class="empty">尚未設定</div>';return `<div class="list">${list.map(p=>`<div class="item"><div class="between"><div><div class="taskMain linkish" onclick="openProject('${p.id}')">${escapeHtml(p.course)}</div><div class="muted">${escapeHtml(p.teacher)}｜${p.mode}｜${p.stage}</div></div>${doneBadge(p)}</div></div>`).join('')}</div>`}
-function pipelineBrief(){const groups={};for(const p of state.projects.filter(p=>!isDoneProject(p))){const m=p.targetMonth||'未設定';groups[m]=(groups[m]||0)+1}return Object.entries(groups).sort().map(([m,c])=>`<span class="pill blue">${escapeHtml(m==='未設定'?m:ymLabel(m))}：${c} 門</span>`).join(' ')||'<span class="muted">尚未有未來月份資料</span>'}
-function doneBadge(p){return isDoneProject(p)?'<span class="pill green">已完成｜此專案結束</span>':''}
-
-function renderProjects(view,actions){actions.innerHTML='<button class="btn primary" onclick="openProjectModal()">新增專案</button>'; if(selectedProjectId){renderProjectDetail(view,project(selectedProjectId)); return}
-  view.innerHTML=`<div class="searchbar"><input id="projectSearch" placeholder="搜尋老師、課程" oninput="render()" value="${escapeHtml(window.projectSearch||'')}"><select id="modeFilter" onchange="render()"><option>全部</option>${MODES.map(m=>`<option ${window.modeFilter===m?'selected':''}>${m}</option>`)}</select><select id="roleFilter" onchange="render()"><option>全部角色</option>${ROLES.map(r=>`<option ${window.roleFilter===r?'selected':''}>${r}</option>`)}</select></div><div class="grid cols2" id="projectCards"></div>`;
-  document.getElementById('projectSearch').oninput=e=>{window.projectSearch=e.target.value;render()};document.getElementById('modeFilter').onchange=e=>{window.modeFilter=e.target.value;render()};document.getElementById('roleFilter').onchange=e=>{window.roleFilter=e.target.value;render()};
-  const q=(window.projectSearch||'').toLowerCase();let list=projectsSorted().filter(p=>(!q||`${p.teacher}${p.course}`.toLowerCase().includes(q))&&(!window.modeFilter||window.modeFilter==='全部'||p.mode===window.modeFilter)&&(!window.roleFilter||window.roleFilter==='全部角色'||p.role===window.roleFilter));
-  document.getElementById('projectCards').innerHTML=list.map(p=>projectCard(p)).join('')||'<div class="empty">目前沒有專案</div>';
-}
-function projectCard(p){const nt=nextTask(p);return `<div class="card projectCard ${isDoneProject(p)?'done':''}"><div class="between"><div class="pname linkish" onclick="openProject('${p.id}')">${escapeHtml(p.course)}</div>${doneBadge(p)}</div><div class="meta"><span>${escapeHtml(p.teacher)}</span><span>${p.mode}</span><span>${p.role}</span><span>${p.stage}</span>${p.cooperationStatus&&p.cooperationStatus!=='順利'?`<span class="pill red">${p.cooperationStatus}</span>`:''}</div><div class="muted">下一步：${nt?`${escapeHtml(nt.date||'未排日期')} ${escapeHtml(nt.time||'')}｜${escapeHtml(nt.title)}`:'尚未建立工作排程'}</div><div class="row"><button class="btn small" onclick="openProject('${p.id}')">開啟</button><button class="btn small" onclick="openProjectModal('${p.id}')">編輯</button></div></div>`}
-function openProject(id){selectedProjectId=id;current='projects';render()}
-function renderProjectDetail(view,p){if(!p){selectedProjectId=null;render();return} document.getElementById('topActions').innerHTML='<button class="btn" onclick="selectedProjectId=null;render()">返回列表</button><button class="btn" onclick="openProjectModal(\''+p.id+'\')">編輯專案</button><button class="btn primary" onclick="openTaskModal(null,\''+p.id+'\')">新增工作</button>';
- const nt=nextTask(p);view.innerHTML=`<div class="grid"><div class="card"><div class="between"><div><div class="pname ${isDoneProject(p)?'muted':''}">${escapeHtml(p.course)}</div><div class="meta"><span>${escapeHtml(p.teacher)}</span><span>${p.mode}</span><span>${p.role}</span><span>${p.stage}</span>${p.targetDate?`<span>目標：${p.targetDate}</span>`:''}</div></div>${doneBadge(p)}</div><div style="margin-top:12px" class="row">${p.cloudLink?`<a class="btn small" target="_blank" href="${escapeHtml(p.cloudLink)}">雲端資料夾</a>`:''}${p.courseLink?`<a class="btn small" target="_blank" href="${escapeHtml(p.courseLink)}">課程頁</a>`:''}</div></div>
- <div class="card"><div class="cardTitle">下一步</div>${nt?taskItem(nt,{project:false,select:false}):'<div class="empty">尚未建立工作排程</div>'}</div>
- <div class="split"><div class="card"><div class="cardTitle">工作排程 <button class="btn small primary" onclick="openTaskModal(null,\''+p.id+'\')">新增</button></div>${taskListHtml(tasksForProject(p.id))}</div><div class="card"><div class="cardTitle">檢查清單 <span class="row"><button class="btn small" onclick="importTemplate(\''+p.id+'\')">匯入範本</button><button class="btn small" onclick="saveTemplate(\''+p.id+'\')">儲存為範本</button><button class="btn small primary" onclick="addTodoGroup(\''+p.id+'\')">新增清單</button></span></div>${todoHtml(p)}</div></div>
- <div class="card"><div class="cardTitle">留言板</div><textarea id="commentText" placeholder="手動輸入目前狀況、老師回覆、補充事項……"></textarea><div class="row" style="margin-top:8px"><button class="btn primary" onclick="addComment(\''+p.id+'\')">新增留言</button></div><div id="comments">${commentHtml(p)}</div></div>
- <div class="card"><div class="cardTitle">重要紀錄</div>${historyHtml(p)}</div></div>`}
-function taskListHtml(tasks){const pending=tasks.filter(t=>t.status!=='已完成').sort(taskSort), done=tasks.filter(t=>t.status==='已完成').sort(taskSort).reverse();return `<div class="list">${pending.map(t=>taskItem(t,{select:false})).join('')||'<div class="empty">沒有未完成工作</div>'}</div><details style="margin-top:12px"><summary class="muted">已完成 ${done.length} 件</summary><div class="list" style="margin-top:8px">${done.map(t=>taskItem(t,{select:false})).join('')}</div></details>`}
-function taskItem(t,opt={}){const p=project(t.projectId);const sel=opt.select?`<input type="checkbox" onchange="toggleBatch('${t.id}',this.checked)">`:'';return `<div class="item ${t.status==='已完成'?'done':''}"><div class="between"><div style="min-width:0">${sel}<div class="taskMain linkish" onclick="${p?`openProject('${p.id}')`:'openTaskModal(\''+t.id+'\')'}">${escapeHtml(t.title)}</div>${opt.project!==false?`<div class="muted projectName">${p?escapeHtml(p.course):'我的工作'}</div>`:''}<div class="muted">${escapeHtml(t.date||'未排日期')} ${escapeHtml(t.time||'')}｜${t.status}</div></div><div class="row">${t.status!=='已完成'?`<button class="btn small" onclick="completeTask('${t.id}')">完成</button><button class="btn small" onclick="postponeTask('${t.id}',1)">明天</button><button class="btn small" onclick="postponeTask('${t.id}',3)">+3天</button>`:''}<button class="btn small" onclick="openTaskModal('${t.id}')">編輯</button><button class="btn small danger" onclick="deleteTask('${t.id}')">刪除</button></div></div></div>`}
-function todoHtml(p){return (p.todos||[]).map(g=>`<div class="todoGroup"><div class="between"><b>${escapeHtml(g.name)}</b><div class="row"><button class="btn small" onclick="renameTodoGroup('${p.id}','${g.id}')">重新命名</button><button class="btn small" onclick="addTodoItem('${p.id}','${g.id}')">＋子項目</button><button class="btn small danger" onclick="deleteTodoGroup('${p.id}','${g.id}')">刪除清單</button></div></div>${(g.items||[]).map(it=>`<div class="todoItem"><input type="checkbox" ${it.done?'checked':''} onchange="toggleTodo('${p.id}','${g.id}','${it.id}',this.checked)"><span class="todoText" contenteditable="true" onblur="editTodoText('${p.id}','${g.id}','${it.id}',this.textContent)">${escapeHtml(it.title)}</span><button class="btn small" onclick="scheduleTodo('${p.id}','${g.id}','${it.id}')">${it.taskId?taskScheduleLabel(it.taskId):'排程'}</button><button class="btn small danger" onclick="deleteTodoItem('${p.id}','${g.id}','${it.id}')">刪除</button></div>`).join('')}</div>`).join('')||'<div class="empty">尚未建立檢查清單</div>'}
-function taskScheduleLabel(id){const t=state.tasks.find(x=>x.id===id);return t?`已排程 ${t.date||''}`:'排程'}
-function commentHtml(p){return (p.comments||[]).slice().sort((a,b)=>String(b.time).localeCompare(String(a.time))).map(c=>`<div class="comment"><time>${escapeHtml(c.time)}</time><div>${escapeHtml(c.text).replace(/\n/g,'<br>')}</div><button class="btn small danger" style="margin-top:6px" onclick="deleteComment('${p.id}','${c.id}')">刪除</button></div>`).join('')||'<div class="empty">尚未有留言</div>'}
-function historyHtml(p){const h=(p.history||[]).slice(-20).reverse();return h.map(x=>`<div class="muted" style="padding:4px 0">${escapeHtml(x.time||'')}　${escapeHtml(x.msg||x.text||'')}</div>`).join('')||'<div class="empty">尚未有紀錄</div>'}
-
-function renderCalendar(view,actions){actions.innerHTML='<button class="btn" onclick="state.settings.calendarCollapsed=!state.settings.calendarCollapsed;save();render()">'+(state.settings.calendarCollapsed?'顯示月曆':'收起月曆')+'</button><button class="btn primary" onclick="openTaskModal()">新增工作</button><button class="btn" onclick="todayClose()">今日收尾</button>';
- const y=calDate.getFullYear(),m=calDate.getMonth(); const first=new Date(y,m,1), last=new Date(y,m+1,0); let start=(first.getDay()+6)%7; let days=[]; for(let i=0;i<start;i++)days.push(null); for(let d=1;d<=last.getDate();d++)days.push(new Date(y,m,d)); while(days.length%7)days.push(null);
- view.innerHTML=`<div class="card"><div class="row"><select id="calFilter" onchange="state.settings.calendarFilter=this.value;save();render()">${['全部','今天','逾期','等待中','未完成','已完成'].map(f=>`<option ${state.settings.calendarFilter===f?'selected':''}>${f}</option>`)}</select><select id="calProject" onchange="state.settings.projectFilter=this.value;save();render()"><option>全部專案</option><option ${state.settings.projectFilter==='我的工作'?'selected':''}>我的工作</option>${state.projects.map(p=>`<option value="${p.id}" ${state.settings.projectFilter===p.id?'selected':''}>${escapeHtml(short(p.course,28))}</option>`)}</select><span class="muted">選取日期：${selectedDate}</span></div></div><div class="calendarWrap ${state.settings.calendarCollapsed?'full':''}" style="margin-top:14px"><div class="card monthPanel"><div class="calHeader"><button class="btn small" onclick="calDate=new Date(${y},${m-1},1);render()">上個月</button><div class="cardTitle" style="margin:0">${y} 年 ${m+1} 月</div><button class="btn small" onclick="calDate=new Date(${y},${m+1},1);render()">下個月</button></div><div class="calGrid">${['一','二','三','四','五','六','日'].map(d=>`<div class="dow">${d}</div>`).join('')}${days.map(d=>dayCell(d)).join('')}</div></div><div class="card taskPanel ${state.settings.calendarCollapsed?'full':''}"><div class="cardTitle">${selectedDate} 工作</div>${batchBar()}<div class="list">${filteredTasks().map(t=>taskItem(t,{select:state.settings.calendarCollapsed})).join('')||'<div class="empty">沒有符合條件的工作</div>'}</div></div></div>`}
-function dayCell(d){if(!d)return '<div class="day blank"></div>';const ds=d.toISOString().slice(0,10);const tasks=state.tasks.filter(t=>t.date===ds);return `<div class="day ${ds===today()?'today':''}" onclick="selectedDate='${ds}';render()"><div class="dayNum">${d.getDate()}</div>${tasks.slice(0,3).map(t=>`<div class="miniTask">${escapeHtml(short(t.title,9))}</div>`).join('')}${tasks.length>3?`<div class="miniTask muted">另有 ${tasks.length-3} 件</div>`:''}</div>`}
-function filteredTasks(){let list=[...state.tasks];const f=state.settings.calendarFilter||'全部', pf=state.settings.projectFilter||'全部專案'; if(f==='今天')list=list.filter(t=>t.date===today()); if(f==='逾期')list=list.filter(t=>t.status!=='已完成'&&t.date&&t.date<today()); if(f==='等待中')list=list.filter(t=>t.status==='等待中'); if(f==='未完成')list=list.filter(t=>t.status!=='已完成'); if(f==='已完成')list=list.filter(t=>t.status==='已完成'); if(f==='全部') list=list.filter(t=>!selectedDate||t.date===selectedDate); if(pf==='我的工作')list=list.filter(t=>!t.projectId); else if(pf!=='全部專案')list=list.filter(t=>t.projectId===pf); return list.sort(taskSort)}
-let batchSelected=new Set();function toggleBatch(id,on){on?batchSelected.add(id):batchSelected.delete(id);renderBatchCount()}function renderBatchCount(){const el=document.getElementById('batchCount');if(el)el.textContent=batchSelected.size}
-function batchBar(){return state.settings.calendarCollapsed?`<div class="batchBar"><b>已選 <span id="batchCount">${batchSelected.size}</span></b><button class="btn small" onclick="batchComplete()">完成</button><button class="btn small" onclick="batchPostpone(1)">明天</button><button class="btn small" onclick="batchPostpone(3)">+3天</button><button class="btn small" onclick="batchWaiting()">等待老師</button><button class="btn small danger" onclick="batchDelete()">刪除</button></div>`:''}
-
-function renderMyWork(view,actions){actions.innerHTML='<button class="btn primary" onclick="openTaskModal(null,null)">新增我的工作</button>';view.innerHTML=`<div class="card"><div class="cardTitle">我的工作</div>${taskListHtml(state.tasks.filter(t=>!t.projectId))}</div>`}
-function renderSettings(view,actions){actions.innerHTML='';view.innerHTML=`<div class="grid cols2"><div class="card"><div class="cardTitle">資料匯入／匯出</div><div class="field"><label>上傳桌面版或網頁版 JSON</label><input type="file" accept=".json" onchange="importFile(this.files[0])"></div><button class="btn primary" onclick="exportJson()">匯出 JSON 備份</button><button class="btn danger" onclick="clearData()">清空瀏覽器資料</button><p class="muted">目前資料：${state.projects.length} 專案、${state.tasks.length} 工作。</p></div><div class="card"><div class="cardTitle">顯示設定</div><div class="field"><label>字體大小 ${state.settings.fontScale||100}%</label><input type="range" min="90" max="150" value="${state.settings.fontScale||100}" oninput="setFontScale(this.value)"></div><div class="field"><label>本月目標</label><input type="number" value="${state.settings.monthlyGoal||2}" onchange="state.settings.monthlyGoal=Number(this.value);save();render()"></div></div><div class="card"><div class="cardTitle">使用說明</div><p>第一次使用請先匯入桌面版 JSON 備份。之後網頁會自動保存到瀏覽器內部資料庫。</p><p class="muted">目前版本不會上傳到外部伺服器，也無法直接同步 Apple 提醒事項。</p></div></div>`}
-
-function openProjectModal(id){const p=id?project(id):{teacher:'',course:'',mode:'錄播',role:'未設定',stage:'講師資料',targetMonth:monthKey(),targetDate:'',cloudLink:'',courseLink:'',cooperationStatus:'順利'};modal(`<h3>${id?'編輯專案':'新增專案'}</h3><div class="grid cols2"><div class="field"><label>老師</label><input id="mTeacher" value="${escapeHtml(p.teacher)}"></div><div class="field"><label>課程名稱</label><input id="mCourse" value="${escapeHtml(p.course)}"></div><div class="field"><label>錄播／直播</label><select id="mMode">${MODES.map(x=>`<option ${p.mode===x?'selected':''}>${x}</option>`)}</select></div><div class="field"><label>本月角色</label><select id="mRole">${ROLES.map(x=>`<option ${p.role===x?'selected':''}>${x}</option>`)}</select></div><div class="field"><label>目前階段</label><select id="mStage">${STAGES.map(x=>`<option ${p.stage===x?'selected':''}>${x}</option>`)}</select></div><div class="field"><label>目標月份</label><input id="mTargetMonth" type="month" value="${escapeHtml(p.targetMonth||'')}"></div><div class="field"><label>目標日期</label><input id="mTargetDate" type="date" value="${escapeHtml(p.targetDate||'')}"></div><div class="field"><label>合作狀態</label><select id="mCoop">${['順利','需觀察','暫緩'].map(x=>`<option ${p.cooperationStatus===x?'selected':''}>${x}</option>`)}</select></div><div class="field"><label>雲端資料夾</label><input id="mCloud" value="${escapeHtml(p.cloudLink||'')}"></div><div class="field"><label>課程頁</label><input id="mLink" value="${escapeHtml(p.courseLink||'')}"></div></div><div class="row" style="margin-top:14px"><button class="btn primary" onclick="saveProjectModal('${id||''}')">儲存</button><button class="btn" onclick="closeModal()">取消</button></div>`)}
-async function saveProjectModal(id){const data={teacher:v('mTeacher'),course:v('mCourse'),mode:v('mMode'),role:v('mRole'),stage:v('mStage'),targetMonth:v('mTargetMonth'),targetDate:v('mTargetDate'),cooperationStatus:v('mCoop'),cloudLink:v('mCloud'),courseLink:v('mLink')}; if(id){Object.assign(project(id),data);const p=project(id);p.completed=p.stage==='已完成';if(p.completed&&!p.completedAt)p.completedAt=today();if(!p.completed)p.completedAt='';addHistory(p,'編輯專案')}else{state.projects.push({id:uid(),...data,completed:data.stage==='已完成',completedAt:data.stage==='已完成'?today():'',todos:[],comments:[],history:[{time:fmtNow(),msg:'建立專案'}]})}closeModal();await save();render();toast('已儲存')}
-function openTaskModal(id,projectId){const t=id?state.tasks.find(x=>x.id===id):{projectId:projectId||'',title:'',date:selectedDate||today(),time:'',status:'未完成'};modal(`<h3>${id?'編輯工作':'新增工作'}</h3><div class="field"><label>所屬專案</label><select id="tProject"><option value="">我的工作</option>${state.projects.map(p=>`<option value="${p.id}" ${t.projectId===p.id?'selected':''}>${escapeHtml(short(p.course,42))}</option>`)}</select></div><div class="field"><label>工作內容</label><input id="tTitle" value="${escapeHtml(t.title||'')}"></div><div class="grid cols2"><div class="field"><label>日期</label><input id="tDate" type="date" value="${escapeHtml(t.date||'')}"></div><div class="field"><label>時間</label><input id="tTime" type="time" value="${escapeHtml(t.time||'')}"></div></div><div class="field"><label>狀態</label><select id="tStatus">${STATUSES.map(s=>`<option ${t.status===s?'selected':''}>${s}</option>`)}</select></div><div class="row" style="margin-top:14px"><button class="btn primary" onclick="saveTaskModal('${id||''}')">儲存</button><button class="btn" onclick="closeModal()">取消</button></div>`)}
-async function saveTaskModal(id){const data={projectId:v('tProject')||null,title:v('tTitle'),date:v('tDate'),time:v('tTime'),status:v('tStatus')}; if(!data.title){toast('請輸入工作內容');return} if(id){Object.assign(state.tasks.find(t=>t.id===id),data)}else state.tasks.push({id:uid(),...data,createdAt:new Date().toISOString(),todoItemId:null}); closeModal();await save();render();toast('已儲存工作')}
-function v(id){return document.getElementById(id)?.value?.trim()||''}
-async function completeTask(id){const t=state.tasks.find(x=>x.id===id);if(!t)return;const before={...t};t.status='已完成';t.completedAt=fmtNow();syncTodoDone(t,true);if(t.projectId)addHistory(project(t.projectId),`完成工作：${t.title}`);await save();render();toast('已完成',()=>{Object.assign(t,before);syncTodoDone(t,false)})}
-async function postponeTask(id,days){const t=state.tasks.find(x=>x.id===id);if(!t)return;const before={...t};const d=parseDate(t.date||today());d.setDate(d.getDate()+days);t.date=d.toISOString().slice(0,10);await save();render();toast('已延後',()=>Object.assign(t,before))}
-async function deleteTask(id){const idx=state.tasks.findIndex(t=>t.id===id);if(idx<0)return;const old=state.tasks[idx];if(!confirm(`刪除工作：${old.title}？`))return;state.tasks.splice(idx,1);unlinkTaskFromTodos(id);await save();render();toast('已刪除工作',()=>state.tasks.splice(idx,0,old))}
-function syncTodoDone(t,done){if(!t.todoItemId)return;for(const p of state.projects)for(const g of p.todos||[])for(const it of g.items||[])if(it.id===t.todoItemId)it.done=done}
-function unlinkTaskFromTodos(id){for(const p of state.projects)for(const g of p.todos||[])for(const it of g.items||[])if(it.taskId===id)it.taskId=null}
-function addHistory(p,msg){if(!p)return;p.history=p.history||[];p.history.push({time:fmtNow(),msg})}
-
-async function addComment(pid){const p=project(pid), el=document.getElementById('commentText');const text=el.value.trim();if(!text)return; p.comments=p.comments||[]; p.comments.push({id:uid(),time:fmtNow(),text});el.value='';await save();render();toast('已新增留言')}
-async function deleteComment(pid,cid){const p=project(pid), arr=p.comments||[], idx=arr.findIndex(c=>c.id===cid), old=arr[idx];if(idx<0)return;arr.splice(idx,1);await save();render();toast('已刪除留言',()=>arr.splice(idx,0,old))}
-async function addTodoGroup(pid){const name=prompt('清單名稱');if(!name)return;project(pid).todos.push({id:uid(),name,items:[]});await save();render()}
-async function renameTodoGroup(pid,gid){const g=project(pid).todos.find(x=>x.id===gid);const name=prompt('新的清單名稱',g.name);if(!name)return;g.name=name;await save();render()}
-async function deleteTodoGroup(pid,gid){const p=project(pid), idx=p.todos.findIndex(g=>g.id===gid), old=p.todos[idx];if(idx<0)return;if(!confirm(`刪除清單「${old.name}」及 ${old.items.length} 個子項目？`))return;p.todos.splice(idx,1);await save();render();toast('已刪除清單',()=>p.todos.splice(idx,0,old))}
-async function addTodoItem(pid,gid){const title=prompt('子項目內容');if(!title)return;project(pid).todos.find(g=>g.id===gid).items.push({id:uid(),title,done:false,taskId:null});await save();render()}
-async function deleteTodoItem(pid,gid,iid){const g=project(pid).todos.find(g=>g.id===gid), idx=g.items.findIndex(i=>i.id===iid), old=g.items[idx];if(idx<0)return;g.items.splice(idx,1);await save();render();toast('已刪除子項目',()=>g.items.splice(idx,0,old))}
-async function toggleTodo(pid,gid,iid,done){project(pid).todos.find(g=>g.id===gid).items.find(i=>i.id===iid).done=done;await save()}
-async function editTodoText(pid,gid,iid,text){project(pid).todos.find(g=>g.id===gid).items.find(i=>i.id===iid).title=text.trim();await save()}
-function scheduleTodo(pid,gid,iid){const p=project(pid), it=p.todos.find(g=>g.id===gid).items.find(i=>i.id===iid); if(it.taskId&&state.tasks.find(t=>t.id===it.taskId)){openTaskModal(it.taskId);return} const date=prompt('排程日期 YYYY-MM-DD',today()); if(!date)return; const t={id:uid(),projectId:pid,title:it.title,date,time:'',status:'未完成',todoItemId:iid,createdAt:new Date().toISOString()};state.tasks.push(t);it.taskId=t.id;save().then(()=>{render();toast('已建立工作排程')})}
-function saveTemplate(pid){const p=project(pid);const name=prompt('範本名稱',p.course+' 檢查清單');if(!name)return;const data={id:uid(),name,sections:(p.todos||[]).map(g=>({name:g.name,items:(g.items||[]).map(i=>i.title)}))};const i=state.templates.findIndex(t=>t.name===name);if(i>=0){if(!confirm('同名範本已存在，是否覆蓋？'))return;state.templates[i]=data}else state.templates.push(data);save().then(()=>toast('已儲存範本'))}
-function importTemplate(pid){if(!state.templates.length){toast('尚未有範本');return}const name=prompt('輸入要匯入的範本名稱：\n'+state.templates.map(t=>'- '+t.name).join('\n'));const tpl=state.templates.find(t=>t.name===name);if(!tpl)return;const p=project(pid);for(const sec of tpl.sections){let g=p.todos.find(x=>x.name===sec.name);if(!g){g={id:uid(),name:sec.name,items:[]};p.todos.push(g)}for(const title of sec.items)if(!g.items.some(i=>i.title===title))g.items.push({id:uid(),title,done:false,taskId:null})}save().then(()=>{render();toast('已匯入範本')})}
-
-function batchIds(){return [...batchSelected]} async function batchComplete(){for(const id of batchIds()){const t=state.tasks.find(x=>x.id===id);if(t){t.status='已完成';t.completedAt=fmtNow();syncTodoDone(t,true)}}batchSelected.clear();await save();render();toast('已批次完成')}async function batchPostpone(days){for(const id of batchIds()){const t=state.tasks.find(x=>x.id===id);if(t){const d=parseDate(t.date||today());d.setDate(d.getDate()+days);t.date=d.toISOString().slice(0,10)}}batchSelected.clear();await save();render();toast('已批次延後')}async function batchWaiting(){for(const id of batchIds()){const t=state.tasks.find(x=>x.id===id);if(t)t.status='等待中'}batchSelected.clear();await save();render();toast('已設為等待中')}async function batchDelete(){if(!confirm(`刪除已選 ${batchSelected.size} 件工作？`))return;state.tasks=state.tasks.filter(t=>!batchSelected.has(t.id));batchSelected.clear();await save();render();toast('已批次刪除')}function todayClose(){state.settings.calendarFilter='今天';selectedDate=today();current='calendar';render();toast('已切到今天工作，請逐筆完成、延後或等待')}
-
-function modal(html){document.getElementById('modalRoot').innerHTML=`<div class="modalBack" onclick="if(event.target.className==='modalBack')closeModal()"><div class="modal">${html}</div></div>`}function closeModal(){document.getElementById('modalRoot').innerHTML=''}
-async function importFile(file){if(!file)return;try{const raw=JSON.parse(await file.text());state=migrateImported(raw);await save();render();toast('匯入完成')}catch(e){alert('匯入失敗：'+e.message)}}
-function exportJson(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`teacher_project_manager_web_backup_${today()}.json`;a.click();URL.revokeObjectURL(a.href)}
-async function clearData(){if(!confirm('確定清空目前瀏覽器資料？請先匯出備份。'))return;state={version:'web-v1',settings:{monthlyGoal:2,fontScale:100,calendarCollapsed:false,calendarFilter:'全部',projectFilter:'全部'},projects:[],tasks:[],templates:[]};await save();render()}
-(async function init(){const saved=await dbGet();if(saved) state={...state,...saved,settings:{...state.settings,...(saved.settings||{})}}; if(!state.projects.length){current='settings'}render()})();
-</script>
+</style>
+<meta content="RookieSavior Instructor Partnership Final Edition" name="generator"/></head>
+<body class="bg-white text-brand-ink antialiased">
+<nav class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-100">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="h-[76px] flex items-center justify-between">
+<a aria-label="回到頁首" class="flex items-center gap-3" href="#top">
+<div class="w-10 h-10 rounded-full bg-brand-cyan flex items-center justify-center">
+<i class="w-5 h-5 text-white" data-lucide="sparkles"></i>
+</div>
+<div>
+<p class="text-lg md:text-xl font-extrabold leading-none">菜鳥救星</p>
+<p class="text-xs font-bold text-brand-cyan mt-1.5 tracking-wider" style="font-family: var(--font-latin);">INSTRUCTOR PARTNERSHIP</p>
+</div>
+</a>
+<div class="hidden lg:flex items-center gap-6 text-sm font-bold">
+<a class="hover:text-brand-cyan transition" href="#about-platform">平台介紹</a>
+<a class="hover:text-brand-cyan transition" href="#fit">適合講師</a>
+<a class="hover:text-brand-cyan transition" href="#advantages">合作優勢</a>
+<a class="hover:text-brand-cyan transition" href="#outcomes">合作成果</a>
+<a class="hover:text-brand-cyan transition" href="#flow">合作流程</a>
+<a class="hover:text-brand-cyan transition" href="#faq">常見問題</a>
+<a aria-label="前往講師合作聯絡資訊" class="px-6 py-3 bg-brand-ink text-white rounded-full hover:bg-brand-cyan transition" href="#contact">聯繫 PM</a>
+</div>
+<a aria-label="前往講師合作聯絡資訊" class="lg:hidden px-4 py-2.5 bg-brand-ink text-white text-sm font-bold rounded-full" href="#contact">聯繫 PM</a>
+</div>
+</div>
+</nav>
+<header class="relative overflow-hidden bg-brand-mist" id="top">
+<div class="absolute inset-y-0 right-0 w-[42%] bg-brand-cyan hidden lg:block"></div>
+<div class="absolute right-[34%] top-20 w-28 h-28 rounded-full bg-brand-yellow/90 hidden lg:block"></div>
+<div class="absolute left-0 bottom-0 w-44 h-44 grid-dots opacity-60"></div>
+<div class="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-20 md:py-28 lg:py-32">
+<div class="grid lg:grid-cols-[1.08fr_.92fr] gap-14 lg:gap-20 items-center">
+<div>
+<p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-6">TEACH WITH ROOKIESAVIOR</p>
+<h1 class="display-title font-black max-w-4xl">
+            把你的專業，<br/>
+            做成<span class="text-brand-coral">真正學得會</span>的課程
+          </h1>
+<p class="hero-copy mt-8 text-brand-body max-w-2xl">
+            你負責課程專業，菜鳥救星從受眾角度協助檢視，並接手錄製檢查、後製上架、客服與推廣。
+          </p>
+<div class="mt-10 flex flex-col sm:flex-row gap-4">
+<a aria-label="前往講師合作聯絡資訊" class="button-label inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-ink text-white rounded-full hover:bg-brand-cyan transition" href="#contact">
+              有課程想法，先聊聊
+              <i class="w-5 h-5" data-lucide="arrow-up-right"></i>
+</a>
+<a class="button-label inline-flex items-center justify-center gap-2 px-8 py-4 bg-white border border-slate-200 rounded-full hover:border-brand-cyan hover:text-brand-cyan transition" href="#flow">
+              查看合作流程
+              <i class="w-5 h-5" data-lucide="arrow-down"></i>
+</a>
+</div>
+<div class="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm md:text-base font-bold text-brand-body">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-coral"></span> 依合作形式提供報酬</span>
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-yellow"></span> 專屬 PM 協作</span>
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-cyan"></span> 平台後製與推廣</span>
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-brand-blue"></span> 可兼任合作</span>
+</div>
+</div>
+<div class="relative lg:min-h-[520px]">
+<div class="relative lg:absolute lg:inset-y-0 lg:left-0 lg:right-[-20px] bg-white rounded-[34px] p-7 md:p-10 shadow-soft overflow-hidden">
+<div class="absolute top-0 right-0 text-[108px] md:text-[154px] font-extrabold number-outline leading-none select-none">01</div>
+<p class="eyebrow text-xs font-black text-brand-cyan mb-6">合作陪跑</p>
+<h2 class="section-title font-black max-w-md">不只是收影片，<br/>而是陪你把課程完成</h2>
+<div class="mt-10 space-y-5 relative z-10">
+<div class="flex gap-4 items-start">
+<span class="w-11 h-11 shrink-0 rounded-full bg-brand-pale flex items-center justify-center latin-number font-extrabold text-brand-cyan">1</span>
+<div><p class="card-heading">老師規劃完整課綱</p><p class="card-copy text-brand-body mt-1">錄播與直播課綱皆由老師依專業規劃。</p></div>
+</div>
+<div class="flex gap-4 items-start">
+<span class="w-11 h-11 shrink-0 rounded-full bg-brand-pale flex items-center justify-center latin-number font-extrabold text-brand-cyan">2</span>
+<div><p class="card-heading">PM 從受眾角度給建議</p><p class="card-copy text-brand-body mt-1">協助檢視定位、學習成果與內容呈現方式。</p></div>
+</div>
+<div class="flex gap-4 items-start">
+<span class="w-11 h-11 shrink-0 rounded-full bg-brand-pale flex items-center justify-center latin-number font-extrabold text-brand-cyan">3</span>
+<div><p class="card-heading">平台接手製作與上架</p><p class="card-copy text-brand-body mt-1">剪輯、頁面、客服與行銷由團隊協助。</p></div>
+</div>
+</div>
+<div class="mt-10 p-5 rounded-2xl bg-brand-ink text-white flex items-center gap-4">
+<i class="w-6 h-6 text-brand-yellow shrink-0" data-lucide="message-circle-more"></i>
+<p class="text-sm md:text-base leading-7">有課程想法就可以先聊，不需要先準備完整企劃書。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main>
+<section class="scroll-mt-24 py-20 md:py-28 bg-white border-b border-slate-100" id="about-platform">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-20 items-start">
+<div>
+<p class="eyebrow text-brand-cyan mb-5">平台介紹</p>
+<h2 class="section-title font-extrabold">關於<br class="hidden lg:block"/>菜鳥救星平台</h2>
+<a class="button-label mt-8 inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-slate-200 bg-brand-mist hover:border-brand-cyan hover:text-brand-cyan transition" href="https://live.rookiesavior.net/" rel="noopener noreferrer" target="_blank">
+              前往菜鳥救星網站
+              <i class="w-4 h-4" data-lucide="arrow-up-right"></i>
+</a>
+</div>
+<div class="relative bg-brand-pale rounded-[32px] p-7 sm:p-9 md:p-12 overflow-hidden">
+<div class="absolute -right-8 -top-10 w-36 h-36 rounded-full bg-brand-yellow/45"></div>
+<div class="absolute right-24 bottom-[-50px] w-44 h-44 rounded-full bg-brand-cyan/10"></div>
+<div class="relative z-10 max-w-3xl">
+<p class="feature-heading text-brand-ink mb-7">初學者友善、實作導向、學完能應用</p>
+<div class="space-y-5 text-brand-body section-copy">
+<p>菜鳥救星是一個以「初學者友善、實作導向、學完能應用」為核心的線上學習平台。</p>
+<p>我們希望把看似複雜的電腦技能、AI 工具與數位工作流程，轉化成一般人也能跟著操作的課程。課程不只介紹軟體功能，而是從真實的工作情境與需求出發，帶領學員一步一步完成作品、工具或可實際運用的成果。</p>
+<p>無論是想提升職場效率、發展副業、轉換跑道，或是建立自己的 AI 自動化系統，菜鳥救星都希望成為學員從「不知道怎麼開始」，一路走到「我真的做得出來」的學習夥伴。</p>
+</div>
+<div class="mt-9 grid sm:grid-cols-3 gap-3">
+<div class="rounded-2xl bg-white/85 border border-white px-5 py-4">
+<p class="text-sm font-extrabold text-brand-cyan">初學者友善</p>
+<p class="text-sm text-brand-body mt-1">從看得懂開始</p>
+</div>
+<div class="rounded-2xl bg-white/85 border border-white px-5 py-4">
+<p class="text-sm font-extrabold text-brand-coral">實作導向</p>
+<p class="text-sm text-brand-body mt-1">跟著步驟完成</p>
+</div>
+<div class="rounded-2xl bg-white/85 border border-white px-5 py-4">
+<p class="text-sm font-extrabold text-brand-blue">成果應用</p>
+<p class="text-sm text-brand-body mt-1">真正帶回工作</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="scroll-mt-24 py-20 md:py-28 bg-brand-mist border-b border-slate-100" id="fit">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-20 items-start">
+<div>
+<p class="eyebrow text-brand-coral mb-5">適合合作的講師</p>
+<h2 class="section-title font-extrabold">我們正在找<br class="hidden lg:block"/>這樣的老師</h2>
+<p class="section-copy mt-6 text-brand-body">不一定要有豐富授課經驗。只要具備扎實的實務經驗，並願意把方法整理成學員能跟著完成的內容，就歡迎先聊聊。</p>
+</div>
+<div class="grid sm:grid-cols-2 gap-4">
+<article class="bg-white rounded-[26px] p-7 border border-slate-100 shadow-card polish-card">
+<div class="w-12 h-12 rounded-full bg-brand-cyan/10 flex items-center justify-center mb-5"><i class="w-6 h-6 text-brand-cyan" data-lucide="briefcase-business"></i></div>
+<h3 class="card-heading mb-3">有真實的實務經驗</h3>
+<p class="card-copy text-brand-body">能分享工作流程、專案做法、問題判斷或實際應用情境。</p>
+</article>
+<article class="bg-white rounded-[26px] p-7 border border-slate-100 shadow-card polish-card">
+<div class="w-12 h-12 rounded-full bg-brand-yellow/25 flex items-center justify-center mb-5"><i class="w-6 h-6 text-brand-ink" data-lucide="list-steps"></i></div>
+<h3 class="card-heading mb-3">願意拆成清楚步驟</h3>
+<p class="card-copy text-brand-body">願意把熟悉的專業內容，整理成學員能理解與操作的教學順序。</p>
+</article>
+<article class="bg-white rounded-[26px] p-7 border border-slate-100 shadow-card polish-card">
+<div class="w-12 h-12 rounded-full bg-brand-coral/10 flex items-center justify-center mb-5"><i class="w-6 h-6 text-brand-coral" data-lucide="graduation-cap"></i></div>
+<h3 class="card-heading mb-3">重視學員真的學會</h3>
+<p class="card-copy text-brand-body">不只介紹功能，而是關心學員能否跟上、完成作品並實際應用。</p>
+</article>
+<article class="bg-white rounded-[26px] p-7 border border-slate-100 shadow-card polish-card">
+<div class="w-12 h-12 rounded-full bg-brand-blue/10 flex items-center justify-center mb-5"><i class="w-6 h-6 text-brand-blue" data-lucide="refresh-cw"></i></div>
+<h3 class="card-heading mb-3">願意從受眾角度調整</h3>
+<p class="card-copy text-brand-body">願意和 PM 討論定位、內容順序與成果呈現，讓課程更符合目標學員。</p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 md:py-28" id="advantages">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-20 items-start">
+<div class="lg:sticky lg:top-28">
+<p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-5">合作優勢</p>
+<h2 class="section-title font-extrabold">讓老師把時間，<br/>留給真正重要的事</h2>
+<p class="section-copy mt-6 text-brand-body">從第一次聊課程，到正式上架或開課，都有清楚窗口協助，不需要自己研究一整套課程製作流程。</p>
+</div>
+<div class="grid md:grid-cols-2 border-t border-l border-slate-200">
+<article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px] polish-card">
+<p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-cyan/20 mb-7">01</p>
+<h3 class="card-heading mb-4">專屬 PM 協作</h3>
+<p class="card-copy text-brand-body">從消費者與目標受眾的視角，協助檢視課程定位、內容順序、成果感與銷售呈現。</p>
+</article>
+<article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px] bg-brand-pale/55 polish-card">
+<p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-blue/20 mb-7">02</p>
+<h3 class="card-heading mb-4">後製上架由平台協助</h3>
+<p class="card-copy text-brand-body">錄製完成後，由平台處理影片剪輯、課程封面、頁面建置與正式上架。</p>
+</article>
+<article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px] bg-brand-pale/55 md:bg-white polish-card">
+<p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-coral/20 mb-7">03</p>
+<h3 class="card-heading mb-4">客服與行銷支援</h3>
+<p class="card-copy text-brand-body">行政、登入與基本操作問題由平台先處理，老師主要專注於真正需要專業判斷的內容。</p>
+</article>
+<article class="p-7 md:p-9 border-r border-b border-slate-200 min-h-[260px] polish-card">
+<p class="latin-number text-4xl md:text-5xl font-extrabold text-brand-yellow/45 mb-7">04</p>
+<h3 class="card-heading mb-4">合作資訊透明</h3>
+<p class="card-copy text-brand-body"><span class="block"><strong class="text-brand-ink font-black">錄播課程：</strong>鐘點費＋分潤獎勵。</span><span class="block mt-2"><strong class="text-brand-ink font-black">直播課程：</strong>僅提供鐘點費，不含分潤。</span><span class="block mt-2">講師專區可查看個別議定的鐘點費；錄播課程的分潤明細由 PM 另行提供。</span></p>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 md:py-28 bg-brand-ink text-white overflow-hidden" id="roles">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative">
+<div class="absolute -right-10 -top-20 text-[220px] font-black text-white/[.035] leading-none select-none">ROLE</div>
+<div class="max-w-3xl relative z-10">
+<p class="eyebrow text-xs md:text-sm font-black text-brand-yellow mb-5">合作分工</p>
+<h2 class="section-title font-extrabold">你負責專業，<br/>我們負責把合作往前推進</h2>
+</div>
+<div class="mt-14 grid lg:grid-cols-2 gap-px bg-white/15 border border-white/15 relative z-10">
+<article class="bg-brand-ink p-8 md:p-12 polish-card">
+<p class="text-brand-yellow font-black text-sm tracking-widest mb-5">講師負責</p>
+<h3 class="feature-heading mb-8">完成課程規劃與教學內容</h3>
+<ul class="space-y-5 text-gray-300 leading-8">
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>規劃錄播或直播的完整課綱與各堂進度</span></li>
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>準備教材、範例、素材與學員成果設計</span></li>
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>完成課程錄製或依排程進行直播授課</span></li>
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>必要時協助回覆專業技術問題</span></li>
+</ul>
+</article>
+<article class="bg-[#20404A] p-8 md:p-12 polish-card">
+<p class="text-brand-cyan font-black text-sm tracking-widest mb-5">菜鳥救星負責</p>
+<h3 class="feature-heading mb-8">從受眾視角協作與完成製作</h3>
+<ul class="space-y-5 text-gray-200 leading-8">
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5" data-lucide="check"></i><span>針對定位、內容安排與成果呈現提供建議</span></li>
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5" data-lucide="check"></i><span>提供錄製規格、試錄檢查與執行協助</span></li>
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5" data-lucide="check"></i><span>處理影片後製、課程頁建置與上架</span></li>
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-cyan shrink-0 mt-1.5" data-lucide="check"></i><span>協助基本客服、行銷推廣與錄播分潤明細提供</span></li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+<section class="scroll-mt-24 py-16 md:py-24 bg-white border-b border-slate-100" id="outcomes">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 lg:gap-16 items-start">
+<div>
+<p class="eyebrow text-brand-cyan mb-5">課程成果</p>
+<h2 class="section-title font-extrabold">你的專業，<br/>會被整理成完整課程</h2>
+<p class="section-copy mt-5 text-brand-body">老師完成內容後，平台會協助整理成清楚、好學習，也能呈現專業價值的正式課程。</p>
+<a class="button-label mt-7 inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-slate-200 bg-brand-mist hover:border-brand-cyan hover:text-brand-cyan transition" href="https://live.rookiesavior.net/" rel="noopener noreferrer" target="_blank">
+              查看平台現有課程
+              <i class="w-4 h-4" data-lucide="arrow-up-right"></i>
+</a>
+</div>
+<div>
+<div class="grid md:grid-cols-3 gap-4">
+<article class="rounded-[22px] p-5 md:p-6 bg-brand-pale border border-brand-cyan/10 polish-card">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-card"><i class="w-5 h-5 text-brand-cyan" data-lucide="layout-template"></i></div>
+<h3 class="font-extrabold">課程介紹頁</h3>
+</div>
+<p class="card-copy text-brand-body">整理課程重點、適合對象與學習成果。</p>
+</article>
+<article class="rounded-[22px] p-5 md:p-6 bg-brand-mist border border-slate-100 polish-card">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-card"><i class="w-5 h-5 text-brand-blue" data-lucide="captions"></i></div>
+<h3 class="font-extrabold">章節與教材</h3>
+</div>
+<p class="card-copy text-brand-body">依學習順序整理影片、章節與教材。</p>
+</article>
+<article class="rounded-[22px] p-5 md:p-6 bg-[#FFF8EC] border border-brand-yellow/25 polish-card">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-card"><i class="w-5 h-5 text-brand-coral" data-lucide="folder-kanban"></i></div>
+<h3 class="font-extrabold">實作成果</h3>
+</div>
+<p class="card-copy text-brand-body">讓學員完成可展示或實際運用的成果。</p>
+</article>
+</div>
+<div class="mt-5 rounded-[22px] bg-brand-ink text-white p-6">
+<p class="font-extrabold text-lg">合作同時也在累積你的專業資產</p>
+<div class="mt-4 flex flex-wrap gap-2">
+<span class="px-4 py-2 rounded-full bg-white/10 text-sm font-bold">可長期使用的數位內容</span>
+<span class="px-4 py-2 rounded-full bg-white/10 text-sm font-bold">更完整的專業形象</span>
+<span class="px-4 py-2 rounded-full bg-white/10 text-sm font-bold">延伸合作的可能性</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 md:py-28 bg-brand-mist">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="text-center max-w-3xl mx-auto">
+<p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-5">課程形式</p>
+<h2 class="section-title font-extrabold">兩種合作方式，<br/>都重視實作與成果</h2>
+</div>
+<div class="mt-14 grid lg:grid-cols-2 gap-7">
+<article class="bg-white rounded-[30px] p-8 md:p-11 border border-slate-100 shadow-card relative overflow-hidden polish-card">
+<span class="absolute right-6 top-4 text-[82px] font-extrabold latin-number text-brand-cyan/[.08]">01</span>
+<div class="w-14 h-14 rounded-full bg-brand-cyan flex items-center justify-center mb-8"><i class="w-6 h-6 text-white" data-lucide="video"></i></div>
+<p class="text-sm font-black text-brand-cyan tracking-widest mb-3">RECORDED COURSE</p>
+<h3 class="feature-heading mb-6">影音錄播課程</h3>
+<div class="space-y-5 text-brand-body">
+<div>
+<p class="text-sm font-black tracking-wider text-brand-cyan mb-2">核心定位</p>
+<p class="card-copy">帶領初學者從「不會」到「會」，透過清楚的步驟示範與重複觀看，逐步完成學習。</p>
+</div>
+<div class="pt-5 border-t border-slate-100">
+<p class="text-sm font-black tracking-wider text-brand-cyan mb-2">學習成果</p>
+<p class="card-copy">重視「教得懂、學得會」，讓學員依自己的進度完成基礎操作與實作成果。</p>
+</div>
+</div>
+</article>
+<article class="bg-white rounded-[30px] p-8 md:p-11 border border-slate-100 shadow-card relative overflow-hidden polish-card">
+<span class="absolute right-6 top-4 text-[82px] font-extrabold latin-number text-brand-coral/[.08]">02</span>
+<div class="w-14 h-14 rounded-full bg-brand-coral flex items-center justify-center mb-8"><i class="w-6 h-6 text-white" data-lucide="radio"></i></div>
+<p class="text-sm font-black text-brand-coral tracking-widest mb-3">LIVE COURSE</p>
+<h3 class="feature-heading mb-6">Live 直播課程</h3>
+<div class="space-y-5 text-brand-body">
+<div>
+<p class="text-sm font-black tracking-wider text-brand-coral mb-2">核心定位</p>
+<p class="card-copy">帶領已有基礎的學員，從「會操作」進一步走向「進階應用」。</p>
+</div>
+<div class="pt-5 border-t border-slate-100">
+<p class="text-sm font-black tracking-wider text-brand-coral mb-2">學習成果</p>
+<p class="card-copy">重視「學得深、做得出成果」，透過即時示範、互動與回饋，完成實際專題。</p>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="scroll-mt-24 py-20 md:py-28 bg-white" id="essentials">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="max-w-3xl">
+<p class="eyebrow text-xs md:text-sm font-black text-brand-coral mb-5">合作重點</p>
+<h2 class="section-title font-extrabold">合作前，先了解三件事</h2>
+</div>
+<div class="mt-14 grid lg:grid-cols-2 gap-7">
+<article class="rounded-[30px] p-8 md:p-10 bg-brand-mist border border-slate-200 relative overflow-hidden polish-card">
+<span class="absolute right-6 top-3 text-[82px] latin-number font-extrabold text-brand-coral/[.08]">01</span>
+<div class="w-14 h-14 rounded-full bg-brand-coral flex items-center justify-center mb-7">
+<i class="w-6 h-6 text-white" data-lucide="badge-dollar-sign"></i>
+</div>
+<p class="text-sm font-black text-brand-coral tracking-widest mb-3">COMPENSATION</p>
+<h3 class="feature-heading mb-7">錄播：鐘點費＋分潤<br/>直播：鐘點費</h3>
+<div class="space-y-4">
+<div class="bg-white rounded-2xl p-5 border border-slate-200">
+<p class="font-extrabold text-brand-ink">影音錄播課程</p>
+<p class="card-copy text-brand-body mt-2">依課程內容、時數與個別合作方案確認鐘點費；課程上架後，另依銷售來源計算分潤獎勵。</p>
+</div>
+<div class="bg-white rounded-2xl p-5 border border-slate-200">
+<p class="font-extrabold text-brand-ink">Live 直播課程</p>
+<p class="card-copy text-brand-body mt-2">依直播主題、時數與個別合作方案確認鐘點費。</p>
+</div>
+</div>
+<p class="text-sm text-brand-body mt-5 leading-7">實際鐘點費與錄播課程分潤計算方式，會依個別合作方案及正式文件說明。</p>
+</article>
+<article class="rounded-[30px] p-8 md:p-10 bg-brand-ink text-white relative overflow-hidden polish-card">
+<span class="absolute right-6 top-3 text-[82px] latin-number font-extrabold text-white/[.05]">02</span>
+<div class="w-14 h-14 rounded-full bg-brand-cyan flex items-center justify-center mb-7">
+<i class="w-6 h-6 text-white" data-lucide="monitor-play"></i>
+</div>
+<p class="text-sm font-black text-brand-cyan tracking-widest mb-3">RECORDING SETUP</p>
+<h3 class="feature-heading mb-7">錄播課程指定使用<br/>oCam 錄製</h3>
+<p class="card-copy text-gray-300 mb-6">
+              為統一課程畫質與後續製作流程，影音錄播課程請使用 oCam，並依指定規格完成錄製。
+            </p>
+<div class="grid grid-cols-2 gap-3">
+<div class="rounded-2xl bg-white/[.08] border border-white/10 p-4">
+<p class="text-xs text-gray-400">解析度</p>
+<p class="font-extrabold text-white mt-1">1920 × 1080</p>
+</div>
+<div class="rounded-2xl bg-white/[.08] border border-white/10 p-4">
+<p class="text-xs text-gray-400">畫面比例</p>
+<p class="font-extrabold text-white mt-1">16：9</p>
+</div>
+<div class="rounded-2xl bg-white/[.08] border border-white/10 p-4">
+<p class="text-xs text-gray-400">影片幀率</p>
+<p class="font-extrabold text-white mt-1">30 FPS</p>
+</div>
+<div class="rounded-2xl bg-white/[.08] border border-white/10 p-4">
+<p class="text-xs text-gray-400">影片格式</p>
+<p class="font-extrabold text-white mt-1">MP4</p>
+</div>
+</div>
+<div class="mt-7 grid sm:grid-cols-2 gap-3">
+<a class="button-label w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-brand-yellow text-brand-ink hover:bg-white transition" href="https://ohsoft.net/eng/" rel="noopener noreferrer" target="_blank">
+                oCam 官方網站
+                <i class="w-4 h-4 shrink-0" data-lucide="arrow-up-right"></i>
+</a>
+<a class="button-label w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl border border-white/25 text-white hover:border-brand-cyan hover:text-brand-cyan transition" href="#ocam-guide" onclick="document.getElementById('ocam-guide').open = true;">
+                查看完整錄製設定
+                <i class="w-4 h-4 shrink-0" data-lucide="arrow-down"></i>
+</a>
+</div>
+</article>
+</div>
+<article class="mt-7 rounded-[26px] border border-brand-cyan/30 bg-gradient-to-r from-brand-pale to-white p-7 md:p-9 polish-card">
+<div class="grid lg:grid-cols-[auto_1fr_auto] gap-5 lg:gap-7 items-center">
+<div class="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-card">
+<i class="w-6 h-6 text-brand-cyan" data-lucide="calendar-check-2"></i>
+</div>
+<div>
+<p class="text-sm font-black text-brand-cyan tracking-widest mb-2">INSTRUCTOR PORTAL</p>
+<h3 class="card-heading">合作報酬資訊</h3>
+<ul class="mt-4 space-y-3 text-brand-body">
+<li class="flex items-start gap-3">
+<span class="font-black text-brand-ink shrink-0">講師專區</span>
+<span class="card-copy">僅查看個別議定的鐘點費</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="font-black text-brand-ink shrink-0">錄播分潤明細</span>
+<span class="card-copy">由 PM 另行提供</span>
+</li>
+</ul>
+</div>
+<p class="text-xs md:text-sm text-brand-body leading-6 lg:max-w-[210px]">補充：基於個資保護，不提供學員個資。</p>
+</div>
+</article>
+</div>
+</section>
+<section class="py-20 md:py-28" id="flow">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-24">
+<div>
+<p class="eyebrow text-xs md:text-sm font-black text-brand-coral mb-5">合作流程</p>
+<h2 class="section-title font-extrabold">從一個課程想法，<br/>到正式上架或開課</h2>
+</div>
+<div class="space-y-7">
+<article class="flow-line relative flex gap-5 md:gap-7 pb-7 polish-card">
+<span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-cyan text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">01</span>
+<div class="pt-1"><h3 class="flow-heading">初步聯絡</h3><p class="card-copy text-brand-body mt-2">簡單分享想教的主題、適合對象、預計形式與希望學員完成的成果。</p></div>
+</article>
+<article class="flow-line relative flex gap-5 md:gap-7 pb-7 polish-card">
+<span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-blue text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">02</span>
+<div class="pt-1"><h3 class="flow-heading">線上面談</h3><p class="card-copy text-brand-body mt-2">了解老師經歷、課程方向與教學方式，並說明平台合作模式。</p></div>
+</article>
+<article class="flow-line relative flex gap-5 md:gap-7 pb-7 polish-card">
+<span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-yellow text-brand-ink flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">03</span>
+<div class="pt-1"><h3 class="flow-heading">課綱與合作確認</h3><p class="card-copy text-brand-body mt-2">老師完成完整課綱，PM 從消費者受眾角度提供建議，確認方向後進入合作。</p></div>
+</article>
+<article class="flow-line relative flex gap-5 md:gap-7 pb-7 polish-card">
+<span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-coral text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">04</span>
+<div class="pt-1"><h3 class="flow-heading">錄製或直播授課</h3><p class="card-copy text-brand-body mt-2">錄播課先完成測試與試錄；直播課依確認排程進行授課。</p></div>
+</article>
+<article class="flow-line relative flex gap-5 md:gap-7 polish-card">
+<span class="w-14 h-14 md:w-16 md:h-16 aspect-square rounded-full bg-brand-ink text-white flex items-center justify-center latin-number font-extrabold text-base md:text-lg shrink-0">05</span>
+<div class="pt-1"><h3 class="flow-heading">後製上架或正式開課</h3><p class="card-copy text-brand-body mt-2">平台接手後製、課程頁與推廣安排，完成後正式上架或開課。</p></div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<section class="py-20 md:py-28 bg-brand-pale/60" id="faq">
+<div class="max-w-5xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="text-center max-w-3xl mx-auto">
+<p class="eyebrow text-xs md:text-sm font-black text-brand-cyan mb-5">FAQ</p>
+<h2 class="section-title font-extrabold">常見問題</h2>
+</div>
+<div class="mt-14 border-t border-slate-200">
+<details class="group border-b border-slate-200">
+<summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+<span>還沒有完整課綱，可以先聯絡嗎？</span>
+<i class="faq-icon w-6 h-6 text-brand-cyan shrink-0" data-lucide="plus"></i>
+</summary>
+<p class="card-copy pb-7 pr-10 text-brand-body">可以先提供課程主題、適合對象與預期成果進行初步討論；正式合作時，不論錄播或直播，完整課綱皆由老師負責規劃。</p>
+</details>
+<details class="group border-b border-slate-200">
+<summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+<span>我不會剪影片，也不熟悉課程上架怎麼辦？</span>
+<i class="faq-icon w-6 h-6 text-brand-cyan shrink-0" data-lucide="plus"></i>
+</summary>
+<p class="card-copy pb-7 pr-10 text-brand-body">老師主要負責內容與錄製，平台會提供錄製規格與試錄協助，並處理後製、課程頁建置與上架。</p>
+</details>
+<details class="group border-b border-slate-200">
+<summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+<span>第一次擔任線上講師，也可以合作嗎？</span>
+<i class="faq-icon w-6 h-6 text-brand-cyan shrink-0" data-lucide="plus"></i>
+</summary>
+<p class="card-copy pb-7 pr-10 text-brand-body">可以。不一定要有豐富授課經驗，只要具備實務經驗、願意完整規劃課程，也願意依目標受眾調整內容，就歡迎先進行初步討論。</p>
+</details>
+<details class="group border-b border-slate-200 scroll-mt-28" id="ocam-guide">
+<summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+<span>oCam 要怎麼設定與開始錄影？</span>
+<i class="faq-icon w-6 h-6 text-brand-cyan shrink-0" data-lucide="plus"></i>
+</summary>
+<div class="pb-9">
+<div class="rounded-[28px] bg-white border border-slate-200 p-6 md:p-8 shadow-card">
+<div>
+<p class="text-sm font-black tracking-wider text-brand-cyan mb-2">一、錄製軟體與畫質設定</p>
+<h3 class="card-heading">1. 指定錄製軟體</h3>
+<p class="card-copy text-brand-body mt-3">指定使用：<strong class="text-brand-ink">oCam</strong></p>
+<a class="button-label mt-4 inline-flex items-center gap-2 px-5 py-3 rounded-full bg-brand-ink text-white hover:bg-brand-cyan transition" href="https://ohsoft.net/eng/" rel="noopener noreferrer" target="_blank">
+                    前往 oCam 官方網站
+                    <i class="w-4 h-4" data-lucide="arrow-up-right"></i>
+</a>
+</div>
+<div class="mt-8 pt-8 border-t border-slate-200">
+<h3 class="card-heading">2. 基本錄製規格</h3>
+<p class="card-copy text-brand-body mt-3">請將影片錄製為：</p>
+<div class="mt-5 grid sm:grid-cols-2 gap-3">
+<div class="rounded-2xl bg-brand-mist p-4"><p class="text-sm text-brand-body">畫面解析度</p><p class="font-extrabold mt-1">1920 × 1080</p></div>
+<div class="rounded-2xl bg-brand-mist p-4"><p class="text-sm text-brand-body">畫面比例</p><p class="font-extrabold mt-1">16：9</p></div>
+<div class="rounded-2xl bg-brand-mist p-4"><p class="text-sm text-brand-body">影片幀率</p><p class="font-extrabold mt-1">30 FPS</p></div>
+<div class="rounded-2xl bg-brand-mist p-4"><p class="text-sm text-brand-body">影片格式</p><p class="font-extrabold mt-1">MP4</p></div>
+</div>
+<ul class="mt-5 space-y-3 text-brand-body">
+<li class="flex gap-3"><i class="w-5 h-5 text-brand-cyan shrink-0 mt-1" data-lucide="check"></i><span class="card-copy"><strong class="text-brand-ink">畫面內容：</strong>簡報文字、軟體介面及操作步驟須清楚可辨識。</span></li>
+<li class="flex gap-3"><i class="w-5 h-5 text-brand-cyan shrink-0 mt-1" data-lucide="check"></i><span class="card-copy"><strong class="text-brand-ink">聲音內容：</strong>老師人聲須清楚，避免過多環境雜音、回音或聲音忽大忽小。</span></li>
+</ul>
+<p class="card-copy text-brand-body mt-5">一般軟體操作、簡報教學及線上課程，使用 1080p、30 FPS 即可呈現清楚畫面，不需要特別設定為 60 FPS。</p>
+</div>
+<div class="mt-8 pt-8 border-t border-slate-200 space-y-5">
+<div class="rounded-2xl bg-brand-mist p-5">
+<div class="flex items-center justify-between gap-3 flex-wrap">
+<h4 class="font-extrabold text-lg">檔案格式</h4>
+<span class="text-xs font-black tracking-wider text-brand-coral">必要設定</span>
+</div>
+<p class="card-copy text-brand-body mt-3">點選軟體上排選單《Screen Recording》→ 點選下排《編解碼器》圖示 → 建議選擇系統預設的 Open H.264 + AAC（.MP4）。</p>
+</div>
+<div class="rounded-2xl bg-brand-mist p-5">
+<div class="flex items-center justify-between gap-3 flex-wrap">
+<h4 class="font-extrabold text-lg">麥克風錄製</h4>
+<span class="text-xs font-black tracking-wider text-brand-coral">必要設定</span>
+</div>
+<p class="card-copy text-brand-body mt-3">先將錄製時會使用的麥克風連接上電腦 → 點選軟體下排《聲音》圖示 → 必要勾選《錄製麥克風》，可依個人需求選擇是否勾選《錄製系統聲音》。</p>
+<p class="card-copy text-brand-body mt-3">再點選軟體上排選單《Menu》→ 點選《聲音》→ 確認輸入來源為 1 + 2（立體聲）。</p>
+</div>
+<div class="rounded-2xl bg-brand-mist p-5">
+<h4 class="font-extrabold text-lg">檔案儲存位置</h4>
+<p class="card-copy text-brand-body mt-3">如果需要一次錄製多個檔案，希望檔案能依據錄製先後自動命名，建議先完成以下設定。</p>
+<p class="card-copy text-brand-body mt-3"><strong class="text-brand-ink">必要設定：</strong>上排選單《Menu》→ 點選《儲存》→ 選擇要儲存錄製檔案的目標資料夾。</p>
+<p class="card-copy text-brand-body mt-3"><strong class="text-brand-ink">選擇性設定：</strong>設定目標資料夾後，可在同個分頁針對檔案名稱進行設定。</p>
+</div>
+<div class="rounded-2xl bg-brand-mist p-5">
+<h4 class="font-extrabold text-lg">個人化功能</h4>
+<p class="text-sm font-bold text-brand-body mt-1">快捷鍵／滑鼠醒目標示／網路攝影機</p>
+<p class="card-copy text-brand-body mt-3"><strong class="text-brand-ink">選擇性設定：</strong>上排選單《Menu》→ 點選《快速鍵／Effect／網路攝影機》，依照需求進行相關設定即可。</p>
+</div>
+<div class="rounded-2xl bg-brand-mist p-5">
+<h4 class="font-extrabold text-lg">開始螢幕錄影</h4>
+<p class="card-copy text-brand-body mt-3">確認完成所有錄製設定後，即可開始螢幕錄影。</p>
+<ul class="mt-4 space-y-3 text-brand-body">
+<li class="card-copy"><strong class="text-brand-ink">開始錄影：</strong>點選上排選單《Screen Recording》→ 點選《錄影》圖示，軟體會直接開始螢幕錄影。</li>
+<li class="card-copy"><strong class="text-brand-ink">暫停錄影：</strong>點選《Pause》暫停圖示。</li>
+<li class="card-copy"><strong class="text-brand-ink">結束錄影：</strong>再次點選《錄影》圖示，螢幕錄影就會結束。</li>
+<li class="card-copy"><strong class="text-brand-ink">檔案儲存：</strong>軟體會自動將完成錄製的檔案儲存至錄製前設定好的資料夾。點選上排選單《Screen Recording》→ 點選《開啟》圖示，也可以直接開啟設定的資料夾查看影片。</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</details>
+<details class="group border-b border-slate-200">
+<summary class="faq-question cursor-pointer py-7 flex items-center justify-between gap-5">
+<span>上課時如何讓學員知道目前講解的位置？</span>
+<i class="faq-icon w-6 h-6 text-brand-cyan shrink-0" data-lucide="plus"></i>
+</summary>
+<div class="pb-8">
+<div class="rounded-[24px] bg-white border border-slate-200 p-6 md:p-7 shadow-card">
+<div class="flex items-start gap-4">
+<div class="w-11 h-11 rounded-2xl bg-brand-pale flex items-center justify-center shrink-0">
+<i class="w-5 h-5 text-brand-cyan" data-lucide="pen-tool"></i>
+</div>
+<div>
+<h3 class="card-heading">建議使用 Epic Pen 輔助標示</h3>
+<p class="card-copy text-brand-body mt-3">講到哪裡就圈到哪裡，可直接在畫面上畫線、圈選或標記，幫助學員快速知道目前正在說明哪個欄位、按鈕或操作位置。</p>
+</div>
+</div>
+<div class="mt-6 grid sm:grid-cols-2 gap-3">
+<a class="button-label w-full min-h-[54px] inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl bg-brand-ink text-white hover:bg-brand-cyan transition" href="https://epicpen.com/" rel="noopener noreferrer" target="_blank">
+                    Epic Pen 免費安裝
+                    <i class="w-4 h-4 shrink-0" data-lucide="download"></i>
+</a>
+<a class="button-label w-full min-h-[54px] inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl border border-slate-200 bg-brand-mist hover:border-brand-cyan hover:text-brand-cyan transition" href="https://www.youtube.com/watch?v=-8f7dswrp7U" rel="noopener noreferrer" target="_blank">
+                    Epic Pen 使用教學
+                    <i class="w-4 h-4 shrink-0" data-lucide="circle-play"></i>
+</a>
+</div>
+</div>
+</div>
+</details>
+</div>
+</div>
+</section>
+<section class="py-20 md:py-28 bg-white" id="contact">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+<div class="relative rounded-[34px] overflow-hidden bg-brand-cyan text-white p-8 md:p-14 lg:p-16">
+<div class="absolute right-[-40px] top-[-90px] w-72 h-72 rounded-full border-[42px] border-white/10"></div>
+<div class="absolute right-28 bottom-[-90px] w-48 h-48 rounded-full bg-brand-yellow"></div>
+<div class="relative z-10 grid lg:grid-cols-[1.2fr_.8fr] gap-12 items-end">
+<div>
+<p class="eyebrow text-xs md:text-sm font-black text-white/75 mb-5">聯繫我們</p>
+<h2 class="section-title font-extrabold">有一個課程想法，<br/>就可以先聊聊</h2>
+<p class="hero-copy mt-6 text-white/90 max-w-2xl">不需要先準備完整企劃書。電話中先分享想教的方向、受眾與成果，我們會一起判斷是否適合進一步合作。</p>
+</div>
+<div class="bg-white text-brand-ink rounded-[26px] p-7 md:p-8 shadow-soft">
+<p class="text-xs font-black tracking-widest text-brand-cyan mb-4">聯絡窗口</p>
+<p class="text-sm font-bold text-brand-body">數位事業群－線上產品處</p>
+<p class="text-xl md:text-2xl font-extrabold mt-1">李家儀 PM</p>
+<div class="mt-6 space-y-3">
+<a class="flex items-center gap-3 font-bold hover:text-brand-cyan transition" href="tel:+886227723696"><i class="w-5 h-5" data-lucide="phone"></i> (02) 2772-3696 #316</a>
+<a class="flex items-center gap-3 font-bold text-brand-cyanDark hover:text-brand-coral transition break-all" href="mailto:kitty2348@lccnet.com.tw?subject=%E8%8F%9C%E9%B3%A5%E6%95%91%E6%98%9F%E8%AC%9B%E5%B8%AB%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2"><i class="w-5 h-5 shrink-0" data-lucide="mail"></i> kitty2348@lccnet.com.tw</a>
+</div>
+<a class="button-label mt-7 w-full inline-flex items-center justify-center gap-2 py-3.5 bg-brand-ink text-white rounded-full hover:bg-brand-coral transition" href="mailto:kitty2348@lccnet.com.tw?subject=%E8%8F%9C%E9%B3%A5%E6%95%91%E6%98%9F%E8%AC%9B%E5%B8%AB%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2">
+                聯繫合作
+                <i class="w-5 h-5" data-lucide="arrow-up-right"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white border-t border-slate-100 py-12">
+<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+<div class="flex flex-col sm:flex-row items-center gap-5">
+<img alt="菜鳥救星 Logo" class="h-12 md:h-14 w-auto" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyNy42LjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0i5ZyW5bGkXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgODAwIDE2MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgODAwIDE2MDsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj4NCgkuc3Qwe2ZpbGw6I0YwQ0QzMDt9DQoJLnN0MXtmaWxsOiMyOEFCQzI7fQ0KCS5zdDJ7ZmlsbDojRkZGRkZGO30NCgkuc3Qze2ZpbGw6IzI4ODlENDt9DQoJLnN0NHtmaWxsOiNGNzZGNkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxnPg0KCQk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTEzLjgsMjcuNEg4Ny4ydjU5LjhoMjYuNmg1OS44QzE3My42LDU0LjIsMTQ2LjksMjcuNCwxMTMuOCwyNy40eiIvPg0KCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMTExLjcsNjUuOXY1Ny4ySDg2Ljh2MjEuNmgtOC40di0yMS42SDU5Ljd2MjEuNmgtOC40di0yMS42SDI2LjRWNjUuOWMwLTExLjgsNC44LTIyLjQsMTIuNS0zMC4yDQoJCQljNy43LTcuNywxOC40LTEyLjUsMzAuMi0xMi41QzkyLjYsMjMuMywxMTEuNyw0Mi40LDExMS43LDY1Ljl6Ii8+DQoJCTxjaXJjbGUgY2xhc3M9InN0MiIgY3g9IjY5IiBjeT0iNTkiIHI9IjI1LjEiLz4NCgkJPGNpcmNsZSBjbGFzcz0ic3QxIiBjeD0iNjkiIGN5PSI1OSIgcj0iOS44Ii8+DQoJCTxwYXRoIGNsYXNzPSJzdDMiIGQ9Ik01Mi4yLDkwLjZIMTBjMCwyMy4zLDE4LjksNDIuMiw0Mi4yLDQyLjJzNDIuMi0xOC45LDQyLjItNDIuMkg1Mi4yeiIvPg0KCTwvZz4NCgk8Zz4NCgkJPGc+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjkyLjIsMjEuMmMwLDEsMC44LDEuOCwxLjgsMS44aDI4LjRjMy41LDAsNi4zLDIuOSw2LjMsNi40YzAsMy40LTIuNyw2LjMtNi4zLDYuM0gyOTQNCgkJCQljLTEsMC0xLjgsMC44LTEuOCwxLjh2MC4yYzAsMy41LTIuOSw2LjQtNi40LDYuNGMtMy41LDAtNi40LTIuOS02LjQtNi40di0wLjJjMC0xLTAuOC0xLjgtMS44LTEuOGgtMzIuMWMtMSwwLTEuOCwwLjgtMS44LDEuOA0KCQkJCXYwLjJjMCwzLjUtMi45LDYuNC02LjQsNi40Yy0zLjUsMC02LjQtMi45LTYuNC02LjR2LTAuMmMwLTEtMC44LTEuOC0xLjgtMS44aC0yOC40Yy0zLjUsMC02LjQtMi45LTYuNC02LjMNCgkJCQljMC0zLjUsMi45LTYuNCw2LjQtNi40aDI4LjRjMSwwLDEuOC0wLjgsMS44LTEuOFYyMWMwLTMuNSwyLjktNi40LDYuNC02LjRjMy41LDAsNi40LDIuOSw2LjQsNi40djAuMmMwLDEsMC44LDEuOCwxLjgsMS44aDMyLjENCgkJCQljMSwwLDEuOC0wLjgsMS44LTEuOFYyMWMwLTMuNSwyLjktNi40LDYuNC02LjRjMy41LDAsNi40LDIuOSw2LjQsNi40VjIxLjJ6Ii8+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjYxLjksOTEuMmMzLjQsMCw2LjEsMi43LDYuMSw2LjNjMCwwLjgsMC44LDEuNiwxLjgsMS42aDQ4LjZjMy41LDAsNi42LDIuOSw2LjYsNi42YzAsMy41LTMsNi42LTYuNiw2LjYNCgkJCQloLTMyLjFjLTEuMSwwLTEuNiwxLjMtMC44LDIuMWwyMy43LDIyLjljMi42LDIuNCwwLjgsNi42LTIuNiw2LjZjLTYuMSwwLTEyLTIuNC0xNi41LTYuNkwyNzAuMiwxMThjLTAuOC0wLjgtMi4yLTAuMi0yLjIsMVYxNDcNCgkJCQljMCwzLjUtMi45LDYuNC02LjQsNi40Yy0zLjUsMC02LjQtMi45LTYuNC02LjR2LTI2LjZjMC0xLjEtMS40LTEuOC0yLjItMWwtMTguNiwxNy44Yy00LjMsNC4yLTEwLjMsNi42LTE2LjQsNi42DQoJCQkJYy0zLDAtNS00LjUtMi43LTYuNmwyNC0yMi45YzAuOC0wLjgsMC4yLTIuMS0xLTIuMWgtMzMuNWMtMy41LDAtNi42LTMtNi42LTYuNmMwLTMuNywzLTYuNiw2LjYtNi42aDQ4LjZjMSwwLDEuOC0wLjgsMS44LTEuNg0KCQkJCWMwLTMuNSwyLjctNi4zLDYuMS02LjNIMjYxLjl6Ii8+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMjE3LjMsNjguOGMtMy41LDAuMi02LjYtMi43LTYuNi02LjNjMC0zLjcsMi45LTYuNyw2LjYtNy4xbDg1LjYtNC4zYzMuNS0wLjIsNi42LDIuNiw2LjYsNi4zDQoJCQkJcy0yLjksNi42LTYuNiw2LjlMMjE3LjMsNjguOHoiLz4NCgkJCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik0yMjguMSw5MS4xYy00LjIsMC03LjktMi42LTkuMy02LjRsLTEtMi42Yy0xLjMtMy4yLDEuMS02LjYsNC41LTYuNmM0LjMsMCw4LDIuNyw5LjUsNi42bDEsMi40DQoJCQkJQzIzMy44LDg3LjgsMjMxLjQsOTEuMSwyMjguMSw5MS4xeiIvPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTI2Mi41LDg3LjNjLTQuMiwwLTcuOS0yLjYtOS4zLTYuNmwtMS4xLTNjLTEuMS0zLDEuMS02LjQsNC41LTYuNGM0LjIsMCw4LDIuNiw5LjUsNi42bDEsMi45DQoJCQkJQzI2OC4zLDgzLjksMjY1LjksODcuMywyNjIuNSw4Ny4zeiIvPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTI5My4zLDkxLjFjLTMuMiwwLTUuMy0zLjUtMy43LTYuNGw0LjgtOC43YzIuMi00LDYuNi02LjQsMTEuMS02LjRjMy40LDAsNS41LDMuNSwzLjgsNi40bC01LDguNw0KCQkJCUMzMDIuMSw4OC43LDI5OCw5MS4xLDI5My4zLDkxLjF6Ii8+DQoJCTwvZz4NCgkJPGc+DQoJCQk8Zz4NCgkJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNTQyLjEsMTQ3LjhjMCwzLjUtMi45LDYuNC02LjMsNi40Yy0zLjUsMC02LjQtMi45LTYuNC02LjR2LTI2LjZjMC0xLTEuMS0xLjMtMS44LTAuNmwtMS4xLDEuNA0KCQkJCQljLTMuMiw0LjItOC4yLDYuNy0xMy41LDYuN2MtMy40LDAtNS4zLTQtMy4yLTYuN2wxNy42LTIyLjljMS4zLTEuNiwxLjktMy43LDEuOS01LjZ2LTM5YzAtMS42LTEuNC0zLTMuMi0zaC0xNS43DQoJCQkJCWMtMy44LDAtNi43LTMtNi43LTYuN2MwLTMuNywyLjktNi43LDYuNy02LjdoMTUuN2MxLjgsMCwzLjItMS40LDMuMi0zdi05LjhjMC0zLjUsMi45LTYuNCw2LjQtNi40YzMuNCwwLDYuMywyLjksNi4zLDYuNHY5LjgNCgkJCQkJYzAsMS42LDEuNCwzLDMuMiwzaDE1LjljMy43LDAsNi43LDMsNi43LDYuN2MwLDMuNy0zLDYuNy02LjcsNi43aC0xNS45Yy0xLjgsMC0zLjIsMS40LTMuMiwzVjE0Ny44eiIvPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik01MTEuOCw2NC45YzQsMCw3LjcsMi42LDkuMSw2LjNsMi42LDYuNmMxLjMsMy0xLDYuNC00LjMsNi40Yy00LjIsMC03LjktMi42LTkuMy02LjZsLTIuNC02LjQNCgkJCQkJQzUwNi4zLDY4LjEsNTA4LjYsNjQuOSw1MTEuOCw2NC45eiIvPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDEiIGQ9Ik01NjcuNywxMjIuMWMxLjYsMi45LTAuNSw2LjYtMy44LDYuNmMtNC42LDAtOS0yLjYtMTEuMi02LjZsLTYuMy0xMS40Yy0xLjgtMywwLjUtNi43LDMuOC02LjcNCgkJCQkJYzQuOCwwLDkuMSwyLjYsMTEuNCw2LjdMNTY3LjcsMTIyLjF6Ii8+DQoJCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTU1Mi4zLDg0Yy0zLjUsMC01LjgtMy41LTQuMy02LjZsMy03LjRjMS44LTMuOCw1LjUtNi40LDkuOC02LjRjMy40LDAsNS42LDMuNCw0LjMsNi42bC0zLDcuMg0KCQkJCQlDNTYwLjUsODEuMyw1NTYuNSw4NCw1NTIuMyw4NHoiLz4NCgkJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNjM0LjgsNDAuNGgtMzYuMmMtMS42LDAtMi43LTEuNC0yLjQtM2wxLjgtNy45YzAuNi0zLjUtMS45LTYuNy01LjUtNi43Yy00LDAtNy40LDIuOS04LjIsNi43bC0xMC45LDQ4LjcNCgkJCQkJYy0wLjgsMy40LDEuOCw2LjYsNS4zLDYuNmMzLjgsMCw3LjQtMi43LDguMi02LjZsMS0zLjhjMC4yLTEsMS40LTEuMSwxLjktMC4ybDEyLjcsMjYuNmMwLjgsMS44LDAuOCwzLjgtMC4yLDUuNmwtMjEuOCwzOS4zDQoJCQkJCWMtMS44LDMsMC41LDYuNiwzLjgsNi42YzQuNSwwLDguOC0yLjYsMTEuMS02LjRsMTQuMS0yNC43YzAuNi0xLjEsMi40LTEsMi45LDAuMmwxMS41LDI0LjRjMS44LDQsNS45LDYuNiwxMC4zLDYuNg0KCQkJCQljMy40LDAsNS42LTMuNSw0LjItNi42TDYyMCwxMDYuMWMtMC44LTEuOC0xLTMuOC0wLjUtNS44bDEzLjktNDQuOWMwLjItMSwxLjEtMS42LDEuOS0xLjZjMy40LDAsNS45LTIuNiw1LjktNS45di0wLjgNCgkJCQkJQzY0MS4zLDQzLjQsNjM4LjQsNDAuNCw2MzQuOCw0MC40eiBNNjE5LDU2LjlMNjExLDgzYy0wLjMsMS4xLTEuOCwxLjEtMi4yLDAuMmwtMTIuNy0yNi41Yy0wLjYtMS4zLDAuMy0yLjksMS44LTIuOWgxOC45DQoJCQkJCUM2MTguNCw1My44LDYxOS41LDU1LjQsNjE5LDU2Ljl6Ii8+DQoJCQk8L2c+DQoJCQk8Y2lyY2xlIGNsYXNzPSJzdDQiIGN4PSI1NTUuNSIgY3k9IjIwLjYiIHI9IjYuOCIvPg0KCQk8L2c+DQoJCTxnPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTc0MCwxMzQuN2MwLDEuOCwxLjQsMy4yLDMuMiwzLjJoNDAuMmMzLjcsMCw2LjYsMi45LDYuNiw2LjZjMCwzLjUtMi45LDYuNC02LjYsNi40aC05OS43DQoJCQkJYy0zLjcsMC02LjYtMi45LTYuNi02LjRjMC0zLjcsMi45LTYuNiw2LjYtNi42aDQwLjFjMS44LDAsMy0xLjQsMy0zLjJ2LTUuNmMwLTEuOC0xLjMtMy0zLTNoLTIxLjNjLTMuNywwLTYuNi0yLjktNi42LTYuNg0KCQkJCWMwLTMuNSwyLjktNi40LDYuNi02LjRoMjEuM2MxLjgsMCwzLTEuNCwzLTN2LTQuMmMwLTEuOC0xLjMtMy0zLTNoLTI3LjRjLTEuOCwwLTMuNCwxLjEtMy44LDIuOWwtMS4zLDRjLTEuMyw0LTUsNi43LTksNi43DQoJCQkJYy0zLjUsMC01LjktMy40LTQuOC02LjdsNy4xLTIzLjFjMS4zLTMuOCw0LjgtNi42LDguOC02LjZjMy41LDAsNS44LDMuMiw0LjgsNi40bC0wLjMsMS4xYy0wLjMsMS4xLDAuNSwyLjEsMS40LDIuMWgyNS4zDQoJCQkJYzEuMywwLDIuMi0xLDIuMi0yLjJ2LTEuOWMwLTMuNSwzLTYuNiw2LjYtNi42YzMuNywwLDYuNiwzLDYuNiw2LjZ2MS45YzAsMS4zLDEsMi4yLDIuMiwyLjJoMzAuOWMzLjUsMCw2LjYsMi45LDYuNiw2LjYNCgkJCQljMCwzLjUtMyw2LjYtNi42LDYuNmgtMzBjLTEuOCwwLTMuMiwxLjMtMy4yLDN2NC4yYzAsMS42LDEuNCwzLDMuMiwzaDIxLjNjMy41LDAsNi40LDIuOSw2LjQsNi40YzAsMy43LTIuOSw2LjYtNi40LDYuNmgtMjEuMw0KCQkJCWMtMS44LDAtMy4yLDEuMy0zLjIsM1YxMzQuN3oiLz4NCgkJCTxnPg0KCQkJCTxwYXRoIGNsYXNzPSJzdDQiIGQ9Ik03NDMsNDMuNmwtMTMuMy05LjFjLTAuOS0wLjYtMi4yLDAtMi4yLDEuMnYxOC4yYzAsMS4xLDEuMywxLjgsMi4yLDEuMkw3NDMsNDYNCgkJCQkJQzc0My45LDQ1LjQsNzQzLjksNDQuMiw3NDMsNDMuNnoiLz4NCgkJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNNzY4LjQsMTcuMWgtNjkuOWMtNi40LDAtMTEuNSw1LjEtMTEuNSwxMS41djMyLjVjMCw2LjQsNS4xLDExLjUsMTEuNSwxMS41aDY5LjljNi40LDAsMTEuNy01LjEsMTEuNy0xMS41DQoJCQkJCVYyOC43Qzc4MC4xLDIyLjMsNzc0LjgsMTcuMSw3NjguNCwxNy4xeiBNNzY2LjgsMzUuMXYxOS42djEuNnYxLjJ2LTEuMmMwLDEuOC0xLjQsMy0zLjIsM2gtNjAuM2MtMS44LDAtMy0xLjMtMy0zdjAuNHYtMC40DQoJCQkJCXYtMS42VjM1LjF2LTEuNGMwLTEuOCwxLjMtMy4yLDMtMy4yaDYwLjNjMS44LDAsMy4yLDEuNCwzLjIsMy4yVjM1LjF6Ii8+DQoJCQk8L2c+DQoJCTwvZz4NCgkJPGc+DQoJCQk8cGF0aCBjbGFzcz0ic3QxIiBkPSJNMzc4LjEsOTguN2g4OS44YzMuMiwwLDUuOS0yLjcsNS45LTUuOWMwLTMuMi0yLjctNS45LTUuOS01LjloLTg5LjhjLTEuOCwwLTMuMi0xLjMtMy4yLTN2LTEuMw0KCQkJCWMwLTEuOCwxLjQtMywzLjItM2g2NS4xYzYuNCwwLDExLjUtNS4zLDExLjUtMTEuN3YtMjljMC02LjQtNS4xLTExLjUtMTEuNS0xMS41aC0zOGMtMS4zLDAtMi4xLTEuNC0xLjQtMi40bDEuNC0zDQoJCQkJYzEuNi0yLjctMC41LTYuMS0zLjctNi4xYy00LjIsMC04LjIsMi4yLTEwLjMsNi4xbC0xLjYsM2MtMSwxLjQtMi42LDIuNC00LjIsMi40aC0xMC43Yy02LjQsMC0xMS43LDUuMS0xMS43LDExLjV2NjcuNQ0KCQkJCWMwLDYuNCw1LjMsMTEuNywxMS43LDExLjdoODMuNmMxLjgsMCwzLDEuMywzLDNsLTEuNCwyNS41Yy0wLjIsMy40LDIuMiw1LjksNS42LDUuOWMzLjQsMCw2LjEtMi42LDYuMy01LjlsMS42LTI4LjcNCgkJCQljMC4zLTYuMy00LjYtMTEuNy0xMC45LTExLjdoLTg0LjRjLTEuOCwwLTMuMi0xLjMtMy4yLTN2LTEuM0MzNzQuOSwxMDAsMzc2LjQsOTguNywzNzguMSw5OC43eiBNMzc0LjksNDIuMWMwLTEuNiwxLjQtMywzLjItMw0KCQkJCWg2MS43YzEuOCwwLDMsMS40LDMsM3YyLjFjMCwxLjYtMS4zLDMtMywzaC02MS43Yy0xLjgsMC0zLjItMS40LTMuMi0zVjQyLjF6IE0zNzQuOSw2MmMwLTEuNiwxLjQtMywzLjItM2g2MS43YzEuOCwwLDMsMS40LDMsMw0KCQkJCXYyLjdjMCwxLjgtMS4zLDMuMi0zLDMuMmgtNjEuN2MtMS44LDAtMy4yLTEuNC0zLjItMy4yVjYyeiIvPg0KCQkJPHBhdGggY2xhc3M9InN0MSIgZD0iTTQyNy40LDE0OC4xYy0xLjIsMC0yLjQtMC41LTMuNC0xLjRsLTE0LjMtMTAuMWwtMTcuOSw5LjljLTIuMywxLjMtNS4zLDAuOS03LjItMWwtOC4zLTguMmwtMTIuNyw4LjMNCgkJCQljLTIuNywxLjctNiwwLjktNy42LTEuOGMtMS43LTIuOC0xLjEtNi40LDEuNS04LjJsMTYuNC0xMS4yYzIuMy0xLjUsNS4xLTEuMyw3LDAuNWw4LjQsOC4xbDE3LjMtOC42YzIuMi0xLjIsNS0xLjEsNy4xLDAuMw0KCQkJCWwxNC4zLDkuN2wxNC40LTguM2MyLjgtMS42LDYuMi0wLjUsNy41LDIuNGMxLjMsMi44LDAuMiw2LjMtMi41LDcuOWwtMTcuMSwxMC44QzQyOS40LDE0Ny45LDQyOC40LDE0OC4xLDQyNy40LDE0OC4xeiIvPg0KCQk8L2c+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo="/>
+<div class="sm:border-l sm:border-slate-200 sm:pl-5">
+<p class="font-black">講師合作介紹</p>
+<p class="text-sm text-brand-body mt-1">數位事業群－線上產品處</p>
+</div>
+</div>
+<p class="text-sm text-brand-body">© 2026 Rookiesavior</p>
+</div>
+</footer>
+<div class="mobile-contact-bar md:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-t border-slate-200 shadow-[0_-10px_30px_rgba(23,49,58,.08)]">
+<a aria-label="前往講師合作聯絡資訊" class="button-label w-full py-3 bg-brand-ink text-white rounded-full flex items-center justify-center gap-2" href="#contact">
+      有課程想法，聯繫 PM
+      <i class="w-5 h-5" data-lucide="message-circle"></i>
+</a>
+</div>
+<script>lucide.createIcons();</script>
 </body>
 </html>
