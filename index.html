@@ -406,6 +406,7 @@
 <li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>規劃錄播或直播的完整課綱與各堂進度</span></li>
 <li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>準備教材、範例、素材與學員成果設計</span></li>
 <li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>完成課程錄製或依排程進行直播授課</span></li>
+<li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>錄播影片如有確定需刪除的內容，請於課程總表標註影片名稱與起訖時間</span></li>
 <li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>錄播影片如有確定需刪除的內容，於課程總表標註影片名稱與起訖時間</span></li>
 <li class="flex gap-4"><i class="w-5 h-5 text-brand-yellow shrink-0 mt-1.5" data-lucide="check"></i><span>必要時協助回覆專業技術問題</span></li>
 </ul>
@@ -425,31 +426,42 @@
 </section>
 <!-- VIDEO_EDITING_GUIDE_START -->
 <section class="scroll-mt-24 py-16 md:py-20 bg-brand-pale border-b border-brand-cyan/10" id="editing-guide">
-<div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-<div class="rounded-[30px] overflow-hidden bg-white border border-brand-cyan/20 shadow-card">
-<div class="grid lg:grid-cols-[.72fr_1.28fr]">
-<div class="bg-brand-cyan p-8 md:p-10 lg:p-12 text-white">
-<div class="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center mb-7"><i class="w-6 h-6" data-lucide="scissors"></i></div>
-<p class="eyebrow text-xs md:text-sm font-black text-white/75 mb-5">錄播課程提醒</p>
-<h2 class="section-title font-extrabold text-white">確定要刪除的片段，<br/>請老師先標註</h2>
-<p class="card-copy mt-6 text-white/85">平台會協助影片剪輯、課程整理與正式上架；剪輯作業會以老師提供的明確標註為主要依據。</p>
-</div>
-<div class="p-8 md:p-10 lg:p-12">
-<p class="section-copy text-brand-body">由於每門課程的影片數量與總時數較多，平台無法承諾每支影片皆從頭到尾完整審看，並自行判斷哪些內容需要刪除。</p>
-<p class="card-heading mt-8">如有確定不希望保留的內容，請於課程總表填寫：</p>
-<div class="grid sm:grid-cols-3 gap-4 mt-5">
-<div class="rounded-[20px] bg-brand-mist border border-slate-100 p-5"><p class="text-xs font-black tracking-widest text-brand-cyan mb-2">01</p><p class="font-extrabold text-brand-ink">影片或單元名稱</p></div>
-<div class="rounded-[20px] bg-brand-mist border border-slate-100 p-5"><p class="text-xs font-black tracking-widest text-brand-cyan mb-2">02</p><p class="font-extrabold text-brand-ink">刪除開始與結束時間</p></div>
-<div class="rounded-[20px] bg-brand-mist border border-slate-100 p-5"><p class="text-xs font-black tracking-widest text-brand-cyan mb-2">03</p><p class="font-extrabold text-brand-ink">簡單說明刪除原因</p></div>
-</div>
-<div class="mt-6 rounded-[20px] bg-brand-yellow/15 border border-brand-yellow/30 p-5 md:p-6">
-<p class="card-copy text-brand-ink"><strong>未特別標註的部分，</strong>原則上會依老師提交的原始影片內容進行整理與上架。</p>
-</div>
-<p class="card-copy mt-5 text-brand-body">事前標註剪輯需求，可避免雙方對內容取捨的理解不同，並保留老師原本的教學規劃與學習效果。</p>
-</div>
-</div>
-</div>
-</div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+    <div class="rounded-[30px] overflow-hidden bg-white border border-brand-cyan/20 shadow-card">
+      <div class="grid lg:grid-cols-[.72fr_1.28fr]">
+        <div class="bg-brand-cyan p-8 md:p-10 lg:p-12 text-white">
+          <div class="w-12 h-12 rounded-full bg-white/15 flex items-center justify-center mb-7">
+            <i class="w-6 h-6" data-lucide="scissors"></i>
+          </div>
+          <p class="eyebrow text-xs md:text-sm font-black text-white/75 mb-5">錄播課程提醒</p>
+          <h2 class="section-title font-extrabold text-white">確定要刪除的片段，<br/>請老師先標註</h2>
+          <p class="card-copy mt-6 text-white/85">平台會協助影片剪輯、課程整理與正式上架；剪輯作業會以老師提供的明確標註為主要依據。</p>
+        </div>
+        <div class="p-8 md:p-10 lg:p-12">
+          <p class="section-copy text-brand-body">由於每門課程的影片數量與總時數較多，平台無法承諾每支影片皆從頭到尾完整審看，並自行判斷哪些內容需要刪除。</p>
+          <p class="card-heading mt-8">如有確定不希望保留的內容，請於課程總表填寫：</p>
+          <div class="grid sm:grid-cols-3 gap-4 mt-5">
+            <div class="rounded-[20px] bg-brand-mist border border-slate-100 p-5">
+              <p class="text-xs font-black tracking-widest text-brand-cyan mb-2">01</p>
+              <p class="font-extrabold text-brand-ink">影片或單元名稱</p>
+            </div>
+            <div class="rounded-[20px] bg-brand-mist border border-slate-100 p-5">
+              <p class="text-xs font-black tracking-widest text-brand-cyan mb-2">02</p>
+              <p class="font-extrabold text-brand-ink">刪除開始與結束時間</p>
+            </div>
+            <div class="rounded-[20px] bg-brand-mist border border-slate-100 p-5">
+              <p class="text-xs font-black tracking-widest text-brand-cyan mb-2">03</p>
+              <p class="font-extrabold text-brand-ink">簡單說明刪除原因</p>
+            </div>
+          </div>
+          <div class="mt-6 rounded-[20px] bg-brand-yellow/15 border border-brand-yellow/30 p-5 md:p-6">
+            <p class="card-copy text-brand-ink"><strong>未特別標註的部分，</strong>原則上會依老師提交的原始影片內容進行整理與上架。</p>
+          </div>
+          <p class="card-copy mt-5 text-brand-body">事前標註剪輯需求，可避免雙方對內容取捨的理解不同，並保留老師原本的教學規劃與學習效果。</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- VIDEO_EDITING_GUIDE_END -->
 <section class="scroll-mt-24 py-16 md:py-24 bg-white border-b border-slate-100" id="outcomes">
