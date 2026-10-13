@@ -4,516 +4,694 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Schooler｜講師合作</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Lexend:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
+/* ===== Design tokens（取自 logo 色相）=====
+   ink：logo 海軍藍，文字、按鈕、深色卡片
+   sky：logo 霧藍提亮，只用在首屏、流程與結尾
+   sky-d / sky-l：同色相的深、淺一階，連結與淡底
+   sun：唯一暖色，只用在「優先／重點」 */
 :root{
-  --brand:#3D8BD9; --brand-d:#2A6FB8; --sky:#8EC5F5; --ink:#18294A; --body:#55647A; --muted:#8B98AA;
-  --bg:#FBFDFF; --glass:rgba(255,255,255,.5); --edge:rgba(255,255,255,.95); --hair:rgba(61,139,217,.12);
-  --sec:136px; --head:56px; --gap:20px; --pad:32px; --r:24px;
+  --ink:#14243A; --body:#3A4A5E; --muted:#56677B; --line:#DDE5EE;
+  --bg2:#F4F7FA; --sky:#7FAEE0; --sky-l:#E8F0F9; --sky-d:#2E5F96; --sky-m:#6890BC;
+  --sun:#F2C14E; --sun-l:#FBF1D5; --sun-d:#7A5300;
+  --num:"Lexend","Noto Sans TC",sans-serif;
+  --sec:144px; --gap:24px; --r:28px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:110px}
-body{font-family:"Noto Sans TC","Noto Sans CJK TC",system-ui,sans-serif;background:var(--bg);color:var(--body);line-height:1.8;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-a{color:var(--brand-d)}
-svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.aura{position:fixed;inset:0;z-index:0;pointer-events:none;background:
-  radial-gradient(38% 32% at 12% 8%,rgba(142,197,245,.5),transparent 70%),
-  radial-gradient(34% 30% at 88% 12%,rgba(200,214,255,.6),transparent 70%),
-  radial-gradient(40% 34% at 72% 78%,rgba(176,232,242,.42),transparent 70%),
-  radial-gradient(34% 30% at 8% 88%,rgba(228,216,255,.4),transparent 70%)}
-.grid{position:absolute;left:0;right:0;top:0;height:900px;z-index:0;pointer-events:none;opacity:.55;
-  background-image:linear-gradient(rgba(61,139,217,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(61,139,217,.06) 1px,transparent 1px);
-  background-size:56px 56px;-webkit-mask-image:radial-gradient(60% 70% at 50% 25%,#000,transparent);mask-image:radial-gradient(60% 70% at 50% 25%,#000,transparent)}
-.wrap{position:relative;z-index:1;max-width:1120px;margin:0 auto;padding:0 32px}
-.glass{background:var(--glass);backdrop-filter:blur(24px) saturate(170%);-webkit-backdrop-filter:blur(24px) saturate(170%);
-  border:1px solid var(--edge);border-radius:var(--r);
-  box-shadow:inset 0 1px 0 #fff,0 1px 2px rgba(24,41,74,.03),0 12px 36px -8px rgba(61,139,217,.12)}
-.lift{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
-.lift:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 #fff,0 20px 44px -10px rgba(61,139,217,.22)}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{font-family:"Noto Sans TC","Noto Sans CJK TC",system-ui,sans-serif;background:#fff;color:var(--body);font-size:16px;line-height:1.85;letter-spacing:.02em;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:var(--sky-d)}
+svg.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px;position:relative}
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1)}
+.js .rv.in{opacity:1;transform:none}
 
-/* ---------- nav ---------- */
-nav{position:sticky;top:16px;z-index:10;max-width:1120px;margin:16px auto 0;padding:0 32px}
-nav .bar{display:flex;align-items:center;gap:16px;padding:8px 8px 8px 24px;border-radius:999px}
+/* ===== Type scale: 60 / 44 / 22 / 18 / 16 / 14 ===== */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--num);font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--sky-d);text-transform:uppercase}
+.eyebrow b{font-weight:800;color:var(--ink)}
+.eyebrow:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--sky-m)}
+h2{font-size:44px;line-height:1.4;color:var(--ink);font-weight:900;letter-spacing:.03em}
+h3{font-size:22px;line-height:1.5;color:var(--ink);font-weight:900}
+.small{font-size:14px;color:var(--muted)}
+
+/* section headers: two variants for rhythm */
+.hd{margin-bottom:56px}
+.hd h2{margin-top:16px}
+.hd p{font-size:17px;margin-top:16px;max-width:620px}
+.hd.c{text-align:center}.hd.c p{margin-left:auto;margin-right:auto}
+.hd.s{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+.hd.s p{margin-top:0;justify-self:end}
+section{padding-top:var(--sec)}
+
+/* ===== nav ===== */
+nav{position:fixed;top:16px;left:16px;right:16px;z-index:30;display:flex;align-items:center;gap:16px;padding:10px 10px 10px 24px;border-radius:999px;background:rgba(255,255,255,.95);box-shadow:0 8px 30px -14px rgba(20,36,58,.3);max-width:1240px;margin:0 auto;backdrop-filter:blur(10px)}
 .logo{display:flex;align-items:center;gap:14px;text-decoration:none;flex:none}
 .logo img{display:block;height:24px;width:auto}
-.logo .tag{font-size:13px;color:var(--muted);padding-left:14px;border-left:1px solid var(--hair);white-space:nowrap}
+.logo .tag{font-size:13px;font-weight:700;color:var(--muted);padding-left:14px;border-left:2px solid var(--line);white-space:nowrap}
 .links{display:flex;gap:2px;list-style:none;margin-left:auto}
-.links a{display:block;padding:8px 13px;border-radius:999px;font-size:14px;color:var(--body);text-decoration:none;white-space:nowrap;transition:.2s}
-.links a:hover{background:rgba(61,139,217,.08);color:var(--brand-d)}
-.links a.on{background:rgba(61,139,217,.12);color:var(--brand-d);font-weight:500}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:999px;font-weight:500;font-size:15px;text-decoration:none;white-space:nowrap;transition:.25s}
-.btn svg.i{width:16px;height:16px;stroke-width:2}
-.btn-p{background:linear-gradient(135deg,#62AEF2,#3D8BD9);color:#fff;box-shadow:0 10px 24px -6px rgba(61,139,217,.5),inset 0 1px 0 rgba(255,255,255,.4)}
-.btn-p:hover{transform:translateY(-1px);box-shadow:0 14px 28px -6px rgba(61,139,217,.55),inset 0 1px 0 rgba(255,255,255,.4)}
-.btn-g{background:rgba(255,255,255,.7);color:var(--ink);border:1px solid var(--edge);box-shadow:0 4px 14px -4px rgba(61,139,217,.15)}
-nav .btn{padding:10px 20px;flex:none}
+.links a{display:block;padding:8px 14px;border-radius:999px;font-size:14.5px;font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap;transition:.2s}
+.links a:hover,.links a.on{background:var(--sky-l);color:var(--sky-d)}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 30px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;white-space:nowrap;transition:transform .25s,box-shadow .25s}
+.btn-d{background:var(--ink);color:#fff}
+.btn-d:hover{transform:translateY(-2px);box-shadow:0 14px 26px -12px rgba(20,36,58,.7)}
+.btn .ar{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:#fff;color:var(--ink);margin-right:-14px}
+.btn .ar svg.i{width:15px;height:15px;stroke-width:2.4}
+nav .btn{padding:11px 24px;font-size:14.5px;flex:none}
+.tl{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:2px}
+.tl svg.i{width:18px;height:18px}
 
-/* ---------- hero ---------- */
-.hero{text-align:center;padding:104px 0 0;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;letter-spacing:.04em;color:var(--brand-d);background:rgba(255,255,255,.75);border:1px solid rgba(61,139,217,.18);padding:6px 16px;border-radius:999px}
-.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px rgba(61,139,217,.15)}
-h1{font-size:60px;line-height:1.22;color:var(--ink);font-weight:900;letter-spacing:-.015em;margin-top:28px}
-h1 em{font-style:normal;background:linear-gradient(95deg,#2A6FB8,#4E9BE6 50%,#6FC3E6);-webkit-background-clip:text;background-clip:text;color:transparent}
-.lead{font-size:18px;line-height:1.85;margin:24px auto 0;max-width:620px}
-.cta{display:flex;gap:12px;justify-content:center;margin-top:40px}
-.badges{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--ink);padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.6);border:1px solid #fff}
-.badge svg.i{width:15px;height:15px;color:var(--brand);stroke-width:2.2}
+/* ===== hero ===== */
+.hero{position:relative;background:var(--sky);padding:168px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding-bottom:180px}
+.hero .eyebrow{color:var(--ink)}
+.hero .eyebrow:before{background:#fff}
+.hero h1{margin-top:24px;font-size:54px;line-height:1.35;font-weight:900;color:var(--ink);letter-spacing:.03em}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 64%,var(--sun) 64%);padding:0 4px}
+.lead{margin-top:26px;font-size:18px;line-height:1.9;color:var(--ink);font-weight:500;max-width:520px}
+.cta{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin-top:40px}
+.art{position:relative;width:100%;max-width:560px;justify-self:end;aspect-ratio:1/1}
+.art svg{width:100%;height:100%;overflow:visible}
+.bob{animation:bob 5s ease-in-out infinite}.bob2{animation:bob 6s ease-in-out -2s infinite}.bob3{animation:bob 4.5s ease-in-out -1s infinite}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.hdot{position:absolute;border-radius:50%;pointer-events:none}
+/* facts strip overlapping the hero edge */
+.facts{position:relative;z-index:2;margin-top:-96px;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-radius:var(--r);box-shadow:0 24px 60px -30px rgba(20,36,58,.4)}
+.fact{padding:30px 32px;display:flex;gap:16px;align-items:flex-start}
+.fact+.fact{border-left:1px solid var(--line)}
+.fact .ic{width:48px;height:48px;border-radius:50%;background:var(--sky-l);color:var(--sky-d);display:grid;place-items:center;flex:none}
+.fact small{display:block;font-size:13.5px;color:var(--muted);font-weight:500}
+.fact b{display:block;font-size:18px;color:var(--ink);line-height:1.5;margin-top:2px}
 
-/* 合作陪跑三步 */
-.escort{margin:72px auto 0;padding:8px;text-align:left}
-.escort .row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.e{padding:24px;border-radius:18px;position:relative}
-.e .n{font-size:13px;font-weight:700;color:var(--brand);letter-spacing:.08em}
-.e b{display:block;color:var(--ink);font-size:17px;line-height:1.5;margin:8px 0 6px}
-.e p{font-size:14px;line-height:1.7}
-.e+.e:before{content:"";position:absolute;left:-4px;top:24px;bottom:24px;width:1px;background:var(--hair)}
-.escort .foot{display:flex;align-items:center;gap:10px;margin:4px 8px 8px;padding:14px 18px;border-radius:14px;background:linear-gradient(90deg,rgba(98,174,242,.14),rgba(255,255,255,.4));font-size:14.5px;color:var(--ink)}
-.escort .foot svg.i{color:var(--brand)}
+/* ===== about ===== */
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:start}
+.about .txt .quote{font-size:30px;margin-top:20px;font-weight:900;color:var(--ink);line-height:1.6;margin-top:18px}
+.about .txt p{margin-top:20px;font-size:16.5px}
+.about .tl{margin-top:28px}
+.pillars{list-style:none;border-top:2px solid var(--ink)}
+.pillars li{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+.pillars .n{font-family:var(--num);font-size:30px;font-weight:800;color:var(--sky-d)}
+.pillars small{display:block;font-size:13.5px;color:var(--muted);font-weight:500}
+.pillars b{font-size:20px;color:var(--ink)}
 
-/* ---------- section ---------- */
-section{padding-top:var(--sec)}
-.sh{text-align:center;margin-bottom:var(--head)}
-.sh h2{font-size:38px;line-height:1.35;color:var(--ink);font-weight:900;letter-spacing:-.01em;margin-top:16px}
-.sh p{max-width:600px;margin:14px auto 0;font-size:16px}
-.ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:var(--brand-d);flex:none;
-  background:linear-gradient(140deg,rgba(255,255,255,.95),rgba(198,225,250,.7));border:1px solid #fff;box-shadow:0 6px 16px -6px rgba(61,139,217,.35)}
-.card{padding:var(--pad);display:flex;flex-direction:column}
-.card h3{font-size:18px;line-height:1.45;color:var(--ink);font-weight:700;margin:20px 0 8px}
-.card p{font-size:14.5px;line-height:1.8}
-.k{font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--brand)}
+/* ===== band (neutral) ===== */
+.band{background:var(--bg2);border-radius:72px;margin:var(--sec) 16px 0;padding:120px 0}
+.band section{padding-top:0}
+.band section+section{padding-top:var(--sec)}
+.card{background:#fff;border-radius:var(--r);padding:36px;display:flex;flex-direction:column}
+.band .card{box-shadow:0 1px 0 var(--line),0 16px 40px -30px rgba(20,36,58,.35)}
+.card.bd{border:1px solid var(--line)}
+.k{font-family:var(--num);font-size:13px;font-weight:700;letter-spacing:.12em;color:var(--sky-d)}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;background:var(--sky-l);color:var(--ink)}
 
-/* 平台介紹 */
-.about{display:grid;grid-template-columns:1.25fr .75fr;gap:var(--gap);align-items:stretch}
-.about .card p+p{margin-top:14px}
-.about .card .quote{font-size:20px;font-weight:700;color:var(--ink);line-height:1.6;margin-bottom:16px}
-.pillars{display:grid;gap:12px}
-.pl{display:flex;align-items:center;gap:16px;padding:22px 24px}
-.pl small{display:block;font-size:12.5px;color:var(--muted)}
-.pl b{color:var(--ink);font-size:17px}
-.more{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:14.5px;font-weight:500;text-decoration:none}
-.more svg.i{width:16px;height:16px}
+/* ===== map ===== */
+.cake{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);align-items:stretch}
+.stack{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin-top:22px}
+.ly{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);
+  opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1),background .3s,border-color .3s,box-shadow .3s}
+.ly:focus-visible{outline:3px solid var(--sky-d);outline-offset:3px}
+.ly .lv{font-family:var(--num);font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;flex:none;background:var(--bg2);color:var(--ink)}
+.ly .t{display:block;font-size:17px;font-weight:900;line-height:1.45}
+.ly .ds{display:block;font-size:14px;color:var(--body);line-height:1.5}
+.ly .hot{margin-left:auto;flex:none;font-size:12.5px;font-weight:700;color:var(--sun-d);background:var(--sun-l);padding:4px 12px;border-radius:999px}
+.l3{width:80%}.l2{width:90%}.l1{width:100%}
+.ly.on{background:var(--ink);border-color:var(--ink);color:#fff;box-shadow:0 16px 30px -16px rgba(20,36,58,.6)}
+.ly.on .ds{color:#C7D3DE}.ly.on .lv{background:#fff;color:var(--ink)}.ly.on .hot{background:var(--sun);color:var(--ink)}
+.cake.in .ly{opacity:1;transform:none}.cake.in .l2{transition-delay:.15s}.cake.in .l3{transition-delay:.3s}.cake.ready .ly{transition-delay:0s}
+.prio{display:flex;align-items:center;gap:14px;margin-top:24px;padding:16px 20px;border-radius:20px;background:var(--sun-l)}
+.prio .ic{width:44px;height:44px;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;flex:none}
+.prio b{display:block;color:var(--ink);font-size:16px;line-height:1.5}
+.prio span{display:block;font-size:14px;line-height:1.6;color:var(--body)}
+.panel{min-height:460px}
+.panel h3{font-size:26px;margin:8px 0 10px}
+.panel .blk{margin-top:24px}
+.panel .blk small{display:block;font-size:14px;font-weight:700;color:var(--muted);margin-bottom:10px}
+.want{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:18px;background:var(--sky-l);color:var(--ink);font-weight:500;line-height:1.7}
+.want svg.i{color:var(--sky-d);margin-top:3px}
+.fade{animation:swap .4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes swap{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* 適合講師 */
+/* ===== fit ===== */
 .fit{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
-.fit .card h3{font-size:17px}
+.fit .card .n{font-family:var(--num);font-size:40px;font-weight:800;color:var(--sky-d);line-height:1}
+.fit .card h3{font-size:19px;margin:22px 0 10px}
+.fit .card p{font-size:15.5px}
 
-/* 合作優勢 */
-.bento{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:var(--gap)}
-.card.big{grid-row:span 2;background:linear-gradient(165deg,rgba(255,255,255,.75),rgba(214,233,252,.6) 55%,rgba(200,226,252,.7))}
-.card.big h3{font-size:24px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:24px}
-.tags span{font-size:13px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid #fff;color:var(--ink);box-shadow:0 2px 8px -4px rgba(61,139,217,.3)}
-.card.wide{grid-column:span 2}
-.pay{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
-.pay div{padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.7);border:1px solid #fff}
-.pay small{display:block;font-size:12.5px;color:var(--muted)}
-.pay b{color:var(--ink);font-size:15.5px}
-.fine{font-size:13px;color:var(--muted);margin-top:12px}
-
-/* 分工 */
-.roles{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
-.roles .card.you{background:linear-gradient(160deg,rgba(98,174,242,.14),rgba(255,255,255,.55))}
-.who{display:inline-block;align-self:flex-start;font-size:12.5px;font-weight:500;padding:3px 12px;border-radius:999px;color:var(--brand-d);background:rgba(61,139,217,.1)}
-.you .who{color:#fff;background:var(--brand)}
-ul.chk{list-style:none;margin-top:8px}
-ul.chk li{padding:11px 0 11px 32px;position:relative;font-size:15px;line-height:1.7;border-top:1px solid var(--hair)}
+/* ===== how we work ===== */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.who{display:inline-block;align-self:flex-start;font-size:14px;font-weight:700;padding:6px 16px;border-radius:999px;color:var(--ink);background:var(--bg2)}
+.split .card h3{margin-top:18px}
+.split .ours{background:var(--sky-l)}
+.split .ours .who{background:var(--ink);color:#fff}
+ul.chk{list-style:none;margin-top:14px}
+ul.chk li{padding:14px 0 14px 38px;position:relative;font-size:16px;line-height:1.7;border-top:1px solid var(--line)}
 ul.chk li:first-child{border-top:0}
-ul.chk li:before{content:"";position:absolute;left:0;top:14px;width:20px;height:20px;border-radius:50%;background:rgba(61,139,217,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.3l2.6 2.6L14 7.5' fill='none' stroke='%232A6FB8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
-.remind{margin-top:var(--gap);display:grid;grid-template-columns:.9fr 1.1fr;gap:32px;align-items:center}
-.remind h3{margin-top:12px!important;font-size:22px!important}
-.marks{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.mk{padding:18px;border-radius:16px;background:rgba(255,255,255,.7);border:1px solid #fff;text-align:center}
-.mk .n{font-size:22px;font-weight:900;color:var(--brand);line-height:1.2}
-.mk b{display:block;color:var(--ink);font-size:14.5px;margin-top:6px}
+ul.chk li:before{content:"";position:absolute;left:0;top:16px;width:24px;height:24px;border-radius:50%;background:var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 12.3l3.2 3.2L17 9' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/24px no-repeat}
+.ours ul.chk li{border-color:rgba(31,111,192,.15)}
+ul.chk li .tags{margin-top:10px}
+ul.chk li .tags span{background:#fff}
+.gain{margin-top:var(--gap);background:var(--ink);color:#C7D3DE;border-radius:var(--r);padding:44px 48px;display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+.gain h3{color:#fff;font-size:24px;margin-top:12px}
+.gain .k{color:var(--sun)}
+.gain p{margin-top:12px;font-size:15.5px}
+.gain ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.gain li{background:rgba(255,255,255,.07);border-radius:20px;padding:22px}
+.gain li b{display:block;color:#fff;font-size:17px}
+.gain li span{display:block;font-size:14.5px;margin-top:4px;line-height:1.7}
+.gain .tl{color:#fff;border-color:#fff;margin-top:20px}
 
-/* 課程成果 */
-.out{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
-.asset{margin-top:var(--gap);display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 32px;flex-wrap:wrap}
-.asset b{color:var(--ink);font-size:16px}
-.asset .tags{margin:0;padding:0}
+/* ===== terms ===== */
+.plans{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,auto);column-gap:var(--gap)}
+.plan{display:grid;grid-row:span 5;grid-template-rows:subgrid;background:#fff;border-radius:32px;overflow:hidden;box-shadow:0 1px 0 var(--line),0 24px 50px -34px rgba(20,36,58,.45)}
+.ph{display:flex;align-items:center;gap:18px;padding:30px 36px}
+.rec .ph{background:var(--sky-l)}.live .ph{background:var(--sun-l)}
+.pic{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;flex:none;background:#fff;color:var(--ink);box-shadow:0 8px 18px -10px rgba(20,36,58,.35)}
+.pic svg.i{width:28px;height:28px}
+.live .k{color:var(--sun-d)}
+.ph h3{font-size:24px;margin-top:2px}
+.pay2{padding:30px 36px 28px;border-bottom:1px solid var(--line)}
+.pay2 small,.row small{display:block;font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--muted)}
+.pay2 b{display:block;font-size:40px;line-height:1.25;font-weight:900;color:var(--ink);margin-top:6px;letter-spacing:.02em}
+.pay2 b span{color:var(--sky-m);margin:0 2px}
+.pay2 p{font-size:14.5px;color:var(--muted);margin-top:8px;line-height:1.75;max-width:420px}
+.row{padding:22px 36px;border-bottom:1px solid var(--line)}
+.row.last{border-bottom:0;padding-bottom:32px}
+.row p{margin-top:6px;font-size:16px;color:var(--ink);line-height:1.8}
+.row em{font-style:normal;font-weight:900;background:linear-gradient(transparent 62%,var(--sun-l) 62%)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chips span{font-size:14px;font-weight:700;padding:6px 14px;border-radius:999px;background:var(--bg2);color:var(--ink)}
+.plans-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px;font-size:14px;color:var(--muted)}
+.plans-note svg.i{width:18px;height:18px}
+.prep{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:var(--gap)}
+.prep h3{margin-top:10px}
+.prep p{margin-top:8px;font-size:15.5px}
+.spec{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.sp{padding:14px 16px;border-radius:16px;background:var(--bg2)}
+.sp small{display:block;font-size:13px;color:var(--muted);font-weight:500}
+.sp b{font-family:var(--num);font-size:17px;color:var(--ink);font-weight:700;white-space:nowrap}
+.marks{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;counter-reset:m}
+.marks li{padding:14px 16px;border-radius:16px;background:var(--bg2);font-weight:700;color:var(--ink);font-size:15px;line-height:1.5}
+.marks li:before{counter-increment:m;content:"0" counter(m);display:block;font-family:var(--num);font-size:13px;color:var(--sky-d)}
+.links2{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px}
 
-/* 課程形式 */
-.formats{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
-.fm .en{font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--brand)}
-.fm h3{font-size:22px;margin:6px 0 20px}
-.fm dl{display:grid;gap:12px}
-.fm dt{font-size:12.5px;color:var(--muted);font-weight:500}
-.fm dd{font-size:15px;color:var(--ink);line-height:1.75}
-.fm dd em{font-style:normal;font-weight:700;color:var(--brand-d)}
-.fm .lv{display:flex;gap:8px;margin-top:20px;font-size:13px}
-.fm .lv span{padding:4px 12px;border-radius:999px;background:rgba(61,139,217,.08);color:var(--brand-d)}
+/* ===== flow ===== */
+.flow-bg{background:var(--fc,#8DB4DD);transition:background .6s ease;border-radius:72px;margin:0 16px}
+.flow-track{position:relative;height:calc(5 * 60vh + 40vh)}
+.flow-stick{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding:96px 0 32px}
+.flow .hd{margin-bottom:28px}
+.flow .eyebrow{color:var(--ink)}.flow .eyebrow:before{background:#fff}
+.stepper{display:flex;justify-content:center;gap:4px;list-style:none;background:#fff;border-radius:999px;padding:6px;width:max-content;max-width:100%;margin:0 auto 24px}
+.stepper button{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-size:15px;font-weight:700;color:var(--ink);white-space:nowrap;transition:background .3s,color .3s}
+.stepper button span{font-family:var(--num);font-size:12px}
+.stepper button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.stepper button.on{background:var(--ink);color:#fff}
+.fbox{position:relative;background:#fff;border-radius:200px;min-height:330px;display:grid;grid-template-columns:.85fr 1.15fr;align-items:center;gap:40px;padding:48px 128px}
+.fart{display:grid;place-items:center}
+.circ{width:210px;height:210px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;position:relative}
+.circ svg.i{width:80px;height:80px;stroke-width:1.5;color:var(--ink)}
+.fnum{position:absolute;top:-4px;left:-4px;width:68px;height:68px;border-radius:50%;display:grid;place-items:center;font-family:var(--num);font-size:22px;font-weight:800;color:#fff;background:var(--ink)}
+.ftxt .cnt{font-family:var(--num);font-size:14px;font-weight:700;color:var(--muted);letter-spacing:.1em}
+.ftxt h3{font-size:32px;line-height:1.45;margin-top:6px}
+.ftxt p{font-size:17.5px;margin-top:12px;color:var(--ink);line-height:1.9}
+.farr{all:unset;cursor:pointer;position:absolute;top:50%;width:52px;height:52px;margin-top:-26px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center}
+.farr:focus-visible{outline:3px solid var(--sky-d);outline-offset:3px}
+.farr.p{left:28px}.farr.n{right:28px}.farr[disabled]{opacity:.2;cursor:default}
+.flow-in{animation:swap .45s cubic-bezier(.2,.8,.2,1) both}
+.scrollhint{display:flex;flex-direction:column;align-items:center;margin-top:20px;font-family:var(--num);font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--ink)}
+.scrollhint svg.i{width:18px;height:18px;animation:bob 1.6s ease-in-out infinite}
+.flist{display:none}
 
-/* 合作重點 */
-.ess{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
-.ess h3{font-size:20px!important}
-.spec{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
-.sp{padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.7);border:1px solid #fff}
-.sp small{display:block;font-size:12px;color:var(--muted)}
-.sp b{font-size:18px;color:var(--ink);font-weight:700}
-.sub{margin-top:16px;padding-top:16px;border-top:1px solid var(--hair)}
-.sub b{color:var(--ink);font-size:15px}
-.sub p{font-size:14px!important}
-
-/* 流程 */
-.tl{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;position:relative}
-.tl:before{content:"";position:absolute;top:24px;left:10%;right:10%;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--brand),rgba(142,197,245,.4))}
-.step{text-align:center;position:relative;display:flex;flex-direction:column}
-.num{width:48px;height:48px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:16px;color:#fff;background:linear-gradient(135deg,#62AEF2,#3D8BD9);box-shadow:0 0 0 6px rgba(255,255,255,.9),0 8px 20px -4px rgba(61,139,217,.5)}
-.step .glass{flex:1;padding:22px 18px;border-radius:20px;text-align:left}
-.step h3{font-size:16px;color:var(--ink);font-weight:700;line-height:1.5}
-.step p{font-size:13.5px;line-height:1.7;margin-top:6px}
-
-/* FAQ */
-.faqwrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:56px;align-items:start}
-.faqwrap .sh{text-align:left;margin:0;position:sticky;top:120px}
-.faqwrap .sh p{margin-left:0}
-.ask{margin-top:28px;padding:18px 22px;display:flex;align-items:center;gap:14px;border-radius:20px;text-decoration:none}
-.ask b{display:block;color:var(--ink);font-size:15px}
-.ask small{font-size:13px;color:var(--muted)}
-.faq details{padding:22px 26px;border-radius:20px}
-.faq details+details{margin-top:12px}
-.faq summary{list-style:none;cursor:pointer;color:var(--ink);font-weight:500;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+/* ===== faq ===== */
+.faq{max-width:880px;margin:0 auto}
+.faq details{border-bottom:1px solid var(--line);padding:26px 4px}
+.faq details:first-child{border-top:2px solid var(--ink)}
+.faq summary{list-style:none;cursor:pointer;color:var(--ink);font-weight:700;font-size:18px;display:flex;align-items:center;gap:16px}
+.faq summary:before{content:"Q";flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-family:var(--num);font-size:15px;font-weight:800;color:#fff;background:var(--sky-d)}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary:after{content:"";flex:none;width:28px;height:28px;border-radius:50%;background:rgba(61,139,217,.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 28'%3E%3Cpath d='M9 12l5 5 5-5' fill='none' stroke='%232A6FB8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/28px no-repeat;transition:transform .3s}
-.faq details[open] summary:after{transform:rotate(180deg)}
-.faq .ans{margin-top:14px;font-size:15px;line-height:1.85}
+.faq summary:after{content:"";margin-left:auto;flex:none;width:32px;height:32px;border-radius:50%;background:var(--bg2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 10v12M10 16h12' fill='none' stroke='%2314243A' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E") center/32px no-repeat;transition:transform .3s}
+.faq details[open] summary:after{transform:rotate(45deg)}
+.faq .ans{margin-top:14px;padding-left:52px;font-size:16px;line-height:1.9}
 .faq .ans p+p{margin-top:10px}
-.faq .ans h4{font-size:15px;color:var(--ink);margin:18px 0 6px;display:flex;align-items:center;gap:8px}
-.faq .ans h4 i{font-style:normal;font-size:11.5px;font-weight:500;color:#fff;background:var(--brand);padding:1px 8px;border-radius:999px}
-.faq .ans h4 i.opt{background:rgba(61,139,217,.12);color:var(--brand-d)}
+.faq .ans h4{font-size:16px;color:var(--ink);margin:18px 0 4px;display:flex;align-items:center;gap:8px}
+.faq .ans h4 i{font-style:normal;font-size:12px;font-weight:700;color:#fff;background:var(--ink);padding:2px 10px;border-radius:999px}
+.faq .ans h4 i.opt{background:var(--bg2);color:var(--ink)}
 .faq .ans ol{padding-left:20px}.faq .ans ol li{margin:4px 0}
-.faq .ans .spec{grid-template-columns:repeat(4,1fr);margin:8px 0 4px}
-.faq .ans .tip{margin-top:12px;padding:12px 16px;border-radius:12px;background:rgba(61,139,217,.07);font-size:14px}
-.links2{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.links2 a{font-size:13.5px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.8);border:1px solid rgba(61,139,217,.18);text-decoration:none}
+.faq .ans .links2{margin-top:14px}
 
-/* 聯絡 */
-.contact{position:relative;overflow:hidden;padding:72px 56px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
-  background:linear-gradient(135deg,rgba(204,228,252,.85),rgba(255,255,255,.6) 50%,rgba(228,218,255,.7))}
-.contact:before,.contact:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.9);pointer-events:none}
-.contact:before{width:420px;height:420px;left:-120px;top:-180px;background:radial-gradient(rgba(142,197,245,.35),transparent 70%)}
-.contact:after{width:360px;height:360px;right:-100px;bottom:-200px;background:radial-gradient(rgba(200,190,255,.35),transparent 70%)}
-.contact > *{position:relative}
-.contact h2{color:var(--ink);font-size:36px;line-height:1.35;font-weight:900;margin-top:16px}
-.contact p{margin-top:14px}
-.pmcard{padding:28px;border-radius:22px;background:rgba(255,255,255,.75);border:1px solid #fff;box-shadow:0 12px 32px -10px rgba(61,139,217,.25)}
-.pmcard small{font-size:12.5px;color:var(--muted)}
-.pmcard .nm{font-size:22px;font-weight:900;color:var(--ink);margin:2px 0 16px}
-.pmcard a.ln{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--hair);color:var(--ink);text-decoration:none;font-size:15px}
-.pmcard a.ln svg.i{color:var(--brand)}
-.pmcard .btn{width:100%;justify-content:center;margin-top:16px}
-footer{text-align:center;font-size:13px;color:var(--muted);padding:64px 0 48px}
-.float{position:fixed;right:24px;bottom:24px;z-index:20;display:flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:500;font-size:14px;color:var(--ink);text-decoration:none}
-.float i{width:8px;height:8px;border-radius:50%;background:#3BD18A;box-shadow:0 0 0 4px rgba(59,209,138,.18)}
+/* ===== contact ===== */
+.contact{background:var(--sky);border-radius:72px;margin:24px 16px 0;padding:120px 0 110px;position:relative;overflow:hidden}
+.contact .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+.contact .join{font-family:var(--num);font-size:88px;font-weight:800;line-height:1;color:#fff}
+.contact h2{margin-top:20px;font-size:38px}
+.contact p{margin-top:16px;color:var(--ink);font-weight:500;font-size:17px;max-width:480px}
+.pmcard{padding:36px;border-radius:36px;background:#fff;box-shadow:0 30px 60px -30px rgba(20,36,58,.5)}
+.pmcard .pn{font-size:28px;font-weight:900;color:var(--ink);margin:4px 0 18px}
+.pmcard a.ln{display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:16.5px;font-weight:500}
+.pmcard a.ln svg.i{color:var(--sky-d)}
+.pmcard .btn{width:100%;justify-content:center;margin-top:20px}
+footer{text-align:center;font-size:14px;color:var(--muted);padding:56px 0 48px}
+.float{position:fixed;right:24px;bottom:24px;z-index:20;display:flex;align-items:center;gap:10px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:14.5px;color:#fff;background:var(--ink);text-decoration:none;box-shadow:0 12px 28px -10px rgba(20,36,58,.6);transition:opacity .3s,transform .3s}
+.float i{width:9px;height:9px;border-radius:50%;background:#7EE2A8;box-shadow:0 0 0 4px rgba(126,226,168,.25)}
+.float.hide{opacity:0;transform:translateY(12px);pointer-events:none}
 
-/* ---------- 平板：快捷連結移到第二列，可左右滑 ---------- */
+/* ===== tablet ===== */
 @media(max-width:1080px){
-  nav .bar{flex-wrap:wrap;border-radius:28px;padding:8px 8px 6px 20px;row-gap:4px}
+  nav{flex-wrap:wrap;border-radius:30px;padding:10px 10px 6px 20px;row-gap:4px}
   nav .btn{margin-left:auto}
-  .links{order:3;width:100%;margin:0 0 0 -12px;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 90%,transparent)}
-  .links::-webkit-scrollbar{display:none}
+  .links{order:3;width:100%;margin:0 0 0 -12px;overflow-x:auto;scrollbar-width:none}.links::-webkit-scrollbar{display:none}
+  .hero{padding-top:190px}.hero .wrap{grid-template-columns:1fr;padding-bottom:150px}.art{max-width:420px;justify-self:center}
+  .facts{grid-template-columns:1fr 1fr}.fact:nth-child(3){border-left:0}.fact:nth-child(n+3){border-top:1px solid var(--line)}
+  .about{grid-template-columns:1fr;gap:40px}
+  .hd.s{grid-template-columns:1fr;gap:16px}.hd.s p{justify-self:start}
   .fit{grid-template-columns:1fr 1fr}
-  .bento{grid-template-columns:1fr 1fr}.card.big{grid-column:span 2;grid-row:auto}.card.wide{grid-column:span 2}
-  .tl{grid-template-columns:1fr;gap:12px}.tl:before{display:none}
-  .step{flex-direction:row;align-items:center;gap:16px}.num{margin:0;flex:none}
+  .gain{grid-template-columns:1fr;gap:28px}
+  .prep{grid-template-columns:1fr}
+  .fbox{padding:40px 100px;border-radius:72px;grid-template-columns:1fr;text-align:center;gap:20px}
+  .circ{width:150px;height:150px}.circ svg.i{width:58px;height:58px}.fnum{width:54px;height:54px;font-size:18px}
+  .stepper button{padding:8px 12px;font-size:13.5px}
 }
-/* ---------- 手機 ---------- */
+/* ===== phone ===== */
 @media(max-width:640px){
-  :root{--sec:96px;--head:40px;--gap:14px;--pad:24px;--r:20px}
-  html{scroll-padding-top:130px}
-  .wrap,nav{padding:0 12px}
-  .logo .tag,.float{display:none}
-  .logo img{height:20px}
-  nav .btn{padding:8px 16px;font-size:14px}
+  :root{--sec:96px;--gap:14px;--r:24px}
+  body{font-size:15.5px}
+  .wrap{padding:0 18px}
+  nav{left:8px;right:8px;top:8px}
+  .logo .tag{display:none}.logo img{height:20px}
+  nav .btn{padding:9px 16px;font-size:13.5px}
   .links a{padding:6px 11px;font-size:13.5px}
-  .hero{padding-top:56px}
-  h1{font-size:34px;margin-top:22px}
-  .lead{font-size:16px;text-align:left}
-  .cta{flex-direction:column;align-items:stretch;margin-top:32px}.cta .btn{justify-content:center}
-  .badges{justify-content:flex-start}
-  .escort{margin-top:48px}.escort .row{grid-template-columns:1fr}.e+.e:before{left:24px;right:24px;top:-4px;bottom:auto;width:auto;height:1px}
-  .sh h2{font-size:28px}
-  .about,.fit,.bento,.roles,.out,.formats,.ess{grid-template-columns:1fr}
-  .card.big,.card.wide{grid-column:auto}
-  .remind{grid-template-columns:1fr;gap:20px}.marks{grid-template-columns:1fr 1fr 1fr;gap:8px}.mk{padding:14px 8px}
-  .asset{padding:22px}
-  .faqwrap{grid-template-columns:1fr;gap:32px}.faqwrap .sh{position:static}
-  .faq details{padding:18px 20px}
-  .faq .ans .spec{grid-template-columns:1fr 1fr}
-  .contact:before,.contact:after{display:none}
-  .contact{grid-template-columns:1fr;padding:48px 22px;gap:28px}.contact h2{font-size:26px}
+  h2{font-size:28px}h3{font-size:19px}
+  .hero{padding-top:156px}.hero .wrap{padding-bottom:130px}
+  .hero h1{font-size:30px;line-height:1.5}
+  .lead{font-size:16px}
+  .cta{gap:20px}.cta .btn{width:100%;justify-content:center}
+  .hdot{display:none}
+  .facts{grid-template-columns:1fr;margin-top:-90px}.fact{padding:20px 22px}.fact+.fact{border-left:0;border-top:1px solid var(--line)}
+  .about .txt .quote{font-size:23px}
+  .band,.contact,.flow-bg{border-radius:36px;margin-left:8px;margin-right:8px}
+  .band{padding:72px 0}
+  .card{padding:24px}
+  .cake,.fit,.split{grid-template-columns:1fr}
+  .panel{min-height:0}.l3{width:88%}.l2{width:94%}.ly{padding:14px 16px;border-radius:22px}
+  .gain{padding:28px 22px}.gain ul{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr;grid-template-rows:none;row-gap:var(--gap)}.plan{grid-row:auto;grid-template-rows:none}
+  .ph,.pay2,.row{padding-left:22px;padding-right:22px}.pay2 b{font-size:32px}.plan{border-radius:24px}
+  .spec{grid-template-columns:1fr 1fr}
+  .faq summary{font-size:16px}.faq .ans{padding-left:0}
+  .contact{padding:72px 0 64px}.contact .wrap{grid-template-columns:1fr;gap:32px}.contact .join{font-size:56px}.contact h2{font-size:26px}
+  .pmcard{padding:26px;border-radius:28px}
+  .float{display:none}
+  .flow-track{height:auto}.flow-stick{position:static;height:auto;padding:72px 0}
+  .stepper,.fbox,.scrollhint{display:none}
+  .flist{display:grid;gap:10px;list-style:none}
+  .flist li{background:#fff;border-radius:24px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+  .flist .fn{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--num);font-weight:800;color:#fff;background:var(--ink)}
+  .flist h3{font-size:17px}.flist p{font-size:14.5px;line-height:1.75;margin-top:2px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .bob,.bob2,.bob3,.scrollhint svg.i{animation:none}
+  .ly{opacity:1;transform:none;transition:none}.fade,.flow-in{animation:none}.flow-bg{transition:none}
 }
 </style>
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
-<div class="aura"></div><div class="grid"></div>
 
-<nav><div class="bar glass">
+<nav>
   <a class="logo" href="#top"><img src="data:image/webp;base64,UklGRp4ZAABXRUJQVlA4WAoAAAAwAAAAPwEAOwAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZBTFBIwQsAAAGghv+/6qb5n2hTd8Hd3V1nuMvc3QfMN5z5gLkPd3c23N3pCF6shbqkSZN7z/9F8z/3nJvuefoyIiYAKvhabhr+910z3eQHULGzuFpNWrdu3bxesq1CaID0/1/EYiRnVmTVHv1x18n/rmRkZFy7eObAvNc7OitTWNTYIxwN5y3s7LJWjrDqL53TUW76R+3slSF99/pRunb950as0uNVD0eV+p0RlRwREzmqnlu5YX0pH1WXPVS50SAblR+vWqnh3IfCJVkZV69cuXI1406un+IzHZUao1GQZ/z9WOM4hwWYPbp2rw8WnNSD5PWDyozIPSKLW7pAlIXXHL5RR8TLcZUane9Q2scMjLOGe/z4CVRmsJd8hL4gCqSGjd1Vu1LDORvJe31AMkuxqIpr16dPh5QKy1a7WU2nWaKT40OtRtc+vRrYzRa9njoXI0txs7/O55R4fT6vJzd9bhNz9Pt12ca1y2bUMMWI9ZfzSkq9pcU5p/9qpihtzvGsghKPpzDr2A+1Q6TZ6qsFpT6fr7To9pbBzCThT/2xcnn8XmobmN7Z9KMbOgrrVx+ra1XiavfFVT+SnqOjGlpUVOuxqRCF9aw5nSIkRbV+65aOotqNSa0iTGZrNTETxQt/bWM3tr4s+LVUAGBpvTbc0xCxKPEwtdp09X+4wdEwT/84TMGgBfkchfUrU6pIC3v5YACNFy8bI6XJwhw0zLPnP2CqBl/d42iU3/uxpaHNGPxWKoD91b0+DCp02GayxzN0lOo/UUWWc0YhR8MBd4KkKid9KLdkRTVD7LcsHWXygm9d5ul4SUOZ/PoIJi9tjQ/Jorhd1NX6pgqfUIbS/2vGpMQs0VFqaSuLBPuLRSg9r42RxDUcZfPD9U3iHO1H2d4n7bKq7+AoELmM8k4KM1Ha7xoqPFJPylqOki+2ljC9FKWXvmA1UHMTR4U3+5nC9WYxyve/55LTZBNHEfsXFOa+ZJ6YORyVngqXwVF6epiheTrKPxcB4o3SUW3mQDM8mocqPS8xGbc3cxSCJzwU8o0RFnOwlzVUvMYiQeVPTMw6i6M4L/MFOFHEQLzGWTSo+XUDmNtYXQMNRTVPSUmJxy+Cd9vJMFoETa8JIL/93oMJZuhagKLa/mVz5syZs+qsJnKvl6mwk9irPhTN3zj3xyHdn/lp4ZYyRMxsDuLx61DUu23h3+OfmjJn6U4hvFxXVcpdFLy17J2U6PDI5CcXnecU7nOYwPG3CCIv2f3rsxZVDjeK/jks2QYAYK//yBkB/MMl7aOnRgwfPuqNbWKrrEL5KOiZ0DuMQXlr+ODvffpXDjHbZhT0fdk/2gLlrbGjFvsFcL0i+2eawK8dbRDc2uhrTvFxSvSTSzfdAUgWQ0QeKLrxhpqpKJj3oB0Ewz/VCXcCk+N9M9oC5ZmzXb7IyVSRyyi4NZ6BqC35sAPEN6HguSQriNrrivheVNP0EpLaEzYQtXagsKi6NH10UmSY3REOAI8WGwjKiz/p3dQpqeZFAXcdELdMCiAivzqCAWngWFUQdRzjFD4n8Iyfyvod1LJhBVTBEgZGI9d4CDxUVQWbiKT/fQsYHJBLaJ8yOQXTo0DQPt0jARH5rQWfNpLyoo9KbwlG2XsccXYzBnK2JYB42n6BaVYiZS+SN0aB4uqnkLz7nBOMJ/xM+R9VEXGZ2ugCo86PyoLh/hQpGUMYCIfPloOIPPNwgrHYTUiWvmgxBI7dt1o4QVTovyZgkL3hpxa6iH5egn9vU3Uc6RftIDO6lMBzKvogWZQAxqOyidxeMnJ7geFn73A55ffUthqomU0djAaJdiuIC/3GjACcobBqMPYOkkcYKO6MpLYIJEfmEXqKPLaa4N+AzMEEvsqMaVOtxqD+byXS8M7kCLF+nBoJJhThKWB8jUD1YI5iygmKU+4R+mK7LHiLwFXyopDMbS7FcZ1YazN2vTbIdLafWCYLcU2q0N9I8ihz7WUS7heoQ+jERFAdvYUH25sA0humEzfkNaWOVpUC3xGXHMa+B+lv3PHocnBxtMhJ6g8wVxeQqVONgtVHsosygGaZGiIGngb5YcuJ4khpQ6hfnEzqWKIkzFhHeQB1Ji475eUScAoTyKGeNFmylADVItgBIruRCcD23n6dzwaF7FserGy4tOkE3/ae3N8IrGEoD9SyOv2fWFCgGyruKOCl2pvMLsVjKJtYGm4GgJTJp0FpP0+wwCuy2BpCfT9DexSVt0dEriziYnjNSiHdwGQWKcWGComfreYAa5iaxoXBtLdkWbaY5mlDf5kg6IBVGbpIURfCJVDLZGCqnywmUV2/gBgvy/aPad40NNEsYGnzlyagTWXBwgRqV0D5xM9qardkJmlSSLxV4Yw3DUDEEB+FS13BQKMaVkD3iOURKtird/fFmmOMN1jgOVmWLaZ5xtA4EwF71UftTiGKqL4V0D4i0EpFXUTMfCqGqbP8hsG93WXBUsqTpbhPKEHVw9TxGkQGNa4CakVgHwVxx7H8hkejlEVvIvLDpL1KbWrXRK0rpCy/cuJcXWIHdYJVPA6NOCHP9gcG98xPUNWjgDgL0npSZ2qAKUMEJupUPWIqhVUroGwCq8myjEMyMA4Us1lIzpZXlSptH2rxSqZTx2sQTX3UNKsMxkKKTaBykiX1yqGOJCtifZAsdcqzZRK4MMTitvayyLMt5sTOZCLtAnW1kQQ2eLQ1lKBvMRGYGSmlwyUkA+1Bcetb1BaQBxOoku6h9QwWvMCkNf4PySUuwjGTE3yW01hUpn9pXChZVxKofSCj220k+cOguO4JJH09VKRxAq/ESIlzmCTqACL+2z1ajn2qRmhTGAED8wkMvGAzUvUUIt4YGx068HAZgfhNNYuBqGczkdTXR4rZ4ozYOx1Gkm9NUmFdTelLkiQ02T/Nbo7edxER85cNiZEQ+UEhkoWdgI7bRWHRh9FCrPEWLF+8rJ0lZGC9AB55NFLE0XsJCp5vAMJs3NphLhFL7elZSOffDypgcBGBvqXVjNgePIq+l5gZHF/o5RALL0yoasDSYkcZ0ulOAXiAU1i2to5Ir0taEMSsN+0hE5ctgMXXH09jQSL77MjjAnpLEO+UzYsujExkQWwNv7wTQMFf7Gri/6FQvznGKZQ4KxcRsx8yQ+pZFD3yfq96aQlxsXGJ1Vo8sV5HQe0hEF6kU4j6912rxkVHx9UYuAsFA59YQwY6FAiUP/vjlEnf7vChcPHDIJ64FcvzEz9+PGHywkwU5kdAUA70LaEQ+ZEnGyRGh4dHxlbpMCUPgx6rZ4IRmhAiBq4c3LFt97EsHcU32MTijnABRP3azg0bd2Wi8IWaEDr2VzxiMvPGWcTYFyifH66mzDqDCyBi6bH1C+av+PeKhiRf5lK3H015uQWIs743haT2YyEEER9wNf4JESDep0TBhTYWZeCaKyYz8I26mWVmKHqaGQB4yq9E+xjokAB43qvC+xQYTClF6fq1aiAsC1K3czXefuqcz19Ul/u2HYw/kcHlef+MDDVL31PStBP3g0Hrr1xawdxIMAU02KqryHoW1IGt5c+FitzDrCDz/hNc2sxkCDWAhl/lyQn8UBeMWpr84ZF0flQMmATSviyRd2d0mBkAbM02KdlYi4FUlrCUyykcYYMKAKxNN0nQ99W1gURbs22ahOzxLgamAfvwu7IOVbeAOQCg1Y/n8riU7L3DrSD/wZ25hnjW8sYgHjoA0OqH01k+SstOn98dZLOOv5zNKqN48bU9rySBRBUAyd9c8hnznHktHMQVgaX64Embr2tiPGfv9AdjQWlc/1knvSLeozN6hkHFAZDc6/kZ8/7Zs2fLkm9ffbA6A4UstfeLXy79d//hPRv+eH9MCydIVQOWhi+tzNBE+JX5T9YEo6oAwBZTpfGjny/bfcrtPn908x/je9WIt4NyZ1LDZ37cfMztPvXvL8/US7SD4VpuWs5JN9lQEgDYImLj42MjHWBCe2RsQmJ8jMsCsl0z3eQHMgBYVJVO4+ZsP+V2n9z295ut0yIYGP7TTT5jAABWUDgg5gsAANA2AJ0BKkABPAA+KRCHQiGhCoSnagwBQlibctEACAX4A/QD9AEJZrn+g6Tasfeftp92Osf23+ofs72PdcvQHn++R/vH5b9J36m+4v9O+wB+qPSA/svoD/nv+N/b73cP79+6XuH/ufqAf1//cetZ/mf//7gfoAfyj/XerX/3PYt/sH/e/db2ef+b7AH/19QDhav71+EX7G/yfxX/jT+2PxrEt2gFuPs2omqpX0z/d+d70dc175//tfYB/jf9k/5vraewL0Df15F5seTszW15SDYWhmYa6IeOinDgzwczBtcS0F9BbcHzK4zzABl9T94+qm66FjGRez32cQ11lF8+AOiDIL8tifswAb6OodWkCFuFxnSjJIbaULG3G73bkVWB6mABeS90h9SuxGF6MHebJ1g/4+lyBmYjAMZhNLWBjtpuMsg1R4AupQtLYV32SxxH1sae4oC50MNN5c/Jg0mmOgy3n6YiD0QemV9ViIEHubjPYLcroapLvltUiP4Pd99B3Mjy4KDIyYfvz94eNJgAcU8pAoEsZCYktumIXwuUuT9r/Par9Y3jBUrkuRj6zoWF2oZ5LUZtwUFiarWOUN6DIAD+t+tla7/tIfFL3eadKgYUMiQ1xxqNmtkpNQwlHR7b7EqBJFqeytv+ZvEjoUxXLFp+yqARgcph2OhoKyowcKkzlHV2KDfcnAAIA6vDxrjLlLqtgh0LnbAHoKsIxmfHsk79wWhF0m3vipDIzM7Xvuiz4hurzaojOxy4ni0fLpyafzowIHjlZW/MZHSK+voZ76jiFn8F9GOPPWcW8/DawTVBDtvxh+i0td5rJKUL6tcACXbYgCCNhKu/+5ZpPaOecAM2Z8DkOvye73yq+PNi1abetjtX9udjF/xi2UmpGswoxcIdmAAAB2/YgcTjVVtu4Qat00AAzviMjMz84Hb9iCEoa6//Di5yMne8FXn4ckL7D+hcD1l0fQ+/Dym1+hIvMaT77JFI2UHoJDcVEmHSCRZ1n2YFYKgcHnvnY2FtvDRM3m2bjhgAl4yOad3XUPiL99DfljOkycCcYXU1mTVbJbahQxmgiy0cD54EtYSR9xO4eqdk49edh+3ipgfW7HEbxQ2N7Oq3cb5o1XYnnXslX0bAi62yLyquYYdlycKZrNlAyalxxj6I+t8ZIM7jwlohfd1VKSAHoRMPKFUev2XKA6YG/jYXyTGjaAqwx8LJqoytU4WzscSAMKFyS0q03entLKhcw1kn6r/SmxDxuB3Wggbt1efaw4C9E7jvOWBx5mIxPQz+8CYvEuPb7Hbc5yKQoCuFWmRMj8Ipq5p+S4PpELEh+YZH5hNsiUpvxhOIw14WVgHyMOlr8mwa2T1LoZ4cIfBYeUC0NHTQ6WRhyQZSXazptu7gUqS8rCl+0e2n7BYMepnbdaGqgJPHdtTMtsabxv5FBhCNpFrLJVVhIsX1BmycniLazrC9MAg6pD3mU+evI7Lo930JgVvAL6s2fNfrtj7Z1jsjdtMw/qFloo65GlId+WXkmvkSu70//HbNxDbMdW2ed5Q3Jo5XXYvVg9fKDV962Rwssscd24myZp18zhZ7VgIZGYbVrS98Qi2fipmchfaYN7i0Pe3fytNfOxokGjr9+3x+Q8rDqe7vsk13NNrJKewBtpWFUp91IedMl1h0OBzgCoqZZRmDqY/X4umvOugjXFezfc6iSpMrgHi9bMx3DSYqVWpxn0f4DduWBe1soPCoEVjlPGoA7NnnlWIffzGH/Md/xAcizNotSLTaEdwGyta43u5cmGxUsMLgxV+rJZgClJ9L8NO/+Ec1cVQPmxIehqo0WeOGVYL6uYNqyVxwIMjrxuCH/fAAGLCi/VtwlnYlxwEQ/eZTMHPIpeEHfdqEphrUPoBd7WqDV2SELPSsSPgE6IU+C8H6dsVxM7e8AIb6lM63UaZ/d19JAE4/lGp33jL9V+31y99dxKQxnHkfysovlThygsDDc3R4vQ1eim74MYpJB0iq4c2QSWcPnVeEYPOJjMDVGwGzmKUBya5wh24p16R1M/M9ThNIPW5D0iqvUQi6iAFWsg5440xGV9dkE7XlOQGSPVvNr/TdoiPvG7FTNTT+VXkH6TUrNZnFcijeAwp0lDKyJcipYIEF0uu6kXl0wiahYjNPxN5EQl3fwE16GoHwL9ZZ9nJ/PwppajzNtgQ61u2a/ipj+YO4SKUmyiP8LZV7+3xZGH4py1SKbYU/Dd/ZUoOHS+r5/ja2Yzav54aJyKqEyPN1Yz1+q18SN2BgjL8QkTTHXm1RJVQM5EKeXIneyRyXhT0ME3JWHUuiiVcsxxQNI0iZX+GCR91lUBup3aH5+uqNY/3vS+XDq0xhO56AxAFwo2DeQ1WWUiS0qzRGmF/q/fyTpPiHEjEtwN1G6fa3SPp8BXa4eSp/BQfcJwY0raIvE+uEtRO4klOQItPcB/iTAYsJoiTHmeK67n9aXh5fgxmwvLQtEXEBL21U5zhsht9qvWOGH/ZAispXAKlgWcRACIYFrVyiDGiaWwpNGFIrWHQVBjEU/X+rwTt5k0tnHEkzEgxPSM0HbMfbh/vf89TGvYRA0FGl0B80qinidRlf/62Ymkey7BYmk8X0i/wcQ+CfQWiZvpSMcaPRlLsMj7dbPpY2wlFCLUuDT9sCf+06hHghnsjsSW0/6lYvUZB8aoJPuvfETL5nGg2NKxnr0Ppa2Mq+Q0Mr8Z3yA2Pn1kwGEdUQzNWDvdLwv93HV5fiS8DUWKbcWhyZgqK+Qc+cGRb6q4Rl6zTT6k6OlzhJ4a6eLDQ+jh/w4udJgjK1eNdv8cXlmz+ecP4Y/lPGdk1whG+6ZJ69upoOCwsSyr2Of/8C3y69nzxI1rXX/TuA+9ud0aCwalKS9xYs2s7q3BY9odhIPirxpWg1Uz5IaGR1qLGHDbsrGuaI1qZTFXOKQ7jF41e4VbVp0JVHeWDbnq4NU3GeJuyp4JRrWvSUo5MfzhEK5epM1HFzu2iNXRuey7kH+od5JBO2HlGK8lOTI1/fMQztkONWdb/NneCxucn2ttojwBmJ21Y41WD0++LVQKWYIOsip7s1YYFUQ/e3futkDvn7OSZspm56e7ajGDDTH9WALzwkdZ20R8wvK17ulFdgVKK67XUH8KrInI3samfB1ydsNyXK1Ow1kHy4iy9Dbo6duYaZAZRuNPRcR/x/01jFdfPwYjCXXs24ZdiFqPGECqNrno95YS+Jjr9eC+W1fwEkBKMGnOhHheqXgcaZ5Qp2TwlIgyK0h265zUs3NkSFo/ZDB20Gb5JSHBcXCre18VfKtG01fxnZXTW+whY4PqcEcJvBHwUfUTHfpgzM3raeQ/3FzfO3sToGtp+4OLd8fyETfZPAS7ZV4x2fMMiW4reZBEcI+cpmuN3Etxt4pY7Jn82JP5dUPdvSJ5IeXbs7YWYL9XeOP8TzOEMGyQAAEXsqMzQo1BgkWF6GydTig5wtpp4scvoQjaaGBqMB6ShCxataPdfMKXQ1wz2TMdxIDGsFmiLbrn5n9//+Cr5MwTA6c2u1E5inuiq9KsgLbNBhVry+CiVIVUCOXJuowhB6+KJZ6c2aeZizdaM/3fearKS0KL8OiCX0dnYQdYG4vscbFuHU/DvP0lsP3Cxswtl0Z8skn/++XsjV7uMjtgbw4rsLxMvd3hmvaFdBeZy3CSEH0XYoR+4H7nfccj9Xlmf5UQ/8YT5mrLMpNcDRta1jE+D8ywaWd+MwTf4npbPnUFD2ICr6S/sQyt96Fbw2T52bs35qmnp8zRWDUbtcisNniZk7IdTXyb1i5xrAMAhQvLMWGtTMM4R9DGP2iZPu1Qnl8z0+zlF2dwsuKOT4MMrjzPur2d701pujUTxS0a1ve9Mx/qpObPH5xftZcCiIava4SY7csswoRd3tzZXhkzpIUn93LBDUcN9s9Ku3xieUGMaUashw04zG1csIUlfk2te+wANHYxreZAoxWLzXJIHKDwq+3mG/5o99oEj0qLlvVycN6NO/C1YH4yOP1B/N80BH7BBPEt8tcWzNk81c4BobCuYZAsb6DFvbOlJ6t/EvDggAAAA=" alt="Schooler"><span class="tag">講師合作</span></a>
   <ul class="links">
-    <li><a href="#about">平台介紹</a></li><li><a href="#fit">適合講師</a></li><li><a href="#advantages">合作優勢</a></li>
-    <li><a href="#outcomes">課程成果</a></li><li><a href="#flow">合作流程</a></li><li><a href="#faq">常見問題</a></li>
+    <li><a href="#how">合作方式</a></li><li><a href="#map">課程方向</a></li><li><a href="#fit">適合講師</a></li>
+    <li><a href="#about">平台與學員</a></li><li><a href="#terms">合作條件</a></li><li><a href="#faq">常見問題</a></li><li><a href="#flow">合作流程</a></li>
   </ul>
-  <a class="btn btn-p" href="#contact">聯繫 PM</a>
-</div></nav>
+  <a class="btn btn-d" href="#contact">聯繫 PM <span class="ar"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+</nav>
 
-<div class="wrap" id="top">
-  <header class="hero">
-    <span class="eyebrow">TEACH WITH SCHOOLER</span>
-    <h1>把你的專業，<br>做成<em>真正學得會</em>的課程</h1>
-    <p class="lead">你負責課程專業，Schooler 從學員角度協助檢視、提供試錄檢查，並依你標註的剪輯需求完成後製、上架、客服與推廣。</p>
-    <div class="cta">
-      <a class="btn btn-p" href="#contact">有課程想法，先聊聊 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-g" href="#flow">查看合作流程</a>
-    </div>
-    <div class="badges">
-      <span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>錄播：鐘點費＋分潤</span>
-      <span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>專屬 PM 協作</span>
-      <span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>平台後製與推廣</span>
-      <span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>可與本業兼任</span>
-    </div>
-
-    <div class="escort glass">
-      <div class="row">
-        <div class="e"><span class="n">STEP 01</span><b>老師規劃完整課綱</b><p>錄播與直播課綱，皆由老師依專業規劃。</p></div>
-        <div class="e"><span class="n">STEP 02</span><b>PM 從學員角度給建議</b><p>協助檢視定位、學習成果與內容呈現方式。</p></div>
-        <div class="e"><span class="n">STEP 03</span><b>平台接手製作與上架</b><p>依你的剪輯標註完成後製，並協助課程頁、客服與行銷。</p></div>
-      </div>
-      <div class="foot"><svg class="i" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>有課程想法就可以先聊，不需要先準備完整企劃書。</div>
-    </div>
-  </header>
-
-  <!-- 平台介紹 -->
-  <section id="about">
-    <div class="sh"><span class="eyebrow">平台介紹</span><h2>關於 Schooler</h2><p>初學者友善、實作導向、學完能應用</p></div>
-    <div class="about">
-      <div class="card glass">
-        <p class="quote">從「不知道怎麼開始」，<br>一路走到「我真的做得出來」。</p>
-        <p>Schooler（原菜鳥救星）是以「初學者友善、實作導向、學完能應用」為核心的線上學習平台，提供直播、影音與訂閱制課程，涵蓋 AI 應用、語言、設計、程式與生活等領域。</p>
-        <p>我們把看似複雜的技能與工具，轉化成一般人也能跟著操作的課程：從真實工作情境出發，帶學員一步步完成作品、工具或可實際運用的成果。</p>
-        <a class="more" href="https://live.rookiesavior.net/" target="_blank" rel="noopener">前往 Schooler 網站 <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-      <div class="pillars">
-        <div class="pl glass"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></div><div><small>初學者友善</small><b>從看得懂開始</b></div></div>
-        <div class="pl glass"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.8 3.8z"/></svg></div><div><small>實作導向</small><b>跟著步驟完成</b></div></div>
-        <div class="pl glass"><div class="ico"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div><div><small>成果應用</small><b>真正帶回工作</b></div></div>
+<!-- 01 首屏 -->
+<header class="hero" id="top">
+  <span class="hdot" style="width:96px;height:96px;left:-28px;top:38%;background:var(--sun)" aria-hidden="true"></span>
+  <span class="hdot" style="width:28px;height:28px;left:46%;top:20%;background:var(--sky-l)" aria-hidden="true"></span>
+  <span class="hdot" style="width:180px;height:180px;right:-60px;top:12%;background:rgba(255,255,255,.22)" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="rv">
+      <span class="eyebrow">Teach with Schooler</span>
+      <h1>把你的專業，<br>做成<em>真正學得會</em>的課程</h1>
+      <p class="lead">你專心規劃與教學，Schooler 從學員角度給建議，並接手後製、上架、客服與推廣。</p>
+      <div class="cta">
+        <a class="btn btn-d" href="#contact">有課程想法，先聊聊 <span class="ar"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        <a class="tl" href="#flow">看合作流程 <svg class="i" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></a>
       </div>
     </div>
-  </section>
-
-  <!-- 適合講師 -->
-  <section id="fit">
-    <div class="sh"><span class="eyebrow">適合講師</span><h2>我們正在找這樣的老師</h2><p>不一定要有豐富授課經驗。只要有扎實的實務經驗，並願意把方法整理成學員能跟著完成的內容，就歡迎先聊聊。</p></div>
-    <div class="fit">
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div><h3>有真實的實務經驗</h3><p>能分享工作流程、專案做法、問題判斷或實際應用情境。</p></div>
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div><h3>願意拆成清楚步驟</h3><p>把熟悉的專業，整理成學員能理解、能操作的教學順序。</p></div>
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></div><h3>重視學員真的學會</h3><p>不只介紹功能，更關心學員能否跟上、完成作品並實際應用。</p></div>
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg></div><h3>願意從受眾角度調整</h3><p>和 PM 討論定位、內容順序與成果呈現，讓課程更貼近目標學員。</p></div>
+    <div class="art rv" aria-hidden="true">
+      <svg viewBox="0 0 500 500">
+        <circle cx="250" cy="250" r="220" fill="#fff" opacity=".24"/>
+        <circle cx="250" cy="250" r="168" fill="#fff" opacity=".42"/>
+        <g class="bob">
+          <rect x="112" y="146" width="276" height="180" rx="20" fill="#14243A"/>
+          <rect x="127" y="161" width="246" height="150" rx="9" fill="#F5F8FB"/>
+          <rect x="140" y="176" width="126" height="10" rx="5" fill="#C9DBEF"/>
+          <rect x="140" y="194" width="84" height="10" rx="5" fill="#C9DBEF"/>
+          <circle cx="250" cy="248" r="36" fill="#2E5F96"/>
+          <path d="M240 231v34l28-17z" fill="#fff"/>
+          <rect x="140" y="290" width="220" height="6" rx="3" fill="#DDE5EE"/>
+          <rect x="140" y="290" width="128" height="6" rx="3" fill="#F2C14E"/>
+          <path d="M88 326h324l-22 28H110z" fill="#3A4A5E"/>
+        </g>
+        <g class="bob2">
+          <circle cx="94" cy="128" r="50" fill="#fff"/>
+          <rect x="86" y="100" width="16" height="32" rx="8" fill="#F2C14E" stroke="#14243A" stroke-width="5"/>
+          <path d="M80 122a14 14 0 0 0 28 0M94 140v10M86 150h16" stroke="#14243A" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </g>
+        <g class="bob3">
+          <circle cx="410" cy="128" r="54" fill="#fff"/>
+          <path d="M388 150v-16M402 150v-28M416 150v-20M430 150v-38" stroke="#14243A" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="430" cy="104" r="6" fill="#E8F0F9"/>
+        </g>
+        <g class="bob3">
+          <circle cx="414" cy="392" r="42" fill="#F2C14E"/>
+          <path d="M398 380h32v24h-32zM398 380l16-11 16 11" fill="#fff" stroke="#14243A" stroke-width="4" stroke-linejoin="round"/>
+        </g>
+        <g class="bob2">
+          <rect x="40" y="356" width="140" height="72" rx="36" fill="#fff"/>
+          <circle cx="76" cy="392" r="19" fill="#2E5F96"/>
+          <path d="M68 392l6 6 11-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="104" y="380" width="56" height="8" rx="4" fill="#DDE5EE"/>
+          <rect x="104" y="396" width="38" height="8" rx="4" fill="#DDE5EE"/>
+        </g>
+        <circle cx="300" cy="74" r="11" fill="#E8F0F9"/>
+        <circle cx="206" cy="448" r="8" fill="#14243A"/>
+      </svg>
     </div>
-  </section>
+  </div>
+</header>
 
-  <!-- 合作優勢 -->
-  <section id="advantages">
-    <div class="sh"><span class="eyebrow">合作優勢</span><h2>讓老師把時間，留給真正重要的事</h2><p>從第一次聊課程，到正式上架或開課，都有清楚窗口協助，不需要自己研究一整套課程製作流程。</p></div>
-    <div class="bento">
-      <div class="card big glass lift">
-        <div class="ico"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
-        <h3>專屬 PM 協作</h3>
-        <p>從學員與目標受眾的視角，陪你一起檢視課程的每個關鍵環節。</p>
-        <div class="tags"><span>課程定位</span><span>內容順序</span><span>成果感</span><span>銷售呈現</span></div>
-      </div>
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4V8z"/></svg></div><h3>後製上架由平台協助</h3><p>依課程總表的剪輯標註處理後製，並完成封面、課程頁與上架。</p></div>
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h3>客服與行銷支援</h3><p>行政、登入與操作問題由平台先處理，並協助課程推廣；你只需專注於專業提問。</p></div>
-      <div class="card wide glass lift">
-        <div style="display:flex;gap:16px;align-items:center"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 style="margin:0">合作資訊透明</h3></div>
-        <div class="pay" style="margin-top:18px"><div><small>影音錄播課程</small><b>鐘點費＋分潤獎勵</b></div><div><small>Live 直播課程</small><b>鐘點費</b></div></div>
-        <p class="fine">錄播課程的分潤明細由 PM 另行提供。</p>
-      </div>
-    </div>
-  </section>
+<div class="wrap">
+  <div class="facts rv">
+    <div class="fact"><span class="ic"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4V8z"/></svg></span><div><small>課程形式</small><b>錄播／直播</b></div></div>
+    <div class="fact"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.5 9.5a2.5 2.5 0 0 0-2.5-1.5c-1.4 0-2.5.8-2.5 2s1 1.6 2.5 2 2.5.9 2.5 2-1.1 2-2.5 2a2.5 2.5 0 0 1-2.5-1.5M12 6.5v1.5M12 16v1.5"/></svg></span><div><small>報酬方式</small><b>鐘點費＋分潤</b></div></div>
+    <div class="fact"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><div><small>協作窗口</small><b>專屬 PM</b></div></div>
+    <div class="fact"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>時間安排</small><b>可與本業兼任</b></div></div>
+  </div>
 
-  <!-- 合作分工 -->
-  <section id="roles">
-    <div class="sh"><span class="eyebrow">合作分工</span><h2>你負責專業，我們負責把合作往前推進</h2></div>
-    <div class="roles">
-      <div class="card glass you">
+  <!-- 02 合作方式 -->
+  <section id="how">
+    <div class="hd s rv"><div><span class="eyebrow"><b>01</b> Why Schooler</span><h2>你負責專業，<br>其他交給 Schooler</h2></div><p>從第一次聊課程到正式上架，都有專屬 PM 陪你推進，不需要自己研究一整套課程製作流程。</p></div>
+    <div class="split">
+      <div class="card bd rv">
         <span class="who">講師負責</span><h3>完成課程規劃與教學內容</h3>
         <ul class="chk">
           <li>規劃錄播或直播的完整課綱與各堂進度</li>
           <li>準備教材、範例、素材與學員成果設計</li>
           <li>完成課程錄製，或依排程進行直播授課</li>
-          <li>於課程總表標註錄播影片需刪除的片段</li>
+          <li>標註錄播影片需刪除的片段</li>
           <li>必要時協助回覆專業技術問題</li>
         </ul>
       </div>
-      <div class="card glass">
-        <span class="who">Schooler 負責</span><h3>從受眾視角協作與完成製作</h3>
+      <div class="card ours rv">
+        <span class="who">Schooler 負責</span><h3>從學員視角協作，完成製作與推廣</h3>
         <ul class="chk">
-          <li>針對定位、內容安排與成果呈現提供建議</li>
+          <li>專屬 PM 從學員與受眾角度，一起檢視課程
+            <div class="tags"><span>課程定位</span><span>內容順序</span><span>成果感</span><span>銷售呈現</span></div></li>
           <li>提供錄製規格、試錄檢查與執行協助</li>
-          <li>依課程總表標註完成後製、課程頁建置與上架</li>
-          <li>協助基本客服與行銷推廣</li>
-          <li>提供錄播分潤明細</li>
+          <li>依你的剪輯標註完成後製、封面、課程頁與上架</li>
+          <li>先處理行政、登入與操作等客服問題</li>
+          <li>協助課程推廣，並提供錄播分潤明細</li>
         </ul>
       </div>
     </div>
-    <div class="card glass remind">
+    <div class="gain rv">
       <div>
-        <span class="k">錄播課程提醒</span>
-        <h3>確定要刪除的片段，請老師先標註</h3>
-        <p>平台會依你標註的起訖時間剪輯；未標註的部分，原則上依原始內容整理上架。</p>
+        <span class="k">WHAT YOU GET</span>
+        <h3>合作，同時也在累積你的專業資產</h3>
+        <p>可長期使用的數位內容、更完整的專業形象，以及延伸合作的可能性。</p>
+        <a class="tl" href="https://live.rookiesavior.net/" target="_blank" rel="noopener">查看平台現有課程 <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
-      <div class="marks">
-        <div class="mk"><div class="n">01</div><b>影片或單元名稱</b></div>
-        <div class="mk"><div class="n">02</div><b>刪除起訖時間</b></div>
-        <div class="mk"><div class="n">03</div><b>刪除原因說明</b></div>
-      </div>
+      <ul>
+        <li><b>課程介紹頁</b><span>整理課程重點、適合對象與學習成果。</span></li>
+        <li><b>章節與教材</b><span>依學習順序整理影片、章節與教材。</span></li>
+        <li><b>實作成果</b><span>讓學員完成可展示或實際運用的成果。</span></li>
+      </ul>
     </div>
   </section>
-
-  <!-- 課程成果 -->
-  <section id="outcomes">
-    <div class="sh"><span class="eyebrow">課程成果</span><h2>你的專業，會被整理成完整課程</h2><p>老師完成內容後，平台會整理成清楚好學、也能呈現專業價值的正式課程。</p></div>
-    <div class="out">
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><h3>課程介紹頁</h3><p>整理課程重點、適合對象與學習成果。</p></div>
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z"/><path d="M6.5 17A2.5 2.5 0 0 0 4 19.5 2.5 2.5 0 0 0 6.5 22H20v-5"/></svg></div><h3>章節與教材</h3><p>依學習順序整理影片、章節與教材。</p></div>
-      <div class="card glass lift"><div class="ico"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></div><h3>實作成果</h3><p>讓學員完成可展示或實際運用的成果。</p></div>
-    </div>
-    <div class="asset glass">
-      <b>合作，同時也在累積你的專業資產</b>
-      <div class="tags"><span>可長期使用的數位內容</span><span>更完整的專業形象</span><span>延伸合作的可能性</span></div>
-      <a class="more" style="margin:0" href="https://live.rookiesavior.net/" target="_blank" rel="noopener">查看平台現有課程 <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-    </div>
-  </section>
-
-  <!-- 課程形式 -->
-  <section id="format">
-    <div class="sh"><span class="eyebrow">課程形式</span><h2>兩種合作方式，都重視實作與成果</h2></div>
-    <div class="formats">
-      <div class="card glass fm">
-        <span class="en">01 · RECORDED COURSE</span><h3>影音錄播課程</h3>
-        <dl><div><dt>核心定位</dt><dd>帶初學者從<em>「不會」到「會」</em>，透過清楚的步驟示範與重複觀看，逐步完成學習。</dd></div>
-        <div><dt>學習成果</dt><dd>重視「教得懂、學得會」，讓學員依自己的進度完成基礎操作與實作成果。</dd></div></dl>
-        <div class="lv"><span>適合初學者</span><span>依進度學習</span></div>
-      </div>
-      <div class="card glass fm">
-        <span class="en">02 · LIVE COURSE</span><h3>Live 直播課程</h3>
-        <dl><div><dt>核心定位</dt><dd>帶已有基礎的學員，從<em>「會操作」走向「進階應用」</em>。</dd></div>
-        <div><dt>學習成果</dt><dd>重視「學得深、做得出成果」，透過即時示範、互動與回饋，完成實際專題。</dd></div></dl>
-        <div class="lv"><span>適合已有基礎</span><span>即時互動</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 合作重點 -->
-  <section id="essentials">
-    <div class="sh"><span class="eyebrow">合作重點</span><h2>合作前，先了解兩件事</h2></div>
-    <div class="ess">
-      <div class="card glass">
-        <span class="k">COMPENSATION</span><h3>報酬方式</h3>
-        <div class="pay"><div><small>影音錄播課程</small><b>鐘點費＋分潤</b></div><div><small>Live 直播課程</small><b>鐘點費</b></div></div>
-        <div class="sub"><b>影音錄播課程</b><p>依課程內容、時數與個別方案確認鐘點費；上架後，另依銷售來源計算分潤獎勵。</p></div>
-        <div class="sub"><b>Live 直播課程</b><p>依直播主題、時數與個別方案確認鐘點費。</p></div>
-        <p class="fine">實際金額與分潤計算方式，依個別合作方案及正式文件為準。</p>
-      </div>
-      <div class="card glass">
-        <span class="k">RECORDING SETUP</span><h3>錄播課程指定使用 oCam 錄製</h3>
-        <p>為統一畫質與後續製作流程，請依以下規格錄製。</p>
-        <div class="spec">
-          <div class="sp"><small>解析度</small><b>1920 × 1080</b></div>
-          <div class="sp"><small>畫面比例</small><b>16:9</b></div>
-          <div class="sp"><small>影格率</small><b>30 FPS</b></div>
-          <div class="sp"><small>影片格式</small><b>MP4</b></div>
-        </div>
-        <div class="links2"><a href="https://ohsoft.net/eng/ocam.php" target="_blank" rel="noopener">oCam 官方網站</a><a href="#ocam">查看完整錄製設定</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 合作流程 -->
-  <section id="flow">
-    <div class="sh"><span class="eyebrow">合作流程</span><h2>從一個課程想法，到正式上架或開課</h2></div>
-    <div class="tl">
-      <div class="step"><div class="num">01</div><div class="glass"><h3>初步聯絡</h3><p>分享想教的主題、適合對象、預計形式與希望學員完成的成果。</p></div></div>
-      <div class="step"><div class="num">02</div><div class="glass"><h3>線上面談</h3><p>了解你的經歷與課程方向，並說明平台合作模式。</p></div></div>
-      <div class="step"><div class="num">03</div><div class="glass"><h3>課綱與合作確認</h3><p>你完成完整課綱，PM 從學員角度提供建議，確認方向後進入合作。</p></div></div>
-      <div class="step"><div class="num">04</div><div class="glass"><h3>錄製或直播授課</h3><p>錄播課先完成測試與試錄；直播課依確認排程授課。</p></div></div>
-      <div class="step"><div class="num">05</div><div class="glass"><h3>上架或正式開課</h3><p>平台完成後製、課程頁建置與推廣安排，正式上架或開課。</p></div></div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="faqwrap">
-      <div class="sh">
-        <span class="eyebrow">FAQ</span><h2>常見問題</h2>
-        <p>整理講師最常詢問的合作細節，找不到答案也歡迎直接問 PM。</p>
-        <a class="ask glass" href="#contact">
-          <div class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-          <div><b>還有其他問題？</b><small>直接聯繫 PM 為你解答</small></div>
-        </a>
-      </div>
-      <div class="faq">
-        <details class="glass" open><summary>還沒有完整課綱，可以先聯絡嗎？</summary>
-          <div class="ans"><p>可以。先提供課程主題、適合對象與預期成果，就能進行初步討論；正式合作時，錄播與直播的完整課綱皆由老師規劃。</p></div></details>
-        <details class="glass"><summary>我不會剪影片，也不熟悉課程上架怎麼辦？</summary>
-          <div class="ans"><p>你只需專注在課程內容與錄製，影片剪輯、課程頁建置與上架都由平台協助。</p>
-          <p>因為課程影片數量多、總時數長，請你先在課程總表標註需要刪除的片段（例如口誤、操作失敗、重複錄製、等待畫面），寫下影片名稱、起訖時間與簡單說明。平台會依標註剪輯；未標註的部分，原則上依原始內容整理上架。</p></div></details>
-        <details class="glass"><summary>第一次擔任線上講師，也可以合作嗎？</summary>
-          <div class="ans"><p>可以。不一定要有豐富授課經驗，只要具備實務經驗、願意完整規劃課程，並依目標受眾調整內容，就歡迎先聊聊。</p></div></details>
-        <details class="glass" id="ocam"><summary>oCam 要怎麼設定與開始錄影？</summary>
-          <div class="ans">
-            <h4>1. 錄製規格</h4>
-            <div class="spec"><div class="sp"><small>解析度</small><b>1920×1080</b></div><div class="sp"><small>比例</small><b>16:9</b></div><div class="sp"><small>影格率</small><b>30 FPS</b></div><div class="sp"><small>格式</small><b>MP4</b></div></div>
-            <p>簡報文字、軟體介面與操作步驟需清楚可辨識；人聲清楚，避免環境雜音、回音或音量忽大忽小。一般軟體操作與簡報教學用 30 FPS 即可，不需設為 60 FPS。</p>
-            <h4>2. 檔案格式 <i>必要</i></h4>
-            <p>《Screen Recording》→《編解碼器》→ 選擇系統預設的 Open H.264 + AAC（.MP4）。</p>
-            <h4>3. 麥克風 <i>必要</i></h4>
-            <p>先接上麥克風 →《聲音》→ 勾選《錄製麥克風》（《錄製系統聲音》可依需求勾選）。再到《Menu》→《聲音》，確認輸入來源為 1 + 2（立體聲）。</p>
-            <h4>4. 儲存位置 <i>必要</i></h4>
-            <p>《Menu》→《儲存》→ 選擇目標資料夾；同頁可設定檔名規則，讓多支影片依錄製順序自動命名。</p>
-            <h4>5. 快捷鍵、滑鼠標示、網路攝影機 <i class="opt">選擇性</i></h4>
-            <p>《Menu》→《快速鍵／Effect／網路攝影機》，依需求設定。</p>
-            <h4>6. 開始錄影</h4>
-            <ol><li>開始：《Screen Recording》→ 點《錄影》</li><li>暫停：點《Pause》</li><li>結束：再點一次《錄影》</li><li>檔案會自動存到設定的資料夾，也可點《開啟》查看</li></ol>
-            <div class="links2"><a href="https://ohsoft.net/eng/ocam.php" target="_blank" rel="noopener">前往 oCam 官方網站</a></div>
-          </div></details>
-        <details class="glass"><summary>上課時如何讓學員知道目前講解的位置？</summary>
-          <div class="ans"><p>建議使用 Epic Pen 輔助標示：講到哪裡就圈到哪裡，直接在畫面上畫線、圈選或標記，幫助學員快速找到目前說明的欄位、按鈕或操作位置。</p>
-          <div class="links2"><a href="https://epicpen.com/" target="_blank" rel="noopener">Epic Pen 免費安裝</a><a href="https://www.youtube.com/watch?v=-8f7dswrp7U" target="_blank" rel="noopener">Epic Pen 使用教學</a></div></div></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- 聯繫 -->
-  <section id="contact">
-    <div class="contact glass">
-      <div>
-        <span class="eyebrow">聯繫 PM</span>
-        <h2>有一個課程想法，<br>就可以先聊聊</h2>
-        <p>不需要先準備完整企劃書。先分享想教的方向、受眾與成果，我們會一起判斷是否適合進一步合作。</p>
-      </div>
-      <div class="pmcard">
-        <small>聯絡窗口｜數位事業群－線上產品處</small>
-        <div class="nm">李家儀 PM</div>
-        <a class="ln" href="tel:+886227723696,316"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>(02) 2772-3696 #316</a>
-        <a class="ln" href="mailto:kitty2348@lccnet.com.tw"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>kitty2348@lccnet.com.tw</a>
-        <a class="btn btn-p" href="mailto:kitty2348@lccnet.com.tw?subject=%E8%AC%9B%E5%B8%AB%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2">寄信聯繫合作 <svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      </div>
-    </div>
-  </section>
-  <footer>講師合作介紹｜數位事業群－線上產品處<br>© 2026 Schooler</footer>
 </div>
-<a class="float glass" href="#contact"><i></i>有課程想法，聯繫 PM</a>
+
+<div class="band">
+  <div class="wrap">
+    <!-- 03 課程方向 -->
+    <section id="map">
+      <div class="hd c rv"><span class="eyebrow"><b>02</b> Course Map</span><h2>AI 時代三層職場力，<br>LV.2、LV.3 是我們的重點</h2><p>點選任一層，看看平台目前的課程佈局，以及我們正在找的老師。</p></div>
+      <div class="cake" id="cake">
+        <div class="card">
+          <span class="k">三層職場力</span>
+          <div class="stack" role="group" aria-label="三層職場力">
+            <button class="ly l3" type="button" data-l="3" aria-pressed="false"><span class="lv">LV.3</span><span><span class="t">駕馭 AI 的能力</span><span class="ds">指揮多個 AI 跨工具協作</span></span><span class="hot">優先</span></button>
+            <button class="ly l2" type="button" data-l="2" aria-pressed="false"><span class="lv">LV.2</span><span><span class="t">使用 AI 工具的能力</span><span class="ds">單一任務、單一工具的 AI 應用</span></span><span class="hot">優先</span></button>
+            <button class="ly l1" type="button" data-l="1" aria-pressed="false"><span class="lv">LV.1</span><span><span class="t">工作技能</span><span class="ds">崗位核心執行力，AI 出現前就存在</span></span></button>
+          </div>
+          <div class="prio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>目前優先規劃 LV.2、LV.3 課程</b><span>有 AI 工具應用或 AI 工作流實戰經驗，歡迎優先聯繫 PM</span></div></div>
+        </div>
+        <div class="card panel" aria-live="polite"><div class="fade" id="panelBody"></div></div>
+      </div>
+    </section>
+
+    <!-- 04 適合講師 -->
+    <section id="fit">
+      <div class="hd s rv"><div><span class="eyebrow"><b>03</b> Who We're Looking For</span><h2>我們正在找這樣的老師</h2></div><p>不一定要有授課經驗，第一次當線上講師也可以。只要有扎實的實務經驗，並願意把方法整理成學員能跟著完成的內容。</p></div>
+      <div class="fit">
+        <div class="card rv"><span class="n">01</span><h3>有真實的實務經驗</h3><p>能分享工作流程、專案做法、問題判斷或實際應用情境。</p></div>
+        <div class="card rv"><span class="n">02</span><h3>願意拆成清楚步驟</h3><p>把熟悉的專業，整理成學員能理解、能操作的教學順序。</p></div>
+        <div class="card rv"><span class="n">03</span><h3>重視學員真的學會</h3><p>不只介紹功能，更關心學員能否跟上、完成作品並實際應用。</p></div>
+        <div class="card rv"><span class="n">04</span><h3>願意從受眾角度調整</h3><p>和 PM 討論定位、內容順序與成果呈現，讓課程更貼近目標學員。</p></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- 05 平台與學員 -->
+  <section id="about">
+    <div class="about">
+      <div class="txt rv">
+        <span class="eyebrow"><b>04</b> About Schooler</span>
+        <p class="quote">從「不知道怎麼開始」，<br>一路走到「我真的做得出來」。</p>
+        <p>Schooler（原菜鳥救星）是以初學者友善、實作導向、學完能應用為核心的線上學習平台，提供直播、影音與訂閱制課程，涵蓋 AI 應用、語言、設計、程式與生活等領域。</p>
+        <p>我們把看似複雜的技能與工具，轉化成一般人也能跟著操作的課程：從真實工作情境出發，帶學員一步步完成作品、工具或可實際運用的成果。</p>
+        <a class="tl" href="https://live.rookiesavior.net/" target="_blank" rel="noopener">前往 Schooler 網站 <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+      <ul class="pillars rv">
+        <li><span class="n">01</span><div><small>初學者友善</small><b>從看得懂開始</b></div></li>
+        <li><span class="n">02</span><div><small>實作導向</small><b>跟著步驟完成</b></div></li>
+        <li><span class="n">03</span><div><small>成果應用</small><b>真正帶回工作</b></div></li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<div class="band">
+  <div class="wrap">
+    <!-- 06 合作條件 -->
+    <section id="terms">
+      <div class="hd s rv"><div><span class="eyebrow"><b>05</b> Terms</span><h2>兩種課程形式，<br>合作條件一次看懂</h2></div><p>錄播與直播都重視實作與成果，差別在學員程度、互動方式與報酬組合。</p></div>
+      <div class="plans">
+        <article class="plan rec rv">
+          <header class="ph">
+            <span class="pic"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></svg></span>
+            <div><span class="k">01 · RECORDED</span><h3>影音錄播課程</h3></div>
+          </header>
+          <div class="pay2">
+            <small>報酬方式</small>
+            <b>鐘點費<span>＋</span>分潤</b>
+            <p>依內容、時數與個別方案確認鐘點費；上架後依銷售來源計算分潤，明細由 PM 提供。</p>
+          </div>
+          <div class="row"><small>核心定位</small><p>帶初學者從<em>「不會」到「會」</em>，透過清楚的步驟示範與重複觀看，逐步完成學習。</p></div>
+          <div class="row"><small>學習成果</small><p>教得懂、學得會：學員依自己的進度，完成基礎操作與實作成果。</p></div>
+          <div class="row last"><small>適合學員</small><div class="chips"><span>初學者</span><span>依進度學習</span></div></div>
+        </article>
+        <article class="plan live rv">
+          <header class="ph">
+            <span class="pic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><path d="M16.2 7.8a6 6 0 0 1 0 8.4M7.8 16.2a6 6 0 0 1 0-8.4M19 5a10 10 0 0 1 0 14M5 19A10 10 0 0 1 5 5"/></svg></span>
+            <div><span class="k">02 · LIVE</span><h3>Live 直播課程</h3></div>
+          </header>
+          <div class="pay2">
+            <small>報酬方式</small>
+            <b>鐘點費</b>
+            <p>依直播主題、時數與個別方案確認。</p>
+          </div>
+          <div class="row"><small>核心定位</small><p>帶已有基礎的學員，從<em>「會操作」走向「進階應用」</em>。</p></div>
+          <div class="row"><small>學習成果</small><p>學得深、做得出成果：透過即時示範、互動與回饋，完成實際專題。</p></div>
+          <div class="row last"><small>適合學員</small><div class="chips"><span>已有基礎</span><span>需要即時互動</span></div></div>
+        </article>
+      </div>
+      <p class="plans-note rv"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>實際金額與分潤計算方式，依個別合作方案及正式文件為準。</p>
+      <div class="prep">
+        <div class="card rv">
+          <span class="k">RECORDING SETUP</span>
+          <h3>錄播指定使用 oCam 錄製</h3>
+          <p>為統一畫質與後製流程，請依以下規格錄製。</p>
+          <div class="spec">
+            <div class="sp"><small>解析度</small><b>1920×1080</b></div>
+            <div class="sp"><small>比例</small><b>16:9</b></div>
+            <div class="sp"><small>影格率</small><b>30 FPS</b></div>
+            <div class="sp"><small>格式</small><b>MP4</b></div>
+          </div>
+          <div class="links2"><a class="tl" href="#ocam">oCam 設定步驟</a><a class="tl" href="https://ohsoft.net/eng/ocam.php" target="_blank" rel="noopener">oCam 官方網站</a></div>
+        </div>
+        <div class="card rv" id="marks">
+          <span class="k">EDITING NOTES</span>
+          <h3>要刪除的片段，請先標註</h3>
+          <p>在課程總表寫下以下三項，例如口誤、操作失敗、重複錄製或等待畫面。平台依標註剪輯；未標註的部分原則上依原始內容上架。</p>
+          <ol class="marks"><li>影片或單元名稱</li><li>刪除起訖時間</li><li>刪除原因說明</li></ol>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="wrap">
+  <!-- 07 FAQ -->
+  <section id="faq">
+    <div class="hd c rv"><span class="eyebrow"><b>06</b> FAQ</span><h2>常見問題</h2><p>找不到答案，也歡迎<a href="#contact">直接問 PM</a>。</p></div>
+    <div class="faq rv">
+      <details open><summary>還沒有完整課綱，可以先聯絡嗎？</summary>
+        <div class="ans"><p>可以。先提供課程主題、適合對象與預期成果，就能進行初步討論；正式合作時，再由老師規劃完整課綱。</p></div></details>
+      <details><summary>我不會剪影片，也不熟悉課程上架怎麼辦？</summary>
+        <div class="ans"><p>不用擔心，剪輯、課程頁建置與上架都由平台負責。你只需要專注在內容與錄製，並<a href="#marks">標註要刪除的片段</a>。</p></div></details>
+      <details id="ocam"><summary>oCam 要怎麼設定與開始錄影？</summary>
+        <div class="ans">
+          <p>錄製規格請見<a href="#terms">合作條件</a>。簡報文字、介面與操作步驟需清楚可辨識；人聲清楚，避免雜音、回音或音量忽大忽小。一般教學用 30 FPS 即可，不需設為 60 FPS。</p>
+          <h4>1. 檔案格式 <i>必要</i></h4>
+          <p>《Screen Recording》→《編解碼器》→ 選擇系統預設的 Open H.264 + AAC（.MP4）。</p>
+          <h4>2. 麥克風 <i>必要</i></h4>
+          <p>先接上麥克風 →《聲音》→ 勾選《錄製麥克風》（《錄製系統聲音》可依需求勾選）。再到《Menu》→《聲音》，確認輸入來源為 1 + 2（立體聲）。</p>
+          <h4>3. 儲存位置 <i>必要</i></h4>
+          <p>《Menu》→《儲存》→ 選擇目標資料夾；同頁可設定檔名規則，讓多支影片依錄製順序自動命名。</p>
+          <h4>4. 快速鍵、滑鼠標示、網路攝影機 <i class="opt">選擇性</i></h4>
+          <p>《Menu》→《快速鍵／Effect／網路攝影機》，依需求設定。</p>
+          <h4>5. 開始錄影</h4>
+          <ol><li>開始：《Screen Recording》→ 點《錄影》</li><li>暫停：點《Pause》</li><li>結束：再點一次《錄影》</li><li>檔案會自動存到設定的資料夾，也可點《開啟》查看</li></ol>
+        </div></details>
+      <details><summary>上課時如何讓學員知道目前講解的位置？</summary>
+        <div class="ans"><p>建議使用 Epic Pen 輔助標示：講到哪裡就圈到哪裡，直接在畫面上畫線、圈選或標記，幫助學員快速找到目前說明的欄位、按鈕或操作位置。</p>
+        <div class="links2"><a class="tl" href="https://epicpen.com/" target="_blank" rel="noopener">Epic Pen 免費安裝</a><a class="tl" href="https://www.youtube.com/watch?v=-8f7dswrp7U" target="_blank" rel="noopener">Epic Pen 使用教學</a></div></div></details>
+    </div>
+  </section>
+</div>
+
+<!-- 08 合作流程：最後一步直接接聯絡 -->
+<section id="flow" class="flow">
+  <div class="flow-bg" id="flowBg">
+    <div class="flow-track" id="flowTrack">
+      <div class="flow-stick">
+        <div class="wrap">
+          <div class="hd c"><span class="eyebrow"><b>07</b> Flow</span><h2>從一個課程想法，到正式上架或開課</h2></div>
+          <ol class="stepper" id="stepper"></ol>
+          <div class="fbox">
+            <button class="farr p" type="button" id="fPrev" aria-label="上一步"><svg class="i" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+            <div class="fart"><div class="circ"><span class="fnum" id="fNum">01</span><span id="fIco"></span></div></div>
+            <div class="ftxt" id="fTxt"></div>
+            <button class="farr n" type="button" id="fNext" aria-label="下一步"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <div class="scrollhint" aria-hidden="true">SCROLL<svg class="i" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <ol class="flist" id="flist"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 09 聯繫 -->
+<section id="contact" class="contact">
+  <span class="hdot" style="width:120px;height:120px;left:-36px;top:48px;background:var(--sun)" aria-hidden="true"></span>
+  <span class="hdot" style="width:220px;height:220px;right:-70px;bottom:-80px;background:rgba(255,255,255,.22)" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="rv">
+      <div class="join">Join us!</div>
+      <h2>有一個課程想法，<br>就可以先聊聊</h2>
+      <p>不需要先準備完整企劃書。分享想教的方向、受眾與成果，我們會一起判斷是否適合進一步合作。</p>
+    </div>
+    <div class="pmcard rv">
+      <span class="small">聯絡窗口｜數位事業群－線上產品處</span>
+      <div class="pn">李家儀 PM</div>
+      <a class="ln" href="tel:+886227723696,316"><svg class="i" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>(02) 2772-3696 #316</a>
+      <a class="ln" href="mailto:kitty2348@lccnet.com.tw"><svg class="i" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>kitty2348@lccnet.com.tw</a>
+      <a class="btn btn-d" href="mailto:kitty2348@lccnet.com.tw?subject=%E8%AC%9B%E5%B8%AB%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2">寄信聯繫合作 <span class="ar"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
+<footer>講師合作介紹｜數位事業群－線上產品處<br>© 2026 Schooler</footer>
+<a class="float" id="float" href="#contact"><i></i>有課程想法，聯繫 PM</a>
+
 <script>
-// 捲動時標示目前所在的快捷連結
+// 導覽列標示
 const links=[...document.querySelectorAll('.links a')];
-const map={about:'about',fit:'fit',advantages:'advantages',roles:'advantages',outcomes:'outcomes',format:'outcomes',essentials:'outcomes',flow:'flow',faq:'faq'};
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=map[e.target.id];
-  links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on&&a.scrollIntoView&&innerWidth<=1080)a.parentNode.parentNode.scrollTo({left:a.offsetLeft-40,behavior:'smooth'})})}}),{rootMargin:'-45% 0px -50% 0px'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const id=e.target.id;
+  links.forEach(a=>{const on=a.getAttribute('href')==='#'+id;a.classList.toggle('on',on);if(on&&innerWidth<=1080)a.parentNode.parentNode.scrollTo({left:a.offsetLeft-40,behavior:'smooth'})})}}),{rootMargin:'-45% 0px -50% 0px'});
 document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
+
+// 首屏與聯絡區可見時隱藏浮動按鈕，避免同一個行動重複出現
+(()=>{const f=document.getElementById('float');const vis=new Set();
+  const o=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target));f.classList.toggle('hide',vis.size>0)});
+  o.observe(document.getElementById('top'));o.observe(document.getElementById('contact'));})();
+
+// 區塊淡入
+const rv=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rv.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el=>{const sib=[...el.parentNode.children].filter(c=>c.classList.contains('rv'));if(sib.length>2)el.style.transitionDelay=(sib.indexOf(el)%4)*90+'ms';rv.observe(el)});
+
+// 課程方向
+(()=>{
+  const cake=document.getElementById('cake');if(!cake)return;
+  const body=document.getElementById('panelBody');const btns=[...cake.querySelectorAll('.ly')];
+  const ic='<svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>';
+  const D={
+    3:{k:'LV.3 · 優先規劃',t:'駕馭 AI 的能力',s:'跨工具、跨流程設計 AI workflow，指揮多個 AI 協作，並判斷、修正產出品質。這是最稀缺、也是 Schooler 重點發展的方向。',
+       c:['n8n 打造你的 AI 工作流','10 堂課建構個人 AI Agent','指揮 AI 團隊','Claude Agent 實戰入門','Manus AI 自主代理人實戰'],w:'能示範完整 AI 工作流、Agent 設計或多工具整合的實戰派老師。'},
+    2:{k:'LV.2 · 優先規劃',t:'使用 AI 工具的能力',s:'針對單一任務、單一工具的 AI 操作與應用，讓學員馬上把 AI 用進工作。',
+       c:['辦公室必學的 AI 工作術','Gamma AI 簡報應用','Notion AI 全方位實戰','Canva 短影音 AI 設計','Krea AI 創作全攻略'],w:'熟悉新 AI 工具，能帶學員一步步做出成果的應用型老師。'},
+    1:{k:'LV.1 · 穩定經營',t:'工作技能',s:'崗位本身要求的核心執行力，AI 出現前就存在，也是一切 AI 應用的地基。',
+       c:['Excel 高效工作術','Microsoft 365','APCS 考照','漫畫角色設計基礎入門'],w:'有扎實本業技能，並能結合 AI 提升效率的老師。'}
+  };
+  function pick(l){const d=D[l];
+    btns.forEach(b=>{const on=b.dataset.l==l;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
+    body.classList.remove('fade');void body.offsetWidth;body.classList.add('fade');
+    body.innerHTML='<span class="k">'+d.k+'</span><h3>'+d.t+'</h3><p>'+d.s+'</p>'+
+      '<div class="blk"><small>平台現有課程</small><div class="tags">'+d.c.map(x=>'<span>'+x+'</span>').join('')+'</div></div>'+
+      '<div class="blk"><small>我們正在找</small><div class="want">'+ic+'<span>'+d.w+'</span></div></div>';}
+  btns.forEach(b=>b.addEventListener('click',()=>pick(b.dataset.l)));pick(3);
+  const ob=new IntersectionObserver(es=>{if(es[0].isIntersecting){cake.classList.add('in');setTimeout(()=>cake.classList.add('ready'),1000);ob.disconnect()}},{threshold:.3});ob.observe(cake);
+})();
+
+// 合作流程：捲動換色
+(()=>{
+  const S=[
+    {t:'初步聯絡',p:'分享想教的主題、適合對象、預計形式與希望學員完成的成果。',c:'#8DB4DD',i:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/>'},
+    {t:'線上面談',p:'了解你的經歷與課程方向，並說明平台合作模式。',c:'#7CC4C0',i:'<rect x="2" y="6" width="14" height="12" rx="2"/><path d="m22 8-6 4 6 4V8z"/>'},
+    {t:'課綱與合作確認',p:'你完成完整課綱，PM 從學員角度提供建議，確認方向後進入合作。',c:'#A9C79A',i:'<path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>'},
+    {t:'錄製或直播授課',p:'錄播課先完成測試與試錄；直播課依確認排程授課。',c:'#EDCB7A',i:'<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/>'},
+    {t:'上架或正式開課',p:'平台完成後製、課程頁建置與推廣安排，正式上架或開課。',c:'#EFA88A',i:'<path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/>'}
+  ];
+  const bg=document.getElementById('flowBg'),track=document.getElementById('flowTrack'),st=document.getElementById('stepper');
+  const num=document.getElementById('fNum'),ico=document.getElementById('fIco'),txt=document.getElementById('fTxt');
+  const prev=document.getElementById('fPrev'),next=document.getElementById('fNext');
+  st.innerHTML=S.map((s,i)=>'<li><button type="button" data-i="'+i+'"><span>0'+(i+1)+'</span>'+s.t+'</button></li>').join('');
+  document.getElementById('flist').innerHTML=S.map((s,i)=>'<li><span class="fn">0'+(i+1)+'</span><div><h3>'+s.t+'</h3><p>'+s.p+'</p></div></li>').join('');
+  const bs=[...st.querySelectorAll('button')];let cur=-1;
+  function show(i){if(i===cur)return;cur=i;const s=S[i];
+    bg.style.setProperty('--fc',s.c);
+    bs.forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-current',j===i?'step':'false')});
+    num.textContent='0'+(i+1);ico.innerHTML='<svg class="i" viewBox="0 0 24 24">'+s.i+'</svg>';
+    txt.innerHTML='<span class="cnt">STEP 0'+(i+1)+' / 05</span><h3>'+s.t+'</h3><p>'+s.p+'</p>';
+    txt.classList.remove('flow-in');void txt.offsetWidth;txt.classList.add('flow-in');
+    prev.disabled=i===0;next.disabled=i===S.length-1;}
+  const range=()=>track.offsetHeight-innerHeight;
+  function onScroll(){if(innerWidth<=640)return;const top=track.getBoundingClientRect().top;show(Math.floor(Math.min(Math.max(-top/range(),0),.9999)*S.length));}
+  function go(i){if(innerWidth<=640){show(i);return}
+    scrollTo({top:track.getBoundingClientRect().top+scrollY+range()*(i+.5)/S.length,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+  bs.forEach(b=>b.addEventListener('click',()=>go(+b.dataset.i)));
+  prev.addEventListener('click',()=>go(Math.max(cur-1,0)));next.addEventListener('click',()=>go(Math.min(cur+1,S.length-1)));
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);show(0);onScroll();
+})();
 </script>
 </body>
 </html>
