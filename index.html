@@ -310,6 +310,91 @@ footer{text-align:center;font-size:14px;color:var(--muted);padding:56px 0 48px}
   .flist h3{font-size:17px}.flist p{font-size:14.5px;line-height:1.75;margin-top:2px}
 }
 
+
+/* ===== 文案修改：新增樣式 ===== */
+.about-mini{display:grid;grid-template-columns:.95fr 1.05fr;gap:48px;align-items:center;margin-top:72px;padding:36px 40px;border-radius:var(--r);background:var(--bg2)}
+.about-mini .quote{font-size:24px;font-weight:900;color:var(--ink);line-height:1.6;margin-top:12px}
+.about-mini p{font-size:16px}.about-mini .tl{margin-top:16px}
+.gain.solo{grid-template-columns:1fr}
+.gain.solo>div{display:grid;grid-template-columns:1fr auto;column-gap:48px}.gain.solo>div>*{grid-column:1}.gain.solo .tl{grid-column:2;grid-row:1/4;align-self:center;margin-top:0;white-space:nowrap}
+#contact{margin-top:120px}
+.prep-mail{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.prep-mail:before{content:"寄信時可以附上：";width:100%;font-size:14px;font-weight:700;color:var(--ink)}
+.prep-mail li{font-size:14px;font-weight:700;color:var(--ink);background:rgba(255,255,255,.55);padding:6px 14px;border-radius:999px}
+@media(max-width:1080px){.about-mini{grid-template-columns:1fr;gap:16px}.gain.solo>div{grid-template-columns:1fr}.gain.solo .tl{grid-column:1;grid-row:auto;margin-top:20px;justify-self:start}}
+@media(max-width:640px){#contact{margin-top:72px}.about-mini{padding:24px;margin-top:48px}.about-mini .quote{font-size:20px}}
+/* ===== 首屏插圖 A ===== *//* 首屏插圖動態 */
+@media (prefers-reduced-motion:no-preference){
+.art .livedot{animation:blink 1.4s ease-in-out infinite}@keyframes blink{50%{opacity:.2}}
+.art .eq1,.art .eq2,.art .eq3{transform-box:fill-box;transform-origin:50% 100%;animation:eq 1s ease-in-out infinite}
+.art .eq2{animation-delay:-.35s}.art .eq3{animation-delay:-.7s}@keyframes eq{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.art .prog-ring{animation:ringfill 4.5s cubic-bezier(.65,0,.35,1) infinite}@keyframes ringfill{0%{stroke-dashoffset:163}55%,100%{stroke-dashoffset:40.8}}
+.art .hearts path{transform-box:fill-box;transform-origin:center;animation:float 3s ease-out infinite}.art .hearts .h2{animation-delay:-1.5s}
+@keyframes float{0%{transform:translateY(20px) scale(.6);opacity:0}20%{opacity:1}100%{transform:translateY(-60px) scale(1.1);opacity:0}}
+.art .confetti>*{transform-box:fill-box;transform-origin:center;animation:conf 2.4s ease-in-out infinite}
+.art .confetti>:nth-child(2n){animation-delay:-1.2s}@keyframes conf{50%{transform:translateY(-8px) rotate(40deg)}}
+}
+
+/* ===== 課程方向 2-3 ===== */
+.mprio{display:flex;align-items:center;gap:16px;margin-top:var(--gap);padding:20px 24px;border-radius:24px;background:var(--sun-l)}
+.mprio .ic{width:48px;height:48px;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;flex:none}
+.mprio b{display:block;color:var(--ink);font-size:17px;line-height:1.5}.mprio span{display:block;font-size:14.5px;color:var(--body);line-height:1.6}
+.mprio .btn{margin-left:auto;padding:12px 22px;font-size:15px}
+.mtags{display:flex;flex-wrap:wrap;gap:8px}.mtags span{font-size:14px;font-weight:500;padding:6px 14px;border-radius:999px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+.mwant{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:18px;background:#fff;color:var(--ink);font-weight:500;line-height:1.7;border:1px solid var(--line)}
+.mwant svg.i{color:var(--sky-d);margin-top:3px}
+.msm{display:block;font-size:13.5px;font-weight:700;color:var(--muted);margin:22px 0 10px;letter-spacing:.04em}
+@media(max-width:640px){.mprio{flex-wrap:wrap}.mprio .btn{margin-left:0;width:100%;justify-content:center}}
+
+.pd{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--gap);align-items:end}
+.pd-c{position:relative;border-radius:30px;background:#fff;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 1px 0 var(--line),0 18px 40px -30px rgba(20,36,58,.4);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.pd-c:hover{transform:translateY(-8px);box-shadow:0 1px 0 var(--line),0 34px 60px -34px rgba(20,36,58,.55)}
+.pd-c[data-l="3"]{box-shadow:0 1px 0 var(--line),0 34px 60px -28px rgba(20,36,58,.6)}
+.pd-art{position:relative;overflow:hidden}
+.pd-art svg{display:block;width:100%;height:100%}
+.pd-c[data-l="1"] .pd-art{height:170px;background:var(--sky-l)}
+.pd-c[data-l="2"] .pd-art{height:205px;background:#CFE0F3}
+.pd-c[data-l="3"] .pd-art{height:250px;background:var(--ink)}
+.pd-hd{position:absolute;left:20px;right:18px;top:16px;display:flex;align-items:center;gap:10px;z-index:2}
+.pd-lv{font-family:var(--num);font-size:14px;font-weight:800;letter-spacing:.06em;color:var(--sky-d)}
+.pd-c[data-l="3"] .pd-lv{color:var(--sun)}
+.pd-mt{display:flex;gap:3px}.pd-mt i{width:14px;height:5px;border-radius:3px;background:rgba(46,95,150,.2)}.pd-mt i.on{background:var(--sky-d)}
+.pd-c[data-l="3"] .pd-mt i{background:rgba(255,255,255,.18)}.pd-c[data-l="3"] .pd-mt i.on{background:var(--sun)}
+.pd-pb{margin-left:auto;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;background:var(--sun);color:var(--ink)}.pd-pb.calm{background:#fff;color:var(--muted)}
+.pd-hot{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--ink);background:#fff;padding:5px 12px 5px 10px;border-radius:999px}
+.pd-hot:before{content:"";width:7px;height:7px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 3px rgba(229,72,77,.2)}
+.pd-body{padding:24px 26px 0;display:flex;flex-direction:column;flex:1}
+.pd-body h3{font-size:22px;display:flex;align-items:baseline;gap:10px}
+.pd-body h3 small{font-size:13px;font-weight:700;color:var(--muted)}
+.pd-body .sh{font-size:14.5px;color:var(--muted);margin-top:4px}
+.pd-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pd-tags span{font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--bg2);color:var(--ink)}
+.pd-tags span.x{display:none}.pd-c.open .pd-tags span.x{display:inline-block;animation:swap .35s both}
+.pd-more{all:unset;cursor:pointer;font-size:13px;font-weight:700;color:var(--sky-d);padding:5px 12px;border-radius:999px;border:1px dashed rgba(46,95,150,.4)}
+.pd-more:hover{background:var(--sky-l)}.pd-more:focus-visible{outline:2px solid var(--sky-d);outline-offset:2px}
+.pd-foot{margin-top:22px;padding:18px 22px 22px;border-top:1px solid var(--line)}
+.pd-want{display:flex;gap:10px;align-items:flex-start}
+.pd-want svg.i{width:20px;height:20px;color:var(--sky-d);margin-top:3px}
+.pd-want small{display:block;font-size:12.5px;font-weight:700;color:var(--muted)}
+.pd-want p{font-size:14.5px;line-height:1.7;color:var(--ink);font-weight:500}
+.pd-cta{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding:12px 16px;border-radius:999px;font-size:14.5px;font-weight:800;text-decoration:none;color:var(--ink);border:1.5px solid var(--ink);transition:background .25s,color .25s}
+.pd-cta svg.i{width:16px;height:16px;transition:transform .3s}
+.pd-cta:hover{background:var(--ink);color:#fff}.pd-cta:hover svg.i{transform:translateX(3px)}
+.pd-c[data-l="3"] .pd-foot{background:var(--sun-l);border-top-color:var(--sun-l)}
+.pd-c[data-l="3"] .pd-cta{background:var(--ink);color:#fff}
+.pd-c[data-l="3"] .pd-cta:hover{background:#0A1422}
+/* 插圖動態 */
+@media (prefers-reduced-motion:no-preference){
+ .pd .flow{stroke-dasharray:4 6;animation:dash 1.2s linear infinite}@keyframes dash{to{stroke-dashoffset:-20}}
+ .pd .hub{transform-box:fill-box;transform-origin:center;animation:hub 2.4s ease-in-out infinite}@keyframes hub{50%{transform:scale(1.08)}}
+ .pd .pulse{transform-box:fill-box;transform-origin:center;animation:pls 2.4s ease-out infinite}@keyframes pls{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.9);opacity:0}}
+ .pd .typing{animation:typ 3s steps(1) infinite}@keyframes typ{50%{opacity:0}}
+ .pd .bar{transform-box:fill-box;transform-origin:50% 100%;animation:barg 3s ease-in-out infinite}.pd .bar:nth-child(2){animation-delay:-.6s}.pd .bar:nth-child(3){animation-delay:-1.2s}
+ @keyframes barg{50%{transform:scaleY(.6)}}
+ .pd-c:hover .pd-art svg{transform:scale(1.04)}.pd-art svg{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+}
+@media(max-width:1080px){.pd{grid-template-columns:1fr}.pd-c[data-l="3"]{order:-1}.pd-c[data-l="1"]{order:1}.pd-art{height:170px!important}}
+
 /* ===== 動態效果加強 ===== */
 .prog{position:fixed;left:0;top:0;height:3px;width:100%;z-index:40;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--sky-d),var(--sky),var(--sun))}
 nav{transition:box-shadow .35s,background .35s}
@@ -394,8 +479,8 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
 <nav>
   <a class="logo" href="#top"><img src="data:image/webp;base64,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" alt="Schooler"><span class="tag">講師合作</span></a>
   <ul class="links">
-    <li><a href="#how">合作方式</a></li><li><a href="#map">課程方向</a></li><li><a href="#fit">適合講師</a></li>
-    <li><a href="#about">平台與學員</a></li><li><a href="#terms">合作條件</a></li><li><a href="#faq">常見問題</a></li><li><a href="#flow">合作流程</a></li>
+    <li><a href="#about">關於 Schooler</a></li><li><a href="#how">合作方式</a></li><li><a href="#map">課程方向</a></li><li><a href="#fit">適合講師</a></li>
+    <li><a href="#terms">合作條件</a></li><li><a href="#flow">合作流程</a></li><li><a href="#faq">常見問題</a></li>
   </ul>
   <a class="btn btn-d" href="#contact">聯繫 PM <span class="ar"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
 </nav>
@@ -416,44 +501,79 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
       </div>
     </div>
     <div class="art rv" aria-hidden="true">
-      <svg viewBox="0 0 500 500">
-        <circle cx="250" cy="250" r="220" fill="#fff" opacity=".24"/>
-        <circle cx="250" cy="250" r="168" fill="#fff" opacity=".42"/>
-        <g class="bob">
-          <rect x="112" y="146" width="276" height="180" rx="20" fill="#14243A"/>
-          <rect x="127" y="161" width="246" height="150" rx="9" fill="#F5F8FB"/>
-          <rect x="140" y="176" width="126" height="10" rx="5" fill="#C9DBEF"/>
-          <rect x="140" y="194" width="84" height="10" rx="5" fill="#C9DBEF"/>
-          <circle cx="250" cy="248" r="36" fill="#2E5F96"/>
-          <path d="M240 231v34l28-17z" fill="#fff"/>
-          <rect x="140" y="290" width="220" height="6" rx="3" fill="#DDE5EE"/>
-          <rect x="140" y="290" width="128" height="6" rx="3" fill="#F2C14E"/>
-          <path d="M88 326h324l-22 28H110z" fill="#3A4A5E"/>
-        </g>
-        <g class="bob2">
-          <circle cx="94" cy="128" r="50" fill="#fff"/>
-          <rect x="86" y="100" width="16" height="32" rx="8" fill="#F2C14E" stroke="#14243A" stroke-width="5"/>
-          <path d="M80 122a14 14 0 0 0 28 0M94 140v10M86 150h16" stroke="#14243A" stroke-width="5" fill="none" stroke-linecap="round"/>
-        </g>
-        <g class="bob3">
-          <circle cx="410" cy="128" r="54" fill="#fff"/>
-          <path d="M388 150v-16M402 150v-28M416 150v-20M430 150v-38" stroke="#14243A" stroke-width="7" stroke-linecap="round"/>
-          <circle cx="430" cy="104" r="6" fill="#E8F0F9"/>
-        </g>
-        <g class="bob3">
-          <circle cx="414" cy="392" r="42" fill="#F2C14E"/>
-          <path d="M398 380h32v24h-32zM398 380l16-11 16 11" fill="#fff" stroke="#14243A" stroke-width="4" stroke-linejoin="round"/>
-        </g>
-        <g class="bob2">
-          <rect x="40" y="356" width="140" height="72" rx="36" fill="#fff"/>
-          <circle cx="76" cy="392" r="19" fill="#2E5F96"/>
-          <path d="M68 392l6 6 11-12" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="104" y="380" width="56" height="8" rx="4" fill="#DDE5EE"/>
-          <rect x="104" y="396" width="38" height="8" rx="4" fill="#DDE5EE"/>
-        </g>
-        <circle cx="300" cy="74" r="11" fill="#E8F0F9"/>
-        <circle cx="206" cy="448" r="8" fill="#14243A"/>
-      </svg>
+      <svg viewBox="0 0 500 500" font-family="Noto Sans TC, Noto Sans CJK TC, sans-serif" xmlns:c2pa="http://c2pa.org/manifest"><metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTo0MDllMzE5Ni1lYWJkLTQyMGYtYWJjZS02ODY2NWMyODE3YzYAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaGxNQVkb4lHi3QhMd5s+Wa4AAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDo1YjliMGY4ZS02YWVlLTRjZDUtOWRhNC0zZGViNDhkMDc1N2FscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoJaDOJLqFEnU+NKL8VkuhDAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggFZGi4LKzxg3yOt/nc27o7MGD924TVZgud2/jhiCckwSkZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaNICkPJlQ5GbXFG1aQwJnNoAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRNAAAAAAAAAAAAAAAAAGRoYXNoWCAhdWQlWSkO/c9qpS8TcyYlS3XZEmCiC5C6R0dzu7zds2RuYW1lbmp1bWJmIG1hbmlmZXN0amV4Y2x1c2lvbnOBomVzdGFydBiTZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjQwOWUzMTk2LWVhYmQtNDIwZi1hYmNlLTY4NjY1YzI4MTdjNi9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjM3OGFhM2Y4LWY0NzYtNDRiNi05YzZkLTVmZjQwODMyMTIwM3JjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAVkaLgsrPGDfI63+dzbujswYP3bhNVmC53b+OGIJyTBKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggZPQG8GPFTnQSkTMHbv9ONxu/woHO7wJ/bAsp2mSYRcWiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggMv1ZijDFHTbrnMcMba4d8ZfkB4AJri4QQy4fQxNMPvt0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQIejNEqiMPjLEykZvxPmerop4U7UJdMUWRCHR/Vr3sHamBGcmEO1rgzsbzAVTJiT+j9YJ4Zs3sDqzC4XePHU67g=</c2pa:manifest></metadata>
+  <defs>
+    <filter id="shA" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#14243A" flood-opacity=".22"/></filter>
+    <filter id="shA2" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#14243A" flood-opacity=".18"/></filter>
+    <linearGradient id="cvG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#24426B"/><stop offset="1" stop-color="#14243A"/></linearGradient>
+    <clipPath id="cvC"><rect x="138" y="86" width="224" height="140" rx="16"/></clipPath>
+    <pattern id="dotP" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#fff" opacity=".18"/></pattern>
+  </defs>
+  <path d="M250 28c118 0 214 80 222 196 8 118-74 236-206 248C132 484 36 400 28 278 20 150 124 28 250 28z" fill="#fff" opacity=".2"/>
+  <circle cx="250" cy="250" r="150" fill="#fff" opacity=".14"/>
+
+  <g class="bob">
+    <rect x="122" y="70" width="256" height="352" rx="26" fill="#fff" filter="url(#shA)"/>
+    <g clip-path="url(#cvC)">
+      <rect x="138" y="86" width="224" height="140" fill="url(#cvG)"/>
+      <rect x="138" y="86" width="224" height="140" fill="url(#dotP)"/>
+      <circle cx="350" cy="96" r="70" fill="#2E5F96"/>
+      <circle cx="350" cy="96" r="70" fill="none" stroke="#7FAEE0" stroke-width="2" opacity=".6"/>
+      <path d="M138 226c40-30 90-26 130-6s70 18 94 4v8H138z" fill="#F2C14E" opacity=".9"/>
+    </g>
+    <rect x="154" y="102" width="70" height="22" rx="11" fill="#F2C14E"/>
+    <text x="189" y="118" text-anchor="middle" font-size="11.5" font-weight="900" fill="#14243A">AI 應用</text>
+    <text x="154" y="160" font-size="21" font-weight="900" fill="#fff">你的專業課程</text>
+    <text x="154" y="184" font-size="12.5" font-weight="500" fill="#C7D3DE">從會做，到教得會</text>
+    <circle class="ring" cx="326" cy="176" r="20" fill="none" stroke="#fff" stroke-width="2.5"/>
+    <circle cx="326" cy="176" r="20" fill="#fff"/><path d="M320 166v20l16-10z" fill="#14243A"/>
+    <path d="M338 196l14 34 5-13 13-5z" fill="#14243A" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <circle cx="156" cy="256" r="16" fill="#E8F0F9"/><circle cx="156" cy="252" r="5.5" fill="#2E5F96"/><path d="M146 266a10 8 0 0 1 20 0" fill="#2E5F96"/>
+    <text x="180" y="253" font-size="14" font-weight="900" fill="#14243A">你的名字</text>
+    <text x="180" y="270" font-size="11.5" fill="#56677B">實務講師</text>
+    <rect x="300" y="244" width="62" height="24" rx="12" fill="#E8F0F9"/><text x="331" y="260" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2E5F96">3 章節</text>
+
+    <g font-size="12.5" font-weight="700" fill="#14243A">
+      <line x1="138" y1="290" x2="362" y2="290" stroke="#E6ECF2"/>
+      <circle cx="152" cy="312" r="9" fill="#14243A"/><path d="M148 312l3 3 5-6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="170" y="317">01　課程介紹</text><text x="362" y="317" text-anchor="end" font-weight="500" fill="#8FA0B3">04:32</text>
+      <circle cx="152" cy="346" r="9" fill="#14243A"/><path d="M148 346l3 3 5-6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <text x="170" y="351">02　實作示範</text><text x="362" y="351" text-anchor="end" font-weight="500" fill="#8FA0B3">12:08</text>
+      <rect x="134" y="364" width="232" height="40" rx="12" fill="#E8F0F9"/>
+      <circle cx="152" cy="384" r="9" fill="#2E5F96"/><path d="M149 379v10l8-5z" fill="#fff"/>
+      <text x="170" y="389" fill="#2E5F96">03　成果應用</text>
+      <g fill="#2E5F96"><rect class="eq1" x="336" y="377" width="4" height="14" rx="2"/><rect class="eq2" x="343" y="377" width="4" height="14" rx="2"/><rect class="eq3" x="350" y="377" width="4" height="14" rx="2"/></g>
+    </g>
+  </g>
+
+  <g class="bob3" filter="url(#shA2)">
+    <rect x="292" y="22" width="168" height="56" rx="18" fill="#fff"/>
+    <circle cx="320" cy="50" r="14" fill="#2E5F96"/><path d="M314 50l4 4 8-9" stroke="#fff" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="342" y="47" font-size="14" font-weight="900" fill="#14243A">課程已上架</text>
+    <text x="342" y="64" font-size="11" fill="#8FA0B3">平台協助完成</text>
+  </g>
+
+  <g class="bob2" filter="url(#shA2)">
+    <rect x="22" y="398" width="168" height="70" rx="20" fill="#14243A"/>
+    
+    <circle cx="48" cy="422" r="13" fill="#F2C14E"/><text x="48" y="426.5" text-anchor="middle" font-size="10" font-weight="900" fill="#14243A">PM</text>
+    <text x="70" y="427" font-size="12.5" font-weight="800" fill="#fff">專屬 PM 回覆</text>
+    <text x="38" y="452" font-size="12" fill="#C7D3DE">第 2 章順序很清楚！</text>
+  </g>
+
+  <g class="bob3" filter="url(#shA2)">
+    <rect x="370" y="330" width="108" height="112" rx="22" fill="#fff"/>
+    <circle cx="424" cy="378" r="26" fill="none" stroke="#E8F0F9" stroke-width="8"/>
+    <circle class="prog-ring" cx="424" cy="378" r="26" fill="none" stroke="#F2C14E" stroke-width="8" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="40.8" transform="rotate(-90 424 378)"/>
+    <text x="424" y="384" text-anchor="middle" font-size="15" font-weight="900" fill="#14243A">75%</text>
+    <text x="424" y="426" text-anchor="middle" font-size="11.5" font-weight="700" fill="#56677B">學員完成度</text>
+  </g>
+
+  <path d="M76 120l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#fff"/>
+  <path d="M452 140l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#F2C14E"/>
+  <circle cx="92" cy="380" r="7" fill="#fff" opacity=".8"/><circle cx="60" cy="330" r="4" fill="#fff"/>
+</svg>
     </div>
   </div>
 </header>
@@ -465,6 +585,18 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
     <div class="fact"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><div><small>協作窗口</small><b>專屬 PM</b></div></div>
     <div class="fact"><span class="ic"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>時間安排</small><b>可與本業兼任</b></div></div>
   </div>
+
+  <!-- 關於 Schooler（精簡版） -->
+  <section id="about" class="about-mini rv">
+    <div>
+      <span class="eyebrow">About Schooler</span>
+      <p class="quote">從「不知道怎麼開始」，一路走到「我真的做得出來」。</p>
+    </div>
+    <div>
+      <p>Schooler（原菜鳥救星）是以初學者友善、實作導向、學完能應用為核心的線上學習平台，提供直播、影音與訂閱制課程，涵蓋 AI 應用、語言、設計、程式與生活等領域。</p>
+      <a class="tl" href="https://live.rookiesavior.net/" target="_blank" rel="noopener">前往 Schooler 網站 <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+  </section>
 
   <!-- 02 合作方式 -->
   <section id="how">
@@ -483,7 +615,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
       <div class="card ours rv">
         <span class="who">Schooler 負責</span><h3>從學員視角協作，完成製作與推廣</h3>
         <ul class="chk">
-          <li>專屬 PM 從學員與受眾角度，一起檢視課程
+          <li>專屬 PM 從學員角度，一起檢視課程
             <div class="tags"><span>課程定位</span><span>內容順序</span><span>成果感</span><span>銷售呈現</span></div></li>
           <li>提供錄製規格、試錄檢查與執行協助</li>
           <li>依你的剪輯標註完成後製、封面、課程頁與上架</li>
@@ -492,18 +624,13 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
         </ul>
       </div>
     </div>
-    <div class="gain rv">
+    <div class="gain solo rv">
       <div>
         <span class="k">WHAT YOU GET</span>
         <h3>合作，同時也在累積你的專業資產</h3>
         <p>可長期使用的數位內容、更完整的專業形象，以及延伸合作的可能性。</p>
         <a class="tl" href="https://live.rookiesavior.net/" target="_blank" rel="noopener">查看平台現有課程 <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
-      <ul>
-        <li><b>課程介紹頁</b><span>整理課程重點、適合對象與學習成果。</span></li>
-        <li><b>章節與教材</b><span>依學習順序整理影片、章節與教材。</span></li>
-        <li><b>實作成果</b><span>讓學員完成可展示或實際運用的成果。</span></li>
-      </ul>
     </div>
   </section>
 </div>
@@ -512,24 +639,13 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   <div class="wrap">
     <!-- 03 課程方向 -->
     <section id="map">
-      <div class="hd c rv"><span class="eyebrow"><b>02</b> Course Map</span><h2>AI 時代三層職場力，<br>LV.2、LV.3 是我們的重點</h2><p>點選任一層，看看平台目前的課程佈局，以及我們正在找的老師。</p></div>
-      <div class="cake" id="cake">
-        <div class="card">
-          <span class="k">三層職場力</span>
-          <div class="stack" role="group" aria-label="三層職場力">
-            <button class="ly l3" type="button" data-l="3" aria-pressed="false"><span class="lv">LV.3</span><span><span class="t">駕馭 AI 的能力</span><span class="ds">指揮多個 AI 跨工具協作</span></span><span class="hot">優先</span></button>
-            <button class="ly l2" type="button" data-l="2" aria-pressed="false"><span class="lv">LV.2</span><span><span class="t">使用 AI 工具的能力</span><span class="ds">單一任務、單一工具的 AI 應用</span></span><span class="hot">優先</span></button>
-            <button class="ly l1" type="button" data-l="1" aria-pressed="false"><span class="lv">LV.1</span><span><span class="t">工作技能</span><span class="ds">崗位核心執行力，AI 出現前就存在</span></span></button>
-          </div>
-          <div class="prio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>目前優先規劃 LV.2、LV.3 課程</b><span>有 AI 工具應用或 AI 工作流實戰經驗，歡迎優先聯繫 PM</span></div></div>
-        </div>
-        <div class="card panel" aria-live="polite"><div class="fade" id="panelBody"></div></div>
-      </div>
+      <div class="hd c rv"><span class="eyebrow"><b>02</b> Course Map</span><h2>AI 時代三層職場力，<br>LV.2、LV.3 是我們的重點</h2><p>從工作技能到駕馭 AI，一次看懂平台的課程佈局，以及我們正在找的老師。</p></div>
+      <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>目前優先規劃 LV.2、LV.3 課程</b><span>有 AI 工具應用或 AI 工作流實戰經驗，歡迎優先聯繫 PM</span></div><a class="btn btn-d" href="#contact">聯繫 PM <span class="ar"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
     </section>
 
     <!-- 04 適合講師 -->
     <section id="fit">
-      <div class="hd s rv"><div><span class="eyebrow"><b>03</b> Who We're Looking For</span><h2>我們正在找這樣的老師</h2></div><p>不一定要有授課經驗，第一次當線上講師也可以。只要有扎實的實務經驗，並願意把方法整理成學員能跟著完成的內容。</p></div>
+      <div class="hd s rv"><div><span class="eyebrow"><b>03</b> Who We're Looking For</span><h2>這樣的你，<br>適合成為 Schooler 講師</h2></div><p>不一定要有授課經驗，第一次當線上講師也可以。只要有扎實的實務經驗，並願意把方法整理成學員能跟著完成的內容。</p></div>
       <div class="fit">
         <div class="card rv"><span class="n">01</span><h3>有真實的實務經驗</h3><p>能分享工作流程、專案做法、問題判斷或實際應用情境。</p></div>
         <div class="card rv"><span class="n">02</span><h3>願意拆成清楚步驟</h3><p>把熟悉的專業，整理成學員能理解、能操作的教學順序。</p></div>
@@ -540,31 +656,11 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   </div>
 </div>
 
-<div class="wrap">
-  <!-- 05 平台與學員 -->
-  <section id="about">
-    <div class="about">
-      <div class="txt rv">
-        <span class="eyebrow"><b>04</b> About Schooler</span>
-        <p class="quote">從「不知道怎麼開始」，<br>一路走到「我真的做得出來」。</p>
-        <p>Schooler（原菜鳥救星）是以初學者友善、實作導向、學完能應用為核心的線上學習平台，提供直播、影音與訂閱制課程，涵蓋 AI 應用、語言、設計、程式與生活等領域。</p>
-        <p>我們把看似複雜的技能與工具，轉化成一般人也能跟著操作的課程：從真實工作情境出發，帶學員一步步完成作品、工具或可實際運用的成果。</p>
-        <a class="tl" href="https://live.rookiesavior.net/" target="_blank" rel="noopener">前往 Schooler 網站 <svg class="i" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-      <ul class="pillars rv">
-        <li><span class="n">01</span><div><small>初學者友善</small><b>從看得懂開始</b></div></li>
-        <li><span class="n">02</span><div><small>實作導向</small><b>跟著步驟完成</b></div></li>
-        <li><span class="n">03</span><div><small>成果應用</small><b>真正帶回工作</b></div></li>
-      </ul>
-    </div>
-  </section>
-</div>
-
 <div class="band">
   <div class="wrap">
     <!-- 06 合作條件 -->
     <section id="terms">
-      <div class="hd s rv"><div><span class="eyebrow"><b>05</b> Terms</span><h2>兩種課程形式，<br>合作條件一次看懂</h2></div><p>錄播與直播都重視實作與成果，差別在學員程度、互動方式與報酬組合。</p></div>
+      <div class="hd s rv"><div><span class="eyebrow"><b>04</b> Formats &amp; Pay</span><h2>兩種課程形式，<br>合作條件一次看懂</h2></div><p>錄播與直播都重視實作與成果，差別在學員程度、互動方式與報酬組合。</p></div>
       <div class="plans">
         <article class="plan rec rv">
           <header class="ph">
@@ -578,7 +674,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
           </div>
           <div class="row"><small>核心定位</small><p>帶初學者從<em>「不會」到「會」</em>，透過清楚的步驟示範與重複觀看，逐步完成學習。</p></div>
           <div class="row"><small>學習成果</small><p>教得懂、學得會：學員依自己的進度，完成基礎操作與實作成果。</p></div>
-          <div class="row last"><small>適合學員</small><div class="chips"><span>初學者</span><span>依進度學習</span></div></div>
+          <div class="row last"><small>適合學員</small><div class="chips"><span>初學者</span><span>想自己安排進度</span></div></div>
         </article>
         <article class="plan live rv">
           <header class="ph">
@@ -588,7 +684,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
           <div class="pay2">
             <small>報酬方式</small>
             <b>鐘點費</b>
-            <p>依直播主題、時數與個別方案確認。</p>
+            <p>依直播主題、時數與個別方案確認鐘點費。</p>
           </div>
           <div class="row"><small>核心定位</small><p>帶已有基礎的學員，從<em>「會操作」走向「進階應用」</em>。</p></div>
           <div class="row"><small>學習成果</small><p>學得深、做得出成果：透過即時示範、互動與回饋，完成實際專題。</p></div>
@@ -612,13 +708,35 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
         <div class="card rv" id="marks">
           <span class="k">EDITING NOTES</span>
           <h3>要刪除的片段，請先標註</h3>
-          <p>在課程總表寫下以下三項，例如口誤、操作失敗、重複錄製或等待畫面。平台依標註剪輯；未標註的部分原則上依原始內容上架。</p>
+          <p>遇到口誤、操作失敗、重複錄製或等待畫面等要刪除的片段，請在課程總表寫下以下三項。平台依標註剪輯；未標註的部分原則上依原始內容上架。</p>
           <ol class="marks"><li>影片或單元名稱</li><li>刪除起訖時間</li><li>刪除原因說明</li></ol>
         </div>
       </div>
     </section>
   </div>
 </div>
+
+<!-- 08 合作流程：最後一步直接接聯絡 -->
+<section id="flow" class="flow">
+  <div class="flow-bg" id="flowBg">
+    <div class="flow-track" id="flowTrack">
+      <div class="flow-stick">
+        <div class="wrap">
+          <div class="hd c"><span class="eyebrow"><b>05</b> Flow</span><h2>從一個課程想法，到正式上架或開課</h2></div>
+          <ol class="stepper" id="stepper"></ol>
+          <div class="fbox">
+            <button class="farr p" type="button" id="fPrev" aria-label="上一步"><svg class="i" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+            <div class="fart"><div class="circ"><span class="fnum" id="fNum">01</span><span id="fIco"></span></div></div>
+            <div class="ftxt" id="fTxt"></div>
+            <button class="farr n" type="button" id="fNext" aria-label="下一步"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          </div>
+          <div class="scrollhint" aria-hidden="true">SCROLL<svg class="i" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
+          <ol class="flist" id="flist"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="wrap">
   <!-- 07 FAQ -->
@@ -650,28 +768,6 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   </section>
 </div>
 
-<!-- 08 合作流程：最後一步直接接聯絡 -->
-<section id="flow" class="flow">
-  <div class="flow-bg" id="flowBg">
-    <div class="flow-track" id="flowTrack">
-      <div class="flow-stick">
-        <div class="wrap">
-          <div class="hd c"><span class="eyebrow"><b>07</b> Flow</span><h2>從一個課程想法，到正式上架或開課</h2></div>
-          <ol class="stepper" id="stepper"></ol>
-          <div class="fbox">
-            <button class="farr p" type="button" id="fPrev" aria-label="上一步"><svg class="i" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-            <div class="fart"><div class="circ"><span class="fnum" id="fNum">01</span><span id="fIco"></span></div></div>
-            <div class="ftxt" id="fTxt"></div>
-            <button class="farr n" type="button" id="fNext" aria-label="下一步"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          </div>
-          <div class="scrollhint" aria-hidden="true">SCROLL<svg class="i" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-          <ol class="flist" id="flist"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- 09 聯繫 -->
 <section id="contact" class="contact">
   <span class="hdot" style="width:120px;height:120px;left:-36px;top:48px;background:var(--sun)" aria-hidden="true"></span>
@@ -681,6 +777,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
       <div class="join">Join us!</div>
       <h2>有一個課程想法，<br>就可以先聊聊</h2>
       <p>不需要先準備完整企劃書。分享想教的方向、受眾與成果，我們會一起判斷是否適合進一步合作。</p>
+      <ul class="prep-mail"><li>想教的主題</li><li>適合對象</li><li>你的相關經歷</li></ul>
     </div>
     <div class="pmcard rv">
       <span class="small">聯絡窗口｜數位事業群－線上產品處</span>
@@ -796,6 +893,46 @@ document.querySelectorAll('.rv').forEach(el=>{const sib=[...el.parentNode.childr
   if(!reduce&&matchMedia('(pointer:fine)').matches){const dots=[...document.querySelectorAll('.hero .hdot')],hero=document.querySelector('.hero');
     hero.addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;dots.forEach((d,i)=>{const k=(i+1)*14;d.style.transform='translate('+(x*k)+'px,'+(y*k)+'px)'})})}
 })();
+
+// ===== 課程方向 2-3 =====
+const D={
+ 3:{k:'LV.3',p:'優先規劃',t:'駕馭 AI 的能力',sh:'指揮多個 AI 跨工具協作',s:'跨工具、跨流程設計 AI workflow，指揮多個 AI 協作，並判斷、修正產出品質。這是最稀缺、也是 Schooler 重點發展的方向。',
+    c:['n8n 打造你的 AI 工作流','10 堂課建構個人 AI Agent','指揮 AI 團隊','Claude Agent 實戰入門','Manus AI 自主代理人實戰'],w:'能示範完整 AI 工作流、Agent 設計或多工具整合的實戰派老師。'},
+ 2:{k:'LV.2',p:'優先規劃',t:'使用 AI 工具的能力',sh:'單一任務、單一工具的 AI 應用',s:'針對單一任務、單一工具的 AI 操作與應用，讓學員馬上把 AI 用進工作。',
+    c:['辦公室必學的 AI 工作術','Gamma AI 簡報應用','Notion AI 全方位實戰','Canva 短影音 AI 設計','Krea AI 創作全攻略'],w:'熟悉新 AI 工具，能帶學員一步步做出成果的應用型老師。'},
+ 1:{k:'LV.1',p:'穩定經營',t:'工作技能',sh:'崗位核心執行力，AI 出現前就存在',s:'崗位本身要求的核心執行力，AI 出現前就存在，也是一切 AI 應用的地基。',
+    c:['Excel 高效工作術','Microsoft 365','APCS 考照','漫畫角色設計基礎入門'],w:'有扎實本業技能，並能結合 AI 提升效率的老師。'}};
+const IC={search:'<svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
+ arrow:'<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+ play:'<svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg>',
+ star:'<svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>'};
+
+const ART={
+1:'<svg viewBox="0 0 360 170" preserveAspectRatio="xMidYMid slice"><circle cx="330" cy="10" r="90" fill="#fff" opacity=".45"/><circle cx="20" cy="170" r="50" fill="#fff" opacity=".4"/>'+
+ '<g transform="translate(96 52)"><rect width="150" height="104" rx="14" fill="#fff" filter="url(#ds)"/><rect x="12" y="12" width="60" height="8" rx="4" fill="#14243A"/>'+
+ '<g stroke="#E8F0F9" stroke-width="1.5"><path d="M12 32h126M12 48h126M12 64h126M12 80h126M50 32v58M88 32v58"/></g>'+
+ '<g fill="#2E5F96"><rect class="bar" x="100" y="58" width="9" height="30" rx="2"/><rect class="bar" x="113" y="48" width="9" height="40" rx="2" fill="#7FAEE0"/><rect class="bar" x="126" y="40" width="9" height="48" rx="2" fill="#F2C14E"/></g>'+
+ '<rect x="16" y="37" width="28" height="6" rx="3" fill="#C9DBEF"/><rect x="16" y="53" width="22" height="6" rx="3" fill="#C9DBEF"/><rect x="16" y="69" width="26" height="6" rx="3" fill="#C9DBEF"/></g>'+
+ '<g transform="translate(222 116)"><rect width="46" height="46" rx="14" fill="#14243A" filter="url(#ds)"/><path d="M14 20h18v14H14zM19 20v-3a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v3M14 26h18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/></g></svg>',
+2:'<svg viewBox="0 0 360 205" preserveAspectRatio="xMidYMid slice"><circle cx="320" cy="20" r="100" fill="#fff" opacity=".35"/><circle cx="30" cy="190" r="60" fill="#fff" opacity=".3"/>'+
+ '<g transform="translate(84 56)"><rect width="220" height="132" rx="16" fill="#fff" filter="url(#ds)"/><circle cx="16" cy="15" r="4" fill="#F2A08A"/><circle cx="28" cy="15" r="4" fill="#F2C14E"/><circle cx="40" cy="15" r="4" fill="#9CCB8F"/>'+
+ '<rect x="14" y="32" width="192" height="30" rx="15" fill="#F1F5F9"/><path d="M30 41l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#2E5F96"/><text x="44" y="51.5" font-size="11.5" font-weight="700" fill="#14243A" font-family="Noto Sans TC, sans-serif">幫我把會議記錄整理成重點</text><rect class="typing" x="188" y="41" width="2" height="13" fill="#2E5F96"/>'+
+ '<rect x="14" y="74" width="120" height="8" rx="4" fill="#14243A"/><rect x="14" y="90" width="176" height="7" rx="3.5" fill="#C9DBEF"/><rect x="14" y="104" width="150" height="7" rx="3.5" fill="#C9DBEF"/><rect x="14" y="118" width="90" height="7" rx="3.5" fill="#C9DBEF"/></g>'+
+ '<g transform="translate(52 120)"><circle class="pulse" cx="22" cy="22" r="22" fill="#F2C14E"/><circle cx="22" cy="22" r="22" fill="#F2C14E"/><path d="M22 10l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#14243A"/></g></svg>',
+3:'<svg viewBox="0 0 360 250" preserveAspectRatio="xMidYMid slice"><circle cx="330" cy="0" r="120" fill="#7FAEE0" opacity=".12"/><circle cx="0" cy="240" r="40" fill="#F2C14E"/>'+
+ '<g stroke="#7FAEE0" stroke-width="2" fill="none" class="flow"><path d="M180 142L92 92"/><path d="M180 142L268 92"/><path d="M180 142L92 196"/><path d="M180 142L268 196"/></g>'+
+ '<g transform="translate(72 72)"><rect width="40" height="40" rx="12" fill="#fff"/><path d="M13 12h10l5 5v12H13z" fill="none" stroke="#14243A" stroke-width="2.2" stroke-linejoin="round"/></g>'+
+ '<g transform="translate(248 72)"><rect width="40" height="40" rx="12" fill="#fff"/><path d="M11 14h18v11h-9l-5 4v-4h-4z" fill="none" stroke="#14243A" stroke-width="2.2" stroke-linejoin="round"/></g>'+
+ '<g transform="translate(72 176)"><rect width="40" height="40" rx="12" fill="#fff"/><path d="M12 28V18M20 28V12M28 28v-7" stroke="#2E5F96" stroke-width="3" stroke-linecap="round"/></g>'+
+ '<g transform="translate(248 176)"><rect width="40" height="40" rx="12" fill="#fff"/><rect x="10" y="13" width="20" height="15" rx="2" fill="none" stroke="#14243A" stroke-width="2.2"/><path d="M10 15l10 7 10-7" fill="none" stroke="#14243A" stroke-width="2.2"/></g>'+
+ '<circle class="pulse" cx="180" cy="142" r="34" fill="#F2C14E"/><g class="hub"><circle cx="180" cy="142" r="34" fill="#F2C14E"/><circle cx="180" cy="132" r="5" fill="none" stroke="#14243A" stroke-width="3"/><circle cx="170" cy="150" r="5" fill="none" stroke="#14243A" stroke-width="3"/><circle cx="190" cy="150" r="5" fill="none" stroke="#14243A" stroke-width="3"/><path d="M180 137v5l-7 4M180 142l7 4" stroke="#14243A" stroke-width="3" stroke-linecap="round"/></g></svg>'};
+(()=>{const defs='<svg width="0" height="0" style="position:absolute"><defs><filter id="ds" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#14243A" flood-opacity=".18"/></filter></defs></svg>';
+ const box=document.getElementById('pd');
+ box.innerHTML=defs+[1,2,3].map(l=>{const d=D[l],n=d.c.length;
+  return '<article class="pd-c" data-l="'+l+'"><div class="pd-art"><div class="pd-hd"><span class="pd-lv">'+d.k+'</span><span class="pd-mt" title="AI 應用深度">'+[1,2,3].map(i=>'<i class="'+(i<=l?'on':'')+'"></i>').join('')+'</span>'+(l==3?'<span class="pd-hot">最稀缺</span>':'')+'<span class="pd-pb'+(l==1?' calm':'')+'">'+d.p+'</span></div>'+ART[l]+'</div>'+
+  '<div class="pd-body"><h3>'+d.t+'<small>'+n+' 門課</small></h3><p class="sh">'+d.sh+'</p><div class="pd-tags">'+d.c.map((x,i)=>'<span class="'+(i>=3?'x':'')+'">'+x+'</span>').join('')+(n>3?'<button type="button" class="pd-more" aria-expanded="false">+'+(n-3)+' 門課</button>':'')+'</div></div>'+
+  '<div class="pd-foot"><div class="pd-want">'+IC.search+'<div><small>我們正在找</small><p>'+d.w+'</p></div></div><a class="pd-cta" href="#contact">我符合，聯繫 PM '+IC.arrow+'</a></div></article>'}).join('');
+ box.querySelectorAll('.pd-more').forEach(b=>b.addEventListener('click',()=>{const c=b.closest('.pd-c'),o=c.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'收合':'+'+c.querySelectorAll('.pd-tags .x').length+' 門課';}));})();
 </script>
 </body>
 </html>
