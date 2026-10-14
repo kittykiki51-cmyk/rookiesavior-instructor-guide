@@ -380,7 +380,7 @@ footer{text-align:center;font-size:14px;color:var(--muted);padding:56px 0 48px}
 .pd-c[data-l="3"] .pd-lv{color:var(--sun)}
 .pd-mt{display:flex;gap:3px}.pd-mt i{width:14px;height:5px;border-radius:3px;background:rgba(46,95,150,.2)}.pd-mt i.on{background:var(--sky-d)}
 .pd-c[data-l="3"] .pd-mt i{background:rgba(255,255,255,.18)}.pd-c[data-l="3"] .pd-mt i.on{background:var(--sun)}
-.pd-pb{margin-left:auto;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;background:var(--sun);color:var(--ink)}.pd-pb.calm{background:#fff;color:var(--muted)}
+.pd-pb{margin-left:auto;font-size:12.5px;font-weight:700;padding:5px 12px;border-radius:999px;background:var(--sun);color:var(--ink)}.pd-pb.calm{background:#fff;color:var(--sky-d)}
 .pd-hot{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;color:var(--ink);background:#fff;padding:5px 12px 5px 10px;border-radius:999px}
 .pd-hot:before{content:"";width:7px;height:7px;border-radius:50%;background:#E5484D;box-shadow:0 0 0 3px rgba(229,72,77,.2)}
 .pd-body{padding:24px 26px 0;display:flex;flex-direction:column;flex:1}
@@ -677,7 +677,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
     <!-- 03 課程方向 -->
     <section id="map">
       <div class="hd c rv"><span class="eyebrow"><b>02</b> Course Map</span><h2>AI 時代三層職場力，<br>LV.2、LV.3 是我們的重點</h2><p>從工作技能到駕馭 AI，一次看懂平台的課程佈局，以及我們正在找的老師。</p></div>
-      <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>目前優先規劃 LV.2、LV.3 課程</b><span>有 AI 工具應用或 AI 工作流實戰經驗，歡迎優先聯繫 PM</span></div></div>
+      <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>不確定自己屬於哪一層？</b><span>直接告訴 PM 你的專長與經歷，我們會幫你判斷適合的課程方向。</span></div></div>
     </section>
 
     <!-- 04 適合講師 -->
@@ -941,7 +941,7 @@ const D={
     c:['n8n 打造你的 AI 工作流','10 堂課建構個人 AI Agent','指揮 AI 團隊','Claude Agent 實戰入門','Manus AI 自主代理人實戰'],w:'能示範完整 AI 工作流、Agent 設計或多工具整合的實戰派老師。'},
  2:{k:'LV.2',p:'優先規劃',t:'使用 AI 工具的能力',sh:'單一任務、單一工具的 AI 應用',s:'針對單一任務、單一工具的 AI 操作與應用，讓學員馬上把 AI 用進工作。',
     c:['辦公室必學的 AI 工作術','Gamma AI 簡報應用','Notion AI 全方位實戰','Canva 短影音 AI 設計','Krea AI 創作全攻略'],w:'熟悉新 AI 工具，能帶學員一步步做出成果的應用型老師。'},
- 1:{k:'LV.1',p:'穩定經營',t:'工作技能',sh:'崗位核心執行力，AI 出現前就存在',s:'崗位本身要求的核心執行力，AI 出現前就存在，也是一切 AI 應用的地基。',
+ 1:{k:'LV.1',p:'歡迎結合 AI',t:'工作技能',sh:'崗位核心執行力，AI 出現前就存在',s:'崗位本身要求的核心執行力，AI 出現前就存在，也是一切 AI 應用的地基。',
     c:['Excel 高效工作術','Microsoft 365','APCS 考照','漫畫角色設計基礎入門'],w:'有扎實本業技能，並能結合 AI 提升效率的老師。'}};
 const IC={search:'<svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
  arrow:'<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
@@ -971,7 +971,7 @@ const ART={
  const box=document.getElementById('pd');
  box.innerHTML=defs+[1,2,3].map(l=>{const d=D[l],n=d.c.length;
   return '<article class="pd-c" data-l="'+l+'"><div class="pd-art"><div class="pd-hd"><span class="pd-lv">'+d.k+'</span><span class="pd-mt" title="AI 應用深度">'+[1,2,3].map(i=>'<i class="'+(i<=l?'on':'')+'"></i>').join('')+'</span>'+(l==3?'<span class="pd-hot">最稀缺</span>':'')+'<span class="pd-pb'+(l==1?' calm':'')+'">'+d.p+'</span></div>'+ART[l]+'</div>'+
-  '<div class="pd-body"><h3>'+d.t+'<small>'+n+' 門課</small></h3><p class="sh">'+d.sh+'</p><div class="pd-tags">'+d.c.map((x,i)=>chip(x,i>=3?'x':'')).join('')+(n>3?'<button type="button" class="pd-more" aria-expanded="false">+'+(n-3)+' 門課</button>':'')+'</div></div>'+
+  '<div class="pd-body"><h3>'+d.t+'</h3><p class="sh">'+d.sh+'</p><div class="pd-tags">'+d.c.map((x,i)=>chip(x,i>=3?'x':'')).join('')+(n>3?'<button type="button" class="pd-more" aria-expanded="false">+'+(n-3)+' 門課</button>':'')+'</div></div>'+
   '<div class="pd-foot"><div class="pd-want">'+IC.search+'<div><small>我們正在找</small><p>'+d.w+'</p></div></div></div></article>'}).join('');
  box.querySelectorAll('.pd-more').forEach(b=>b.addEventListener('click',()=>{const c=b.closest('.pd-c'),o=c.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'收合':'+'+c.querySelectorAll('.pd-tags .x').length+' 門課';}));})();
 </script>
