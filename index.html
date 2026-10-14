@@ -427,7 +427,8 @@ footer{text-align:center;font-size:14px;color:var(--muted);padding:56px 0 48px}
 @media(max-width:640px){.hiring{display:flex;font-size:14px;align-items:flex-start;border-radius:18px}.hiring b{display:block;margin:0}.hiring i{margin-top:6px}.hiring svg.i{margin-left:auto;align-self:center}}
 /* 課程連結 */
 .pd-tags a{font-size:13px;font-weight:500;padding:6px 12px;border-radius:999px;background:var(--bg2);color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:background .2s,color .2s}
-.pd-tags a:after{content:"↗";font-size:11px;opacity:.45;transition:opacity .2s,transform .2s}
+.pd-tags a{border:1px solid var(--line);background:#fff}
+.pd-tags a:after{content:"↗";font-size:11px;opacity:.7;transition:opacity .2s,transform .2s}
 .pd-tags a:hover{background:var(--ink);color:#fff}.pd-tags a:hover:after{opacity:1;transform:translate(1px,-1px)}
 .pd-tags .x{display:none!important}.pd-c.open .pd-tags .x{display:inline-flex!important;animation:swap .35s both}
 /* ===== 動態效果加強 ===== */
@@ -676,7 +677,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
     <!-- 03 課程方向 -->
     <section id="map">
       <div class="hd c rv"><span class="eyebrow"><b>02</b> Course Map</span><h2>AI 時代三層職場力，<br>LV.2、LV.3 是我們的重點</h2><p>從工作技能到駕馭 AI，一次看懂平台的課程佈局，以及我們正在找的老師。</p></div>
-      <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>目前優先規劃 LV.2、LV.3 課程</b><span>有 AI 工具應用或 AI 工作流實戰經驗，歡迎優先聯繫 PM</span></div><a class="btn btn-d" href="#contact">聯繫 PM <span class="ar"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+      <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>目前優先規劃 LV.2、LV.3 課程</b><span>有 AI 工具應用或 AI 工作流實戰經驗，歡迎優先聯繫 PM</span></div></div>
     </section>
 
     <!-- 04 適合講師 -->
@@ -777,7 +778,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
 <div class="wrap">
   <!-- 07 FAQ -->
   <section id="faq">
-    <div class="hd c rv"><span class="eyebrow"><b>06</b> FAQ</span><h2>常見問題</h2><p>找不到答案，也歡迎<a href="#contact">直接問 PM</a>。</p></div>
+    <div class="hd c rv"><span class="eyebrow"><b>06</b> FAQ</span><h2>常見問題</h2><p>找不到答案，也歡迎直接問 PM。</p></div>
     <div class="faq rv">
       <details open><summary>還沒有完整課綱，可以先聯絡嗎？</summary>
         <div class="ans"><p>可以。先提供課程主題、適合對象與預期成果，就能進行初步討論；正式合作時，再由老師規劃完整課綱。</p></div></details>
@@ -825,7 +826,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   </div>
 </section>
 <footer>講師合作介紹｜數位事業群－線上產品處<br>© 2026 Schooler</footer>
-<a class="float" id="float" href="#contact"><i></i>有課程想法，聯繫 PM</a>
+
 
 <script>
 // 導覽列標示
@@ -835,7 +836,7 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const 
 document.querySelectorAll('section[id]').forEach(s=>io.observe(s));
 
 // 首屏與聯絡區可見時隱藏浮動按鈕，避免同一個行動重複出現
-(()=>{const f=document.getElementById('float');const vis=new Set();
+(()=>{const f=document.getElementById('float');if(!f)return;const vis=new Set();
   const o=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target));f.classList.toggle('hide',vis.size>0)});
   o.observe(document.getElementById('top'));o.observe(document.getElementById('contact'));})();
 
@@ -971,7 +972,7 @@ const ART={
  box.innerHTML=defs+[1,2,3].map(l=>{const d=D[l],n=d.c.length;
   return '<article class="pd-c" data-l="'+l+'"><div class="pd-art"><div class="pd-hd"><span class="pd-lv">'+d.k+'</span><span class="pd-mt" title="AI 應用深度">'+[1,2,3].map(i=>'<i class="'+(i<=l?'on':'')+'"></i>').join('')+'</span>'+(l==3?'<span class="pd-hot">最稀缺</span>':'')+'<span class="pd-pb'+(l==1?' calm':'')+'">'+d.p+'</span></div>'+ART[l]+'</div>'+
   '<div class="pd-body"><h3>'+d.t+'<small>'+n+' 門課</small></h3><p class="sh">'+d.sh+'</p><div class="pd-tags">'+d.c.map((x,i)=>chip(x,i>=3?'x':'')).join('')+(n>3?'<button type="button" class="pd-more" aria-expanded="false">+'+(n-3)+' 門課</button>':'')+'</div></div>'+
-  '<div class="pd-foot"><div class="pd-want">'+IC.search+'<div><small>我們正在找</small><p>'+d.w+'</p></div></div><a class="pd-cta" href="#contact">我符合，聯繫 PM '+IC.arrow+'</a></div></article>'}).join('');
+  '<div class="pd-foot"><div class="pd-want">'+IC.search+'<div><small>我們正在找</small><p>'+d.w+'</p></div></div></div></article>'}).join('');
  box.querySelectorAll('.pd-more').forEach(b=>b.addEventListener('click',()=>{const c=b.closest('.pd-c'),o=c.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'收合':'+'+c.querySelectorAll('.pd-tags .x').length+' 門課';}));})();
 </script>
 </body>
