@@ -573,6 +573,8 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   .fact:nth-child(even){border-left:1px solid var(--line)}
   .fact:nth-child(n+3){border-top:1px solid var(--line)}
 }
+.pd-cl{display:block;margin-top:18px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.pd-cl+.pd-tags{margin-top:8px}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -743,8 +745,8 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   <div class="wrap">
     <!-- 03 課程方向 -->
     <section id="map">
-      <div class="hd c rv"><span class="eyebrow">課程方向</span><h2>AI 時代三層職場力，<br>現在最優先找 LV.2 講師</h2><p>從工作技能到駕馭 AI，一次看懂平台的課程佈局，以及我們正在找的老師。</p></div>
-      <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>不確定自己屬於哪一層？</b><span>直接告訴 PM 你的專長與經歷，我們會幫你判斷適合的課程方向。</span></div></div>
+      <div class="hd c rv"><span class="eyebrow">課程方向</span><h2>學員最想學的，<br>是明天上班就用得到的 AI</h2><p>從把工作做好，到讓 AI 替你做事，三類課程，以及我們正在找的老師。</p></div>
+      <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>先聊你會什麼，分類交給我們。</b><span>把專長和經歷告訴 PM，我們一起找出最適合的課程方向。</span></div></div>
     </section>
 
     <!-- 04 適合講師 -->
@@ -906,11 +908,11 @@ document.querySelectorAll('.rv').forEach(el=>{const sib=[...el.parentNode.childr
   const ic='<svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>';
   const D={
     3:{k:'LV.3 · 歡迎洽談',t:'駕馭 AI 的能力',s:'跨工具、跨流程設計 AI workflow，指揮多個 AI 協作，並判斷、修正產出品質。有相關實戰經驗，也歡迎和 PM 聊聊。',
-       c:['n8n 打造你的 AI 工作流','10 堂課建構個人 AI Agent','指揮 AI 團隊','Claude Agent 實戰入門','Manus AI 自主代理人實戰'],w:'能示範完整 AI 工作流、Agent 設計或多工具整合的實戰派老師。'},
+       c:['n8n 打造你的 AI 工作流','10 堂課建構個人 AI Agent','指揮 AI 團隊','Claude Agent 實戰入門','Manus AI 自主代理人實戰'],w:'真的在工作中跑過 AI 工作流或 Agent 的實戰派。'},
     2:{k:'LV.2 · 優先招募',t:'使用 AI 工具的能力',s:'針對單一任務、單一工具的 AI 操作與應用，讓學員馬上把 AI 用進工作。這是 Schooler 目前最優先招募的方向。',
-       c:['辦公室必學的 AI 工作術','Gamma AI 簡報應用','Notion AI 全方位實戰','Canva 短影音 AI 設計','Krea AI 創作全攻略'],w:'熟悉新 AI 工具，能帶學員一步步做出成果的應用型老師。'},
+       c:['辦公室必學的 AI 工作術','Gamma AI 簡報應用','Notion AI 全方位實戰','Canva 短影音 AI 設計','Krea AI 創作全攻略'],w:'跟得上新工具、能帶學員一步步做出成果的老師。'},
     1:{k:'LV.1 · 穩定經營',t:'工作技能',s:'崗位本身要求的核心執行力，AI 出現前就存在，也是一切 AI 應用的地基。',
-       c:['Excel 高效工作術','Microsoft 365','APCS 考照','漫畫角色設計基礎入門'],w:'有扎實本業技能，並能結合 AI 提升效率的老師。'}
+       c:['Excel 高效工作術','Microsoft 365','APCS 考照','漫畫角色設計基礎入門'],w:'本業扎實的老師，能順手帶入 AI 更好。'}
   };
   function pick(l){const d=D[l];
     btns.forEach(b=>{const on=b.dataset.l==l;b.classList.toggle('on',on);b.setAttribute('aria-pressed',on)});
@@ -974,12 +976,12 @@ const CU={'n8n 打造你的 AI 工作流':'/Course/n8n','10 堂課建構個人 A
 'Excel 高效工作術':'/Course/excel','Microsoft 365':'/courses/Synnex-Microsoft365','APCS 考照':'/courses/APCS','漫畫角色設計基礎入門':'/Course/comic-creation'};
 const chip=(x,cls)=>CU[x]?'<a class="'+cls+'" href="https://live.rookiesavior.net'+CU[x]+'" target="_blank" rel="noopener" title="在 Schooler 查看：'+x+'">'+x+'</a>':'<span class="'+cls+'">'+x+'</span>';
 const D={
- 3:{k:'LV.3',p:'歡迎洽談',t:'駕馭 AI 的能力',sh:'指揮多個 AI 跨工具協作',s:'跨工具、跨流程設計 AI workflow，指揮多個 AI 協作，並判斷、修正產出品質。有相關實戰經驗，也歡迎和 PM 聊聊。',
-    c:['n8n 打造你的 AI 工作流','10 堂課建構個人 AI Agent','指揮 AI 團隊','Claude Agent 實戰入門','Manus AI 自主代理人實戰'],w:'能示範完整 AI 工作流、Agent 設計或多工具整合的實戰派老師。'},
- 2:{k:'LV.2',p:'優先招募',t:'使用 AI 工具的能力',sh:'單一任務、單一工具的 AI 應用',s:'針對單一任務、單一工具的 AI 操作與應用，讓學員馬上把 AI 用進工作。這是 Schooler 目前最優先招募的方向。',
-    c:['辦公室必學的 AI 工作術','Gamma AI 簡報應用','Notion AI 全方位實戰','Canva 短影音 AI 設計','Krea AI 創作全攻略'],w:'熟悉新 AI 工具，能帶學員一步步做出成果的應用型老師。'},
- 1:{k:'LV.1',p:'歡迎結合 AI',t:'工作技能',sh:'崗位核心執行力，AI 出現前就存在',s:'崗位本身要求的核心執行力，AI 出現前就存在，也是一切 AI 應用的地基。',
-    c:['Excel 高效工作術','Microsoft 365','APCS 考照','漫畫角色設計基礎入門'],w:'有扎實本業技能，並能結合 AI 提升效率的老師。'}};
+ 3:{k:'LV.3',p:'歡迎洽談',t:'讓 AI 替你做事',sh:'串起多個 AI，把整套流程交出去',s:'跨工具、跨流程設計 AI workflow，指揮多個 AI 協作，並判斷、修正產出品質。有相關實戰經驗，也歡迎和 PM 聊聊。',
+    c:['n8n 打造你的 AI 工作流','10 堂課建構個人 AI Agent','指揮 AI 團隊','Claude Agent 實戰入門','Manus AI 自主代理人實戰'],w:'真的在工作中跑過 AI 工作流或 Agent 的實戰派。'},
+ 2:{k:'LV.2',p:'優先招募',t:'把 AI 用好',sh:'一個工具解決一件事，學完隔天就能用',s:'針對單一任務、單一工具的 AI 操作與應用，讓學員馬上把 AI 用進工作。這是 Schooler 目前最優先招募的方向。',
+    c:['辦公室必學的 AI 工作術','Gamma AI 簡報應用','Notion AI 全方位實戰','Canva 短影音 AI 設計','Krea AI 創作全攻略'],w:'跟得上新工具、能帶學員一步步做出成果的老師。'},
+ 1:{k:'LV.1',p:'歡迎合作',t:'把工作做好',sh:'AI 取代不了的本業基本功',s:'崗位本身要求的核心執行力，AI 出現前就存在，也是一切 AI 應用的地基。',
+    c:['Excel 高效工作術','Microsoft 365','APCS 考照','漫畫角色設計基礎入門'],w:'本業扎實的老師，能順手帶入 AI 更好。'}};
 const IC={search:'<svg class="i" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>',
  arrow:'<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
  play:'<svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg>',
@@ -1007,8 +1009,8 @@ const ART={
 (()=>{const defs='<svg width="0" height="0" style="position:absolute"><defs><filter id="ds" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#14243A" flood-opacity=".18"/></filter></defs></svg>';
  const box=document.getElementById('pd');
  box.innerHTML=defs+[1,2,3].map(l=>{const d=D[l],n=d.c.length;
-  return '<article class="pd-c" data-l="'+l+'"><div class="pd-art"><div class="pd-hd"><span class="pd-lv">'+d.k+'</span><span class="pd-mt" title="AI 應用深度">'+[1,2,3].map(i=>'<i class="'+(i<=l?'on':'')+'"></i>').join('')+'</span>'+(l==2?'<span class="pd-hot">最缺老師</span>':'')+'<span class="pd-pb'+(l!=2?' calm':'')+'">'+d.p+'</span></div>'+ART[l]+'</div>'+
-  '<div class="pd-body"><h3>'+d.t+'</h3><p class="sh">'+d.sh+'</p><div class="pd-tags">'+d.c.map((x,i)=>chip(x,i>=3?'x':'')).join('')+(n>3?'<button type="button" class="pd-more" aria-expanded="false">+'+(n-3)+' 門課</button>':'')+'</div></div>'+
+  return '<article class="pd-c" data-l="'+l+'"><div class="pd-art"><div class="pd-hd"><span class="pd-lv">'+d.k+'</span><span class="pd-mt" title="AI 應用深度">'+[1,2,3].map(i=>'<i class="'+(i<=l?'on':'')+'"></i>').join('')+'</span>'+'<span class="pd-pb'+(l!=2?' calm':'')+'">'+d.p+'</span></div>'+ART[l]+'</div>'+
+  '<div class="pd-body"><h3>'+d.t+'</h3><p class="sh">'+d.sh+'</p><small class="pd-cl">平台現有課程</small><div class="pd-tags">'+d.c.map((x,i)=>chip(x,i>=3?'x':'')).join('')+(n>3?'<button type="button" class="pd-more" aria-expanded="false">+'+(n-3)+' 門課</button>':'')+'</div></div>'+
   '<div class="pd-foot"><div class="pd-want">'+IC.search+'<div><small>我們正在找</small><p>'+d.w+'</p></div></div></div></article>'}).join('');
  box.querySelectorAll('.pd-more').forEach(b=>b.addEventListener('click',()=>{const c=b.closest('.pd-c'),o=c.classList.toggle('open');b.setAttribute('aria-expanded',o);b.textContent=o?'收合':'+'+c.querySelectorAll('.pd-tags .x').length+' 門課';}));})();
 </script>
