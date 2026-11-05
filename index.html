@@ -519,6 +519,60 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
 .fit .card:hover .n{transform:none}.fit .card:hover .n:after{background:var(--sky-d);transition:background .3s}
 @media(max-width:1080px){.fit .card:nth-child(3){border-left:0}.fit .card:nth-child(n+3){border-top:1px solid var(--line)}.fit .card{border-radius:0!important}}
 @media(max-width:640px){.fit .card+.card{border-left:0;border-top:1px solid var(--line)}.band .fit .card{padding:24px}}
+
+/* ===== 2026-11 改版：流程時間軸、精簡卡片與留白 ===== */
+:root{--sec:108px}
+.band{padding:96px 0}
+#contact{margin-top:96px}
+.flow-bg{background:var(--sky-l);padding:104px 0 112px}
+.flow .eyebrow{color:var(--sky-d)}.flow .eyebrow:before{background:var(--sky-m)}
+.flow .hd{margin-bottom:56px}
+.tline{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:28px;position:relative;counter-reset:none}
+.tline li:not(:last-child):after{content:"";position:absolute;top:27px;left:72px;right:-14px;height:2px;background:repeating-linear-gradient(90deg,var(--sky-m) 0 8px,transparent 8px 14px)}
+.tline li{position:relative;display:flex;flex-direction:column;align-items:flex-start}
+.tline .fn{position:relative;z-index:1;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--num);font-size:22px;font-weight:600;color:#fff;background:var(--ink);box-shadow:0 0 0 8px var(--sky-l)}
+.tline li:last-child .fn{background:var(--sun);color:var(--ink)}
+.tline .fi{display:none}
+.tline h3{font-size:19px;margin-top:24px}
+.tline p{font-size:15px;line-height:1.8;margin-top:8px;color:var(--body);flex:1}
+.tline .fw{margin-top:16px;font-size:13px;font-weight:600;color:var(--ink);background:#fff;padding:5px 12px;border-radius:999px;border:1px solid var(--line)}
+.tline li:last-child .fw{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* 適合講師：四欄文字，不再是卡片 */
+.fit{background:none;box-shadow:none;border-radius:0;gap:40px}
+.band .fit .card{padding:24px 0 0;border-radius:0!important;border:0!important;border-top:2px solid var(--ink)!important}
+.fit .card h3{margin-top:0}
+.fit .card:hover,.band .fit .card:hover{background:none}
+/* 關於 Schooler：拿掉外框 */
+.about-mini{background:none;border-radius:0;padding:40px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media(max-width:1080px){
+  .tline{grid-template-columns:1fr;gap:0;max-width:560px;margin:0 auto}
+  .tline li:not(:last-child):after{top:68px;bottom:12px;left:27px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--sky-m) 0 8px,transparent 8px 14px)}
+  .tline li{display:grid;grid-template-columns:56px 1fr;column-gap:20px;padding-bottom:32px}
+  .tline li:last-child{padding-bottom:0}
+  .tline .fn{grid-row:1/4}
+  .tline h3{margin-top:12px}.tline .fw{justify-self:start;margin-top:12px}
+  .fit{gap:32px}
+}
+@media(max-width:640px){
+  :root{--sec:72px}
+  .band{padding:64px 0}
+  #contact{margin-top:64px}
+  .flow-bg{padding:64px 0}
+  .flow .hd{margin-bottom:36px}
+  .tline .fn{width:44px;height:44px;font-size:18px;box-shadow:0 0 0 6px var(--sky-l)}
+  .tline li{grid-template-columns:44px 1fr;column-gap:16px;padding-bottom:28px}
+  .tline li:not(:last-child):after{left:21px;top:56px}
+  .tline h3{font-size:17px;margin-top:8px}
+  .fit{gap:24px}
+  .about-mini{padding:28px 0}
+  .facts{grid-template-columns:1fr 1fr}
+  .fact{flex-direction:column;gap:10px;padding:18px}
+  .fact .ic{width:40px;height:40px}
+  .fact b{font-size:16px}
+  .fact+.fact{border-top:0;border-left:0}
+  .fact:nth-child(even){border-left:1px solid var(--line)}
+  .fact:nth-child(n+3){border-top:1px solid var(--line)}
+}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -650,7 +704,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
 
   <!-- 02 合作方式 -->
   <section id="how">
-    <div class="hd s rv"><div><span class="eyebrow"><b>01</b> 合作方式</span><h2>你負責專業，<br>其他交給 Schooler</h2></div><p>從第一次聊課程到正式上架，都有專屬 PM 陪你推進，不需要自己研究一整套課程製作流程。</p></div>
+    <div class="hd s rv"><div><span class="eyebrow">合作方式</span><h2>你負責專業，<br>其他交給 Schooler</h2></div><p>從第一次聊課程到正式上架，都有專屬 PM 陪你推進，不需要自己研究一整套課程製作流程。</p></div>
     <div class="split">
       <div class="card bd rv">
         <span class="who">講師負責</span><h3>完成課程規劃與教學內容</h3>
@@ -689,18 +743,18 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   <div class="wrap">
     <!-- 03 課程方向 -->
     <section id="map">
-      <div class="hd c rv"><span class="eyebrow"><b>02</b> 課程方向</span><h2>AI 時代三層職場力，<br>現在最優先找 LV.2 講師</h2><p>從工作技能到駕馭 AI，一次看懂平台的課程佈局，以及我們正在找的老師。</p></div>
+      <div class="hd c rv"><span class="eyebrow">課程方向</span><h2>AI 時代三層職場力，<br>現在最優先找 LV.2 講師</h2><p>從工作技能到駕馭 AI，一次看懂平台的課程佈局，以及我們正在找的老師。</p></div>
       <div class="pd" id="pd"></div><div class="mprio"><span class="ic"><svg class="i" viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>不確定自己屬於哪一層？</b><span>直接告訴 PM 你的專長與經歷，我們會幫你判斷適合的課程方向。</span></div></div>
     </section>
 
     <!-- 04 適合講師 -->
     <section id="fit">
-      <div class="hd s rv"><div><span class="eyebrow"><b>03</b> 適合講師</span><h2>這樣的你，<br>適合成為 Schooler 講師</h2></div><p>不一定要有授課經驗，第一次當線上講師也可以。只要有扎實的實務經驗，並願意把方法整理成學員能跟著完成的內容。</p></div>
+      <div class="hd s rv"><div><span class="eyebrow">適合講師</span><h2>這樣的你，<br>適合成為 Schooler 講師</h2></div><p>不一定要有授課經驗，第一次當線上講師也可以。只要有扎實的實務經驗，並願意把方法整理成學員能跟著完成的內容。</p></div>
       <div class="fit">
-        <div class="card rv"><span class="n">01</span><h3>有真實的實務經驗</h3><p>能分享工作流程、專案做法、問題判斷或實際應用情境。</p></div>
-        <div class="card rv"><span class="n">02</span><h3>願意拆成清楚步驟</h3><p>把熟悉的專業，整理成學員能理解、能操作的教學順序。</p></div>
-        <div class="card rv"><span class="n">03</span><h3>重視學員真的學會</h3><p>不只介紹功能，更關心學員能否跟上、完成作品並實際應用。</p></div>
-        <div class="card rv"><span class="n">04</span><h3>願意從受眾角度調整</h3><p>和 PM 討論定位、內容順序與成果呈現，讓課程更貼近目標學員。</p></div>
+        <div class="card rv"><h3>有真實的實務經驗</h3><p>能分享工作流程、專案做法、問題判斷或實際應用情境。</p></div>
+        <div class="card rv"><h3>願意拆成清楚步驟</h3><p>把熟悉的專業，整理成學員能理解、能操作的教學順序。</p></div>
+        <div class="card rv"><h3>重視學員真的學會</h3><p>不只介紹功能，更關心學員能否跟上、完成作品並實際應用。</p></div>
+        <div class="card rv"><h3>願意從受眾角度調整</h3><p>和 PM 討論定位、內容順序與成果呈現，讓課程更貼近目標學員。</p></div>
       </div>
     </section>
   </div>
@@ -710,7 +764,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
   <div class="wrap">
     <!-- 06 合作條件 -->
     <section id="terms">
-      <div class="hd s rv"><div><span class="eyebrow"><b>04</b> 合作條件</span><h2>兩種課程形式，<br>合作條件一次看懂</h2></div><p>錄播與直播都重視實作與成果，差別在學員程度、互動方式與報酬組合。</p></div>
+      <div class="hd s rv"><div><span class="eyebrow">合作條件</span><h2>兩種課程形式，<br>合作條件一次看懂</h2></div><p>錄播與直播都重視實作與成果，差別在學員程度、互動方式與報酬組合。</p></div>
       <div class="plans">
         <article class="plan rec rv">
           <header class="ph">
@@ -768,22 +822,10 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
 
 <!-- 08 合作流程：最後一步直接接聯絡 -->
 <section id="flow" class="flow">
-  <div class="flow-bg" id="flowBg">
-    <div class="flow-track" id="flowTrack">
-      <div class="flow-stick">
-        <div class="wrap">
-          <div class="hd c"><span class="eyebrow"><b>05</b> 合作流程</span><h2>從一個課程想法，到正式上架或開課</h2></div>
-          <ol class="stepper" id="stepper"></ol>
-          <div class="fbox">
-            <button class="farr p" type="button" id="fPrev" aria-label="上一步"><svg class="i" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-            <div class="fart"><div class="circ"><span class="fnum" id="fNum">01</span><span id="fIco"></span></div></div>
-            <div class="ftxt" id="fTxt"></div>
-            <button class="farr n" type="button" id="fNext" aria-label="下一步"><svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-          </div>
-          <div class="scrollhint" aria-hidden="true">往下捲動<svg class="i" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></div>
-          <ol class="flist" id="flist"></ol>
-        </div>
-      </div>
+  <div class="flow-bg">
+    <div class="wrap">
+      <div class="hd c rv"><span class="eyebrow">合作流程</span><h2>從一個課程想法，到正式上架或開課</h2><p>五個步驟，每一步都有 PM 陪你確認。</p></div>
+      <ol class="tline rv" id="flist"></ol>
     </div>
   </div>
 </section>
@@ -791,7 +833,7 @@ body.scrolled nav{box-shadow:0 14px 36px -14px rgba(20,36,58,.4)}
 <div class="wrap">
   <!-- 07 FAQ -->
   <section id="faq">
-    <div class="hd c rv"><span class="eyebrow"><b>06</b> 問與答</span><h2>常見問題</h2><p>找不到答案，也歡迎直接問 PM。</p></div>
+    <div class="hd c rv"><span class="eyebrow">問與答</span><h2>常見問題</h2><p>找不到答案，也歡迎直接問 PM。</p></div>
     <div class="faq rv">
       <details open><summary>還沒有完整課綱，可以先聯絡嗎？</summary>
         <div class="ans"><p>可以。先提供課程主題、適合對象與預期成果，就能進行初步討論；正式合作時，再由老師規劃完整課綱。</p></div></details>
@@ -889,26 +931,8 @@ document.querySelectorAll('.rv').forEach(el=>{const sib=[...el.parentNode.childr
     {t:'錄製或直播授課',p:'錄播課先完成測試與試錄；直播課依確認排程授課。',c:'#EDCB7A',i:'<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"/>'},
     {t:'上架或正式開課',p:'平台完成後製、課程頁建置與推廣安排，正式上架或開課。',c:'#EFA88A',i:'<path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/>'}
   ];
-  const bg=document.getElementById('flowBg'),track=document.getElementById('flowTrack'),st=document.getElementById('stepper');
-  const num=document.getElementById('fNum'),ico=document.getElementById('fIco'),txt=document.getElementById('fTxt');
-  const prev=document.getElementById('fPrev'),next=document.getElementById('fNext');
-  st.innerHTML=S.map((s,i)=>'<li><button type="button" data-i="'+i+'"><span>0'+(i+1)+'</span>'+s.t+'</button></li>').join('');
-  document.getElementById('flist').innerHTML=S.map((s,i)=>'<li><span class="fn">0'+(i+1)+'</span><div><h3>'+s.t+'</h3><p>'+s.p+'</p></div></li>').join('');
-  const bs=[...st.querySelectorAll('button')];let cur=-1;
-  function show(i){if(i===cur)return;cur=i;const s=S[i];
-    bg.style.setProperty('--fc',s.c);
-    bs.forEach((b,j)=>{b.classList.toggle('on',j===i);b.setAttribute('aria-current',j===i?'step':'false')});
-    num.textContent='0'+(i+1);ico.innerHTML='<svg class="i" viewBox="0 0 24 24">'+s.i+'</svg>';
-    txt.innerHTML='<span class="cnt">0'+(i+1)+' / 05</span><h3>'+s.t+'</h3><p>'+s.p+'</p>';
-    txt.classList.remove('flow-in');void txt.offsetWidth;txt.classList.add('flow-in');
-    prev.disabled=i===0;next.disabled=i===S.length-1;}
-  const range=()=>track.offsetHeight-innerHeight;
-  function onScroll(){if(innerWidth<=640)return;const top=track.getBoundingClientRect().top;show(Math.floor(Math.min(Math.max(-top/range(),0),.9999)*S.length));}
-  function go(i){if(innerWidth<=640){show(i);return}
-    scrollTo({top:track.getBoundingClientRect().top+scrollY+range()*(i+.5)/S.length,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
-  bs.forEach(b=>b.addEventListener('click',()=>go(+b.dataset.i)));
-  prev.addEventListener('click',()=>go(Math.max(cur-1,0)));next.addEventListener('click',()=>go(Math.min(cur+1,S.length-1)));
-  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);show(0);onScroll();
+  const W=['講師','講師＋PM','講師＋PM','講師主導・PM 協助','Schooler'];
+  document.getElementById('flist').innerHTML=S.map((s,i)=>'<li><span class="fn">'+(i+1)+'</span><span class="fi" aria-hidden="true"><svg class="i" viewBox="0 0 24 24">'+s.i+'</svg></span><h3>'+s.t+'</h3><p>'+s.p+'</p><span class="fw">'+W[i]+'</span></li>').join('');
 })();
 
 // ===== 動態效果加強 =====
